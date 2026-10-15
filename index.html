@@ -1,0 +1,1711 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Қонаев және Алматы</title>
+<meta name="description" content="Дінмұхамед Қонаев пен Алматының цифрлық шежіресі: 3D модельдер, уақыт бойынша өсетін 3D карта, кеше мен бүгін салыстыруы, музей және викторина.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@300;500;700;900&display=swap">
+<style>
+/* Layout: blueprint-dark long scroll — every section is a "sheet" on a survey grid.
+   Gold = heritage (the crown of Hotel Kazakhstan), sky = the digital layer (flag blue). Parchment only for archival documents. */
+:root{
+  --ink:#070d18; --ink-2:#0b1424; --panel:#0f1a2e; --panel-2:#13213a;
+  --line:rgba(120,170,220,.16); --line-2:rgba(120,170,220,.3);
+  --text:#e8edf5; --muted:#93a3bb; --dim:#5f6f88;
+  --gold:#e0b25a; --gold-2:#f4d68f; --sky:#36c6ea; --sky-2:#8fe3f7;
+  --paper:#ebe0c8; --paper-2:#d9cba9; --paper-ink:#2d2516;
+  --ok:#4fd69c; --warn:#f0b444; --risk:#f2836a;
+  --f-display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --f-body:'Golos Text',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --f-serif:'PT Serif',Georgia,'Times New Roman',serif;
+  --gutter:clamp(16px,4vw,40px);
+  --maxw:1240px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--ink);color:var(--text);font:400 16px/1.6 var(--f-body);margin:0;overflow-x:hidden;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;background-position:-1px -1px;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1200px 700px at 70% -10%,rgba(54,198,234,.10),transparent 60%),radial-gradient(900px 600px at 0% 110%,rgba(224,178,90,.08),transparent 60%),linear-gradient(transparent,rgba(7,13,24,.6))}
+main,header,footer{position:relative;z-index:1}
+a{color:var(--sky-2)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.4vw,54px)}
+h3{font-size:clamp(18px,2vw,22px);font-weight:500}
+p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+.eyebrow{font:500 12px/1.4 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
+.eyebrow b{color:var(--gold);font-weight:600}
+.mono{font-family:var(--f-mono)}
+.muted{color:var(--muted)}
+section{padding-block:clamp(72px,10vw,128px)}
+.sec-head{display:grid;gap:18px;margin-bottom:clamp(32px,5vw,56px);max-width:860px}
+.sec-head .lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:68ch}
+.sec-index{display:flex;align-items:center;gap:14px}
+.sec-index .eyebrow{white-space:nowrap}
+.sec-index::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);
+  background:rgba(7,13,24,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-row{display:flex;align-items:center;gap:20px;height:60px;max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font:600 13px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.brand-mark{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--gold);color:var(--gold);font:700 12px var(--f-display);border-radius:50%}
+.nav nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
+.nav nav::-webkit-scrollbar{display:none}
+.nav nav a{color:var(--muted);text-decoration:none;font:500 13px var(--f-body);padding:8px 11px;border-radius:999px;white-space:nowrap;transition:color .2s,background .2s}
+.nav nav a:hover,.nav nav a.on{color:var(--text);background:rgba(54,198,234,.1)}
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:2px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--sky))}
+@media (max-width:720px){.brand span:last-child{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:min(860px,92vh);display:flex;flex-direction:column;justify-content:flex-end;padding-top:110px;padding-bottom:28px;overflow:hidden;border-bottom:1px solid var(--line)}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-photo{position:absolute;inset:0;background:#070d18 url(img/tower_grau.jpg) 60% 45%/cover no-repeat}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,13,24,.55),rgba(7,13,24,.25) 40%,rgba(7,13,24,.7))}
+.hero-cr{position:absolute;right:var(--gutter);bottom:8px;font:500 10.5px var(--f-mono);color:rgba(232,237,245,.7);z-index:2}
+.hero-cr a{color:inherit}
+.hero-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(7,13,24,.92) 0%,rgba(7,13,24,.55) 42%,rgba(7,13,24,0) 70%),linear-gradient(0deg,var(--ink) 0%,rgba(7,13,24,0) 30%)}
+@media (max-width:820px){.hero-veil{background:linear-gradient(0deg,var(--ink) 5%,rgba(7,13,24,.55) 55%,rgba(7,13,24,.35))}}
+.hero-inner{position:relative;width:100%;display:grid;gap:22px}
+.hero h1{font-size:clamp(40px,8.2vw,112px);font-weight:900;line-height:.92;letter-spacing:-.025em;display:grid}
+.hero h1 span:nth-child(2){background:linear-gradient(100deg,var(--gold-2),var(--gold) 45%,#b9862f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 em{font-style:normal;font-weight:300;font-size:.46em;letter-spacing:0;color:var(--sky-2);margin-top:.35em}
+.hero .lead{max-width:56ch;color:#c5d0e0;font-size:clamp(16px,1.6vw,19px)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:999px;font:600 14px var(--f-body);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s;color:var(--text);background:none}
+.btn:hover{transform:translateY(-1px)}
+.btn.gold{background:var(--gold);color:#1a1205}
+.btn.gold:hover{background:var(--gold-2)}
+.btn.ghost{border-color:var(--line-2)}
+.btn.ghost:hover{border-color:var(--sky);background:rgba(54,198,234,.08)}
+.btn.sm{padding:8px 14px;font-size:13px}
+.hero-stats{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:clamp(36px,6vw,64px);background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;width:calc(100% - 2*var(--gutter));max-width:calc(var(--maxw) - 2*var(--gutter));margin-inline:auto;padding:0}
+.stat{background:rgba(9,16,30,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:16px 18px;display:grid;gap:4px;min-width:0}
+.stat b{font:700 clamp(22px,3vw,34px)/1 var(--f-display);color:var(--gold-2);font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:13px;line-height:1.35}
+@media (max-width:760px){.hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hero-hud{position:absolute;right:var(--gutter);top:86px;font:500 11px/1.7 var(--f-mono);color:var(--sky);text-align:right;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.hero-hud i{font-style:normal;color:var(--gold)}
+@media (max-width:820px){.hero-hud{display:none}}
+
+/* DOSSIER / PERSON */
+.person{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+@media (max-width:900px){.person{grid-template-columns:1fr}}
+.dossier{position:relative;background:var(--paper);color:var(--paper-ink);border-radius:4px;padding:28px 26px 30px;font-family:var(--f-serif);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.2);transform:rotate(-1.2deg);
+  background-image:radial-gradient(circle at 20% 10%,rgba(255,255,255,.5),transparent 40%),radial-gradient(circle at 90% 90%,rgba(120,90,40,.18),transparent 50%),repeating-linear-gradient(0deg,transparent 0 27px,rgba(80,60,20,.08) 27px 28px)}
+.dossier::after{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none;box-shadow:inset 0 0 60px rgba(110,80,30,.25)}
+.dossier-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1.5px solid var(--paper-ink);padding-bottom:12px;margin-bottom:14px}
+.dossier-top h3{font:700 22px/1.1 var(--f-serif);letter-spacing:.02em}
+.dossier-top small{display:block;font:400 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;opacity:.7}
+.stamp{flex:none;width:86px;height:86px;border:2.5px solid #9c2f20;color:#9c2f20;border-radius:50%;display:grid;place-items:center;text-align:center;font:700 10px/1.15 var(--f-mono);letter-spacing:.06em;transform:rotate(12deg);opacity:.78;padding:8px}
+.portrait{display:grid;grid-template-columns:110px 1fr;gap:16px;margin-bottom:12px}
+.portrait canvas{width:110px;height:138px;border:1px solid rgba(45,37,22,.5);background:#d8c9a6;display:block}
+.dl{display:grid;gap:7px;font-size:14.5px;line-height:1.4}
+.dl div{display:grid;grid-template-columns:118px 1fr;gap:10px}
+.dl dt{font:400 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;opacity:.65;padding-top:3px}
+.dl dd{margin:0}
+.portrait .dl div{grid-template-columns:1fr;gap:2px}
+@media (max-width:560px){.dl div{grid-template-columns:1fr;gap:2px}.portrait{grid-template-columns:96px 1fr}.portrait canvas{width:96px;height:120px}.stamp{width:70px;height:70px;font-size:8.5px}.dossier{padding:22px 18px 24px;transform:rotate(-.6deg)}}
+.dossier .sig{margin-top:16px;font-style:italic;opacity:.7;font-size:13px}
+.person-text{display:grid;gap:20px;font-size:clamp(16px,1.5vw,18px);color:#cdd6e4}
+.person-text p:first-child::first-letter{font:900 3.4em/0.8 var(--f-display);float:left;margin:6px 10px 0 0;color:var(--gold)}
+.quote{border-left:0;padding:22px 24px;background:linear-gradient(135deg,rgba(224,178,90,.1),rgba(224,178,90,.02));border-radius:12px;font:italic 400 clamp(18px,2vw,22px)/1.45 var(--f-serif);color:var(--paper)}
+.quote small{display:block;margin-top:10px;font:500 12px var(--f-mono);font-style:normal;color:var(--muted);letter-spacing:.06em}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.post{padding:14px;border:1px solid var(--line);border-radius:10px;background:rgba(15,26,46,.6)}
+.post b{display:block;font:600 13px var(--f-mono);color:var(--sky);margin-bottom:4px}
+.post span{font-size:14px;line-height:1.4;color:#c9d3e2}
+@media (max-width:640px){.posts{grid-template-columns:1fr}}
+
+/* CONTRIBUTIONS */
+.contrib{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.contrib{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.contrib{grid-template-columns:1fr}}
+.c-card{position:relative;padding:24px 22px 22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(19,33,58,.75),rgba(11,20,36,.75));display:grid;gap:12px;align-content:start;overflow:hidden;transition:border-color .3s,transform .3s}
+.c-card:hover{border-color:rgba(224,178,90,.5);transform:translateY(-3px)}
+.c-card svg{width:40px;height:40px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.c-card h3{font-size:19px}
+.c-card p{color:#c2ccdb;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 11.5px var(--f-mono);padding:4px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--sky-2);white-space:nowrap}
+.chip.g{border-color:rgba(224,178,90,.45);color:var(--gold-2)}
+.c-card .num{position:absolute;right:16px;top:12px;font:900 64px/1 var(--f-display);color:rgba(224,178,90,.07)}
+
+/* TIMELINE */
+.tl{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(24px,5vw,72px)}
+.tl-side{position:sticky;top:96px;align-self:start;display:grid;gap:14px}
+.tl-year{font:900 clamp(72px,11vw,148px)/.9 var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--gold);transition:color .4s}
+.tl-year.flash{color:rgba(224,178,90,.18)}
+.tl-era{font:500 13px var(--f-mono);color:var(--sky);letter-spacing:.08em;text-transform:uppercase}
+.tl-age{color:var(--muted);font-size:14px}
+.tl-bar{height:6px;border-radius:3px;background:var(--panel-2);position:relative;overflow:hidden}
+.tl-bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--gold),var(--sky));transition:width .5s}
+.tl-bar-l{display:flex;justify-content:space-between;font:500 11px var(--f-mono);color:var(--dim)}
+.tl-list{list-style:none;margin:0;padding:0;position:relative}
+.tl-list::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--gold),var(--sky) 70%,var(--line))}
+.tl-item{position:relative;padding:0 0 34px 40px;opacity:.55;transition:opacity .4s}
+.tl-item.on{opacity:1}
+.tl-item::before{content:"";position:absolute;left:0;top:6px;width:15px;height:15px;border-radius:50%;background:var(--ink);border:2px solid var(--sky);transition:background .3s,box-shadow .3s}
+.tl-item.k::before{border-color:var(--gold)}
+.tl-item.on::before{background:var(--gold);box-shadow:0 0 0 6px rgba(224,178,90,.18)}
+.tl-item .d{font:600 13px var(--f-mono);color:var(--gold-2);letter-spacing:.04em}
+.tl-item h3{font-size:clamp(17px,1.8vw,20px);margin:4px 0 6px}
+.tl-item p{color:#bfcadb;font-size:15px;max-width:62ch}
+.tl-item .chips{margin-top:10px}
+@media (max-width:860px){
+  .tl{grid-template-columns:1fr}
+  .tl-side{top:60px;z-index:5;background:rgba(7,13,24,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 0 12px;grid-template-columns:auto 1fr;align-items:center;gap:4px 16px;border-bottom:1px solid var(--line)}
+  .tl-year{font-size:52px;grid-row:span 3}
+  .tl-bar,.tl-bar-l{grid-column:2}
+}
+
+/* MAP */
+.frame{position:relative;border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:#060b15;isolation:isolate}
+.frame::before,.frame::after{content:"";position:absolute;width:22px;height:22px;border:2px solid var(--gold);z-index:4;pointer-events:none}
+.frame::before{left:10px;top:10px;border-right:0;border-bottom:0}
+.frame::after{right:10px;bottom:10px;border-left:0;border-top:0}
+.map-frame{height:clamp(540px,80vh,820px)}
+.map-frame canvas,.lab-frame canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.pins{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.pin{position:absolute;left:0;top:0;pointer-events:auto;transform:translate(-50%,-100%);display:flex;align-items:center;gap:6px;padding:4px 9px 4px 5px;border-radius:999px;border:1px solid rgba(54,198,234,.5);background:rgba(6,11,21,.82);color:var(--text);font:500 12px var(--f-body);white-space:nowrap;cursor:pointer;transition:opacity .3s,border-color .2s,background .2s}
+.pin::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sky);flex:none}
+.pin.k{border-color:rgba(224,178,90,.6)}
+.pin.k::before{background:var(--gold)}
+.pin.m{border-color:rgba(235,224,200,.7)}
+.pin.m::before{background:var(--paper)}
+.pin small{font:500 10.5px var(--f-mono);color:var(--muted)}
+.pin:hover,.pin.sel{background:rgba(224,178,90,.95);color:#1a1205;border-color:var(--gold)}
+.pin:hover small,.pin.sel small{color:#3a2a0a}
+.pin.off{opacity:0;pointer-events:none}
+@media (max-width:700px){.pin .t{display:none}.pin{padding:4px 7px 4px 5px}}
+.hud{position:absolute;z-index:3;pointer-events:none}
+.hud-tl{left:28px;top:30px;display:grid;gap:6px;max-width:min(380px,calc(100% - 36px))}
+.hud-year{font:900 clamp(44px,6vw,76px)/.9 var(--f-display);font-variant-numeric:tabular-nums;color:var(--text);letter-spacing:-.03em}
+.hud-year.k{color:var(--gold-2)}
+.hud-pop{font:500 13px var(--f-mono);color:var(--sky-2)}
+.hud-ev{font-size:14px;color:#d7dfeb;background:rgba(6,11,21,.7);border:1px solid var(--line);border-radius:10px;padding:8px 12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hud-ev b{color:var(--gold-2);font-family:var(--f-mono);font-weight:600;margin-right:6px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font:500 11.5px var(--f-mono);color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.hud-b{left:0;right:0;bottom:0;padding:16px 18px 18px;pointer-events:auto;background:linear-gradient(0deg,rgba(6,11,21,.95),rgba(6,11,21,0));display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:center}
+.play{width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:rgba(224,178,90,.12);color:var(--gold-2);display:grid;place-items:center;cursor:pointer;grid-row:span 2}
+.play svg{width:18px;height:18px;fill:currentColor}
+.range{position:relative;height:30px}
+.range .track{position:absolute;left:0;right:0;top:13px;height:4px;border-radius:2px;background:rgba(147,163,187,.25)}
+.range .kband{position:absolute;top:9px;height:12px;border-radius:3px;background:rgba(224,178,90,.35);border:1px solid rgba(224,178,90,.7)}
+.range input{position:absolute;inset:0;width:100%;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+.range input::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);border:3px solid #060b15;box-shadow:0 0 0 1px var(--gold)}
+.range input::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:3px solid #060b15}
+.range input::-webkit-slider-runnable-track{background:transparent}
+.ticks{display:flex;justify-content:space-between;font:500 10.5px var(--f-mono);color:var(--dim)}
+.ticks b{color:var(--gold);font-weight:600}
+.map-card{position:absolute;z-index:3;right:18px;top:18px;width:min(340px,calc(100% - 36px));background:rgba(9,16,30,.92);border:1px solid var(--line-2);border-radius:14px;padding:18px;display:grid;gap:10px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.map-card h3{font-size:17px}
+.mc-img{width:100%;height:130px;object-fit:cover;border-radius:10px;display:block;cursor:zoom-in}
+.mc-cr{display:block;margin-top:4px;font:500 10.5px var(--f-mono);color:var(--muted)}
+.mc-cr a{color:var(--sky-2)}
+.map-card .y{font:600 12px var(--f-mono);color:var(--gold-2)}
+.map-card p{font-size:14px;color:#c6d0df;line-height:1.5}
+.map-card .row{display:flex;gap:8px;flex-wrap:wrap}
+.map-card .x{position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1}
+.tag{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--f-mono);padding:3px 8px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
+.tag.k{background:rgba(224,178,90,.16);color:var(--gold-2)}
+.tag.s{background:rgba(54,198,234,.14);color:var(--sky-2)}
+.tag.m{background:rgba(235,224,200,.14);color:var(--paper)}
+@media (max-width:760px){
+  .map-frame{height:auto;display:flex;flex-direction:column}
+  .map-stage{position:relative;height:72vh;min-height:480px}
+  .map-card{position:relative;right:auto;top:auto;width:auto;margin:0;border-radius:0;border-width:1px 0 0}
+  .hud-tl{max-width:calc(100% - 36px)}
+  .hud-ev{font-size:13px}
+}
+@media (min-width:761px){.map-stage{position:absolute;inset:0}}
+.map-note{margin-top:14px;font-size:13px;color:var(--dim)}
+.map-note a{color:var(--sky-2)}
+.map-load{position:absolute;inset:0;display:grid;place-items:center;z-index:2;pointer-events:none}
+.map-load span{font:500 13px var(--f-mono);color:var(--sky-2);padding:10px 16px;border:1px solid var(--line-2);border-radius:999px;background:rgba(6,11,21,.85);letter-spacing:.06em}
+.osm-attr{position:absolute;right:12px;bottom:94px;z-index:3;font:500 10.5px var(--f-mono);color:var(--muted);background:rgba(6,11,21,.7);padding:3px 8px;border-radius:6px;pointer-events:none}
+
+/* LAB */
+.lab{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+@media (max-width:1060px){.lab{grid-template-columns:1fr}}
+.lab-frame{aspect-ratio:16/11;max-height:760px;min-height:420px;width:100%}
+@media (max-width:640px){.lab-frame{aspect-ratio:auto;height:68vh;min-height:460px}}
+.lab-then{position:absolute;left:0;top:0;bottom:0;width:50%;pointer-events:none;z-index:1;
+  backdrop-filter:sepia(.9) contrast(1.06) brightness(.97) saturate(.85);-webkit-backdrop-filter:sepia(.9) contrast(1.06) brightness(.97) saturate(.85)}
+.lab-then::after{content:"";position:absolute;inset:0;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .15 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  box-shadow:inset 0 0 120px rgba(60,40,10,.55)}
+.lab-handle{position:absolute;top:0;bottom:0;left:50%;width:44px;margin-left:-22px;z-index:3;cursor:ew-resize;touch-action:none;display:grid;place-items:center}
+.lab-handle::before{content:"";position:absolute;top:0;bottom:0;left:21px;width:2px;background:linear-gradient(var(--gold),#fff 50%,var(--sky));box-shadow:0 0 18px rgba(224,178,90,.6)}
+.lab-handle span{position:relative;width:44px;height:44px;border-radius:50%;background:#0b1424;border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold-2);font:700 14px var(--f-mono)}
+.lab-tag{position:absolute;z-index:2;top:16px;font:600 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;pointer-events:none}
+.lab-tag.l{left:46px;background:rgba(235,224,200,.9);color:#3b2d12}
+.lab-tag.r{right:46px;background:rgba(6,11,21,.8);color:var(--sky-2);border:1px solid rgba(54,198,234,.5)}
+.lab-tools{position:absolute;z-index:3;left:14px;bottom:14px;right:14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;pointer-events:none}
+.lab-tools>div{display:flex;gap:6px;flex-wrap:wrap;pointer-events:auto}
+.tbtn{font:600 12px var(--f-body);padding:8px 12px;border-radius:999px;border:1px solid var(--line-2);background:rgba(6,11,21,.82);color:var(--text);cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.tbtn[aria-pressed="true"]{background:var(--gold);color:#1a1205;border-color:var(--gold)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{display:grid;gap:2px;text-align:left;padding:10px 16px;border-radius:12px;border:1px solid var(--line-2);background:rgba(15,26,46,.7);color:var(--text);cursor:pointer;font:600 14px var(--f-body);transition:border-color .2s,background .2s}
+.tab small{font:500 11px var(--f-mono);color:var(--muted)}
+.tab[aria-selected="true"]{border-color:var(--gold);background:rgba(224,178,90,.12)}
+.tab[aria-selected="true"] small{color:var(--gold-2)}
+.lab-info{border:1px solid var(--line);border-radius:18px;background:rgba(15,26,46,.7);padding:22px;display:grid;gap:16px}
+.lab-info h3{font-size:21px}
+.lab-info .sub{color:var(--muted);font-size:14px}
+.cmp{width:100%;border-collapse:collapse;font-size:13.5px}
+.cmp th{font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:6px 8px;color:var(--muted);border-bottom:1px solid var(--line-2)}
+.cmp th:nth-child(2){color:var(--paper)}
+.cmp th:nth-child(3){color:var(--sky)}
+.cmp td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+.cmp td:first-child{font:500 11.5px var(--f-mono);color:var(--muted);width:24%}
+.cmp td:nth-child(2){color:#eadfc6}
+.lab-note{font-size:12.5px;color:var(--dim)}
+.no3d{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted);z-index:5;background:#060b15}
+
+/* CHART */
+.growth{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:center}
+@media (max-width:900px){.growth{grid-template-columns:1fr}}
+.chart-box{position:relative;border:1px solid var(--line);border-radius:18px;background:rgba(11,20,36,.7);padding:18px 14px 8px}
+.chart-box h3{font-size:16px;margin:0 6px 4px}
+.chart-box .muted{font-size:13px;margin:0 6px}
+#chart{width:100%;height:auto;display:block;overflow:visible}
+.tip{position:absolute;pointer-events:none;background:#0b1424;border:1px solid var(--line-2);border-radius:10px;padding:8px 12px;font:500 12.5px var(--f-mono);color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.5);transform:translate(-50%,-115%);white-space:nowrap;z-index:2}
+.tip b{color:var(--gold-2);display:block;font-size:15px}
+.big-n{display:grid;gap:6px}
+.big-n b{font:900 clamp(56px,8vw,96px)/.9 var(--f-display);color:var(--gold-2);letter-spacing:-.03em}
+.big-n span{color:#c6d0df}
+details.table{margin-top:10px;font-size:13px;color:var(--muted)}
+details.table summary{cursor:pointer;padding:6px}
+details.table table{border-collapse:collapse;margin:6px;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+details.table td,details.table th{padding:4px 14px 4px 0;text-align:left;border-bottom:1px solid var(--line)}
+
+/* MYTH vs FACT */
+.funnel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:28px}
+@media (max-width:760px){.funnel{grid-template-columns:1fr}}
+.fn{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(15,26,46,.6);font-size:14px;color:#c9d3e2}
+.fn .ic{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--f-mono)}
+.v-ok{background:rgba(79,214,156,.15);color:var(--ok)}
+.v-mid{background:rgba(240,180,68,.15);color:var(--warn)}
+.v-q{background:rgba(242,131,106,.15);color:var(--risk)}
+.claims{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.claims{grid-template-columns:1fr}}
+.claim{border:1px solid var(--line);border-radius:16px;background:rgba(15,26,46,.65);overflow:hidden}
+.claim summary{list-style:none;cursor:pointer;padding:20px 22px;display:grid;gap:12px}
+.claim summary::-webkit-details-marker{display:none}
+.claim .cq{font:italic 400 19px/1.4 var(--f-serif);color:var(--paper)}
+.claim .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.verdict{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--f-mono);padding:5px 10px;border-radius:8px;letter-spacing:.03em}
+.claim .open{font:500 12px var(--f-mono);color:var(--sky)}
+.claim[open] .open{color:var(--muted)}
+.claim .ev{padding:0 22px 20px;display:grid;gap:10px;font-size:14.5px;color:#c6d0df;border-top:1px dashed var(--line-2);padding-top:16px;margin:0 22px;padding-inline:0}
+.claim .ev ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.claim .src{font:500 11.5px var(--f-mono);color:var(--dim)}
+
+/* MUSEUM */
+.museum{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center}
+@media (max-width:940px){.museum{grid-template-columns:1fr}}
+.stage3d{position:relative;height:440px;perspective:1100px;display:grid;place-items:center;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 85%,rgba(224,178,90,.18),transparent 55%),radial-gradient(ellipse at 50% 0%,rgba(54,198,234,.12),transparent 60%),#08101f}
+.stage3d::after{content:"";position:absolute;left:10%;right:10%;bottom:46px;height:30px;border-radius:50%;background:radial-gradient(rgba(224,178,90,.35),transparent 70%);filter:blur(6px)}
+.ring{position:relative;width:220px;height:280px;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.exh{position:absolute;inset:0;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:linear-gradient(160deg,rgba(28,45,76,.96),rgba(10,18,33,.96));border:1px solid rgba(224,178,90,.45);box-shadow:0 0 40px rgba(54,198,234,.12) inset}
+.exh .n{font:600 11px var(--f-mono);color:var(--sky);letter-spacing:.12em}
+.exh h4{margin:0;font:700 17px/1.2 var(--f-display);color:var(--gold-2)}
+.exh p{font-size:13px;color:#c6d0df;line-height:1.45}
+.exh svg{width:54px;height:54px;stroke:var(--gold);fill:none;stroke-width:1.3}
+.stage-ctl{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:10px;z-index:2}
+.m-cards{display:grid;gap:14px}
+.m-card{padding:18px 20px;border-radius:14px;border:1px solid var(--line);background:rgba(15,26,46,.65);display:grid;gap:8px}
+.m-card h3{font-size:17px}
+.m-card p{font-size:14.5px;color:#c6d0df}
+.m-card .addr{font:500 13px var(--f-mono);color:var(--paper)}
+.m-years{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.m-years div{padding:12px;border-radius:12px;background:rgba(224,178,90,.08);border:1px solid rgba(224,178,90,.25)}
+.m-years b{display:block;font:700 22px var(--f-display);color:var(--gold-2)}
+.m-years span{font-size:12.5px;color:#c6d0df;line-height:1.35;display:block}
+
+/* QUIZ + NOTEBOOK */
+.learn{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}
+@media (max-width:900px){.learn{grid-template-columns:1fr}}
+.quiz,.notebook{border:1px solid var(--line-2);border-radius:20px;background:linear-gradient(180deg,rgba(19,33,58,.85),rgba(11,20,36,.85));padding:clamp(18px,3vw,28px);display:grid;gap:16px;align-content:start}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font:600 12px var(--f-mono);color:var(--muted)}
+.q-score{color:var(--gold-2)}
+.q-prog{height:4px;border-radius:2px;background:var(--panel-2);overflow:hidden}
+.q-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--sky));transition:width .4s}
+.q-q{font:600 clamp(18px,2vw,22px)/1.35 var(--f-body)}
+.q-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.q-opts{grid-template-columns:1fr}}
+.q-opt{text-align:left;padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:rgba(7,13,24,.6);color:var(--text);font:500 15px var(--f-body);cursor:pointer;transition:border-color .2s,background .2s}
+.q-opt:hover:not(:disabled){border-color:var(--sky)}
+.q-opt.right{border-color:var(--ok);background:rgba(79,214,156,.14)}
+.q-opt.wrong{border-color:var(--risk);background:rgba(242,131,106,.12)}
+.q-opt:disabled{cursor:default}
+.q-exp{font-size:14.5px;color:#c6d0df;padding:12px 14px;border-radius:10px;background:rgba(54,198,234,.07);border:1px solid rgba(54,198,234,.2)}
+.q-end{display:grid;gap:12px;text-align:left}
+.q-end b{font:900 64px/1 var(--f-display);color:var(--gold-2)}
+.notebook{background:linear-gradient(180deg,rgba(235,224,200,.06),rgba(235,224,200,.02));border-color:rgba(235,224,200,.25)}
+.notebook h3{font-family:var(--f-serif);font-weight:700;font-size:22px;color:var(--paper)}
+.notebook label{font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.06em}
+.notebook select,.notebook textarea{width:100%;font:400 15px/1.55 var(--f-serif);color:var(--paper);background:rgba(7,13,24,.6);border:1px solid rgba(235,224,200,.25);border-radius:10px;padding:12px 14px}
+.notebook textarea{min-height:200px;resize:vertical;background-image:repeating-linear-gradient(0deg,transparent 0 23.5px,rgba(235,224,200,.08) 23.5px 24.5px);background-attachment:local;line-height:24.5px}
+.nb-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.nb-status{font:500 12px var(--f-mono);color:var(--dim)}
+
+/* METHOD */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{padding:24px 22px;display:grid;gap:10px;align-content:start;border-right:1px solid var(--line);background:linear-gradient(180deg,rgba(15,26,46,.4),rgba(15,26,46,.8))}
+.step:nth-child(1){background:linear-gradient(180deg,rgba(235,224,200,.1),rgba(235,224,200,.03))}
+.step .k{font:600 12px var(--f-mono);color:var(--gold)}
+.step h3{font-size:18px}
+.step p{font-size:14px;color:#c0cad9}
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+@media (max-width:760px){.aud{grid-template-columns:1fr}}
+.aud div{padding:18px 20px;border-radius:14px;border:1px solid var(--line);background:rgba(15,26,46,.5)}
+.aud b{display:block;font:600 16px var(--f-display);margin-bottom:6px;color:var(--gold-2)}
+.aud span{font-size:14px;color:#c0cad9}
+.sources{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 28px;font-size:14px}
+@media (max-width:760px){.sources{grid-template-columns:1fr}}
+.sources a{color:var(--sky-2);text-decoration:none;border-bottom:1px solid rgba(143,227,247,.3)}
+.sources li{color:var(--muted);padding:6px 0;border-bottom:1px solid var(--line)}
+.sources ul{list-style:none;padding:0;margin:0}
+
+/* FINALE */
+.finale{position:relative;text-align:left;padding-block:clamp(80px,12vw,140px);border-top:1px solid var(--line);overflow:hidden}
+.finale-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center}
+@media (max-width:760px){.finale-grid{grid-template-columns:1fr}}
+.finale h2{font-size:clamp(32px,5.6vw,72px);font-weight:900}
+.finale h2 span{color:var(--gold-2)}
+.qr{background:#fff;padding:14px;border-radius:14px;width:200px;display:grid;gap:8px;justify-items:center;color:#111;font:600 11px var(--f-mono);text-align:center}
+.qr svg{width:172px;height:172px;display:block}
+footer{padding-block:28px 40px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.pf{margin:0;display:grid;gap:4px}
+.pf img{width:110px;height:138px;object-fit:cover;object-position:60% 15%;border:1px solid rgba(45,37,22,.5);filter:sepia(.35) contrast(1.05);display:block;cursor:zoom-in}
+.pf figcaption{font:400 10px var(--f-mono);opacity:.6;letter-spacing:.04em}
+@media (max-width:560px){.pf img{width:96px;height:120px}}
+.tl-ph{margin-top:12px;display:flex;gap:12px;align-items:center;padding:6px;border-radius:12px;border:1px solid var(--line-2);background:rgba(15,26,46,.7);color:#c6d0df;cursor:zoom-in;text-align:left;font:500 12.5px/1.35 var(--f-body);max-width:440px}
+.tl-ph img{width:92px;height:64px;object-fit:cover;border-radius:8px;flex:none;filter:saturate(.9)}
+.tl-ph:hover{border-color:var(--gold)}
+.ph-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:8px}
+.ph-th{position:relative;padding:0;border:1px solid var(--line-2);border-radius:10px;overflow:hidden;background:#000;cursor:pointer;aspect-ratio:1/1}
+.ph-th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.ph-th:hover img{transform:scale(1.06)}
+.ph-th span{position:absolute;left:0;right:0;bottom:0;padding:4px 6px;font:600 10.5px var(--f-mono);color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));text-align:left}
+.ph-th.m{border-color:rgba(224,178,90,.7)}
+.ph-th.m span{color:var(--gold-2)}
+.lab-photo{position:absolute;z-index:0;object-fit:fill;pointer-events:none}
+.modes{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:-4px 0 14px}
+.mode-note{font:500 12px var(--f-mono);color:var(--dim)}
+.tbtn:disabled{opacity:.4;cursor:not-allowed}
+.pc{position:absolute;inset:0;z-index:2;background:#05080f;overflow:hidden}
+.pc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pc-then,.pc-now{position:absolute;top:0;bottom:0;overflow:hidden}
+.pc-then{left:0;width:50%}
+.pc-now{left:50%;right:0}
+.pc-cr{position:absolute;left:0;right:0;bottom:62px;display:flex;justify-content:space-between;gap:10px;padding:0 14px;pointer-events:none}
+.pc-cr span{font:500 10.5px var(--f-mono);color:#e8edf5;background:rgba(6,11,21,.7);padding:3px 8px;border-radius:6px;max-width:48%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:auto}
+.pc-cr a{color:var(--sky-2)}
+.lab-frame:not(.photo) .pc{display:none}
+.lab-frame.photo .lab-then,.lab-frame.photo .only3d{display:none}
+.lab-frame.photo .lab-handle{z-index:4}
+.lab-frame.photo .lab-tag,.lab-frame.photo .lab-tools{z-index:4}
+.lab-frame canvas{z-index:1}
+.lab-frame.ov{background:#05080f}
+.lab-frame.ov .lab-then,.lab-frame.ov .lab-handle,.lab-frame.ov .lab-tag,.lab-frame.ov .lab-tools{display:none}
+.ov-bar{position:absolute;z-index:4;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 12px;border-radius:14px;background:rgba(6,11,21,.86);border:1px solid var(--line-2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ov-bar .cap{flex:1 1 220px;min-width:0;font-size:12.5px;color:#d7dfeb}
+.ov-bar .cap b{color:var(--gold-2);font:600 11px var(--f-mono);letter-spacing:.1em;display:block}
+.ov-bar label{display:flex;align-items:center;gap:8px;font:500 12px var(--f-mono);color:var(--muted)}
+.ov-bar input[type=range]{width:120px;accent-color:var(--gold)}
+.arch-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.arch{columns:3 260px;column-gap:14px}
+.arch figure{break-inside:avoid;margin:0 0 14px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:rgba(15,26,46,.7)}
+.arch img{width:100%;height:auto;display:block;cursor:zoom-in;transition:filter .3s}
+.arch figure:hover img{filter:brightness(1.08)}
+.arch figcaption{padding:10px 12px 12px;display:grid;gap:4px;font-size:13.5px;color:#d7dfeb;line-height:1.4}
+.arch figcaption b{font:600 12px var(--f-mono);color:var(--gold-2)}
+.arch figcaption small,.lb small{font:500 11px var(--f-mono);color:var(--muted)}
+.arch figcaption small a,.lb small a{color:var(--sky-2)}
+.arch .go3d{justify-self:start;margin-top:4px}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(3,6,12,.92);display:grid;place-items:center;padding:24px 16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.lb figure{margin:0;display:grid;gap:10px;max-width:min(1100px,100%);justify-items:center}
+.lb img{max-width:100%;max-height:78vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb figcaption{display:grid;gap:4px;text-align:center;color:#e8edf5;font-size:14px;max-width:70ch}
+.lb .x{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:rgba(6,11,21,.8);color:#fff;font-size:20px;cursor:pointer}
+.visit{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr);max-width:760px;gap:clamp(20px,4vw,40px);align-items:start}
+@media (max-width:900px){.visit{grid-template-columns:1fr}}
+.visit-head{display:grid;gap:12px}
+@media (max-width:900px){.visit-head{position:static}}
+.visit-head h3{font-size:22px}
+.kq{margin:6px 0 0;padding:18px 20px;border-radius:12px;background:linear-gradient(135deg,rgba(224,178,90,.12),rgba(224,178,90,.02));font:italic 400 18px/1.45 var(--f-serif);color:var(--paper)}
+.kq small{display:block;margin-top:8px;font:500 11.5px var(--f-mono);font-style:normal;color:var(--muted)}
+.visit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.visit-grid figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:rgba(15,26,46,.7)}
+.visit-grid figure.w{grid-column:span 2}
+.visit-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;cursor:zoom-in}
+.visit-grid figure.w img{aspect-ratio:16/10}
+.visit-grid figcaption{padding:8px 10px;font-size:12.5px;color:#c6d0df;line-height:1.35}
+.reveal{transform:translateY(18px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{transform:none;transition:none}.ring{transition:none}}
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="nav-row">
+    <a class="brand" href="#top" aria-label="Басына оралу"><span class="brand-mark">ДҚ</span><span>Қонаев · Алматы</span></a>
+    <nav aria-label="Бөлімдер">
+      <a href="#tulga">Тұлға</a><a href="#enbek">Еңбегі</a><a href="#shezhire">Шежіре</a><a href="#karta">3D карта</a><a href="#lab">Кеше / Бүгін</a><a href="#foto">Фотомұрағат</a><a href="#osim">Өсім</a><a href="#aqiqat">Аңыз / Ақиқат</a><a href="#muzei">Музей</a><a href="#oqu">Викторина</a><a href="#adis">Әдіснама</a>
+    </nav>
+  </div>
+  <div class="progress"><i id="prog"></i></div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-photo" role="img" aria-label="Алматы, Көктөбе телемұнарасы және Іле Алатауы"></div>
+  <canvas id="heroCanvas" aria-label="«Қазақстан» қонақүйінің голографиялық 3D моделі"></canvas>
+  <div class="hero-veil"></div>
+  <div class="hero-hud" aria-hidden="true">
+    <div>43.2389° N · 76.8897° E</div>
+    <div>Модель: <i>«Қазақстан» қонақүйі</i></div>
+    <div>1977 · 26 қабат · ≈102 м</div>
+    <div id="heroClock">Рендер: WebGL</div>
+  </div>
+  <div class="hero-cr">Фото: Michael Grau, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Цифрлық шежіре · <b>1912 — 2026</b></p>
+    <h1><span>Дінмұхамед</span><span>Қонаев</span><em>және Алматы</em></h1>
+    <p class="lead">Тұлға мен қала тарихы бір кеңістікте: 3D модельдер, жылдар бойынша өсетін қала картасы, «кеше мен бүгін» салыстыруы және құжатпен тексерілген деректер.</p>
+    <div class="cta">
+      <a class="btn gold" href="#karta">3D картаны ашу →</a>
+      <a class="btn ghost" href="#lab">Кеше / Бүгін салыстыру</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><b>1912</b><span>Верный қаласында (қазіргі Алматы) туған</span></div>
+    <div class="stat"><b>≈25 жыл</b><span>Қазақстан КП ОК бірінші хатшысы (1960–62, 1964–86)</span></div>
+    <div class="stat"><b>×3</b><span>Социалистік Еңбек Ері (1972, 1976, 1982)</span></div>
+    <div class="stat"><b>×2,4</b><span>Алматы халқының өсімі, 1959 → 1989 санақтары</span></div>
+  </div>
+</section>
+
+<!-- PERSON -->
+<section id="tulga">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">01 · <b>Тұлға</b></span></div>
+      <h2>Тау-кен инженерінен республика басшысына дейін</h2>
+    </div>
+    <div class="person">
+      <article class="dossier reveal" aria-label="Жеке іс парағы">
+        <div class="dossier-top">
+          <div><h3>ЖЕКЕ ІС</h3><small>Мұрағаттық карточка · цифрлық көшірме</small></div>
+          <div class="stamp">ЦИФРЛЫҚ<br>МҰРАҒАТ<br>№ 1912</div>
+        </div>
+        <div class="portrait">
+          <figure class="pf"><img src="img/kunaev_1952.jpg" alt="Д.А. Қонаев, 1952 жыл" data-ph="kunaev_1952"><figcaption>1952 · қоғамдық домен</figcaption></figure>
+          <dl class="dl" style="align-content:start">
+            <div><dt>Аты-жөні</dt><dd><b>Қонаев Дінмұхамед Ахметұлы</b></dd></div>
+            <div><dt>Туған</dt><dd>12.01.1912, Верный</dd></div>
+          </dl>
+        </div>
+        <dl class="dl">
+                              <div><dt>Лауазымы</dt><dd>Қазақстан КП ОК бірінші хатшысы, 1960–1986</dd></div>
+          <div><dt>Наградасы</dt><dd>Социалистік Еңбек Ері — үш рет</dd></div>
+          <div><dt>Қайтыс болды</dt><dd>22.08.1993, Алматы</dd></div>
+        </dl>
+        <p class="sig">Карточка көпшілікке арналған дереккөздер негізінде цифрлық түрде құрастырылды. Фото: Wikimedia Commons.</p>
+      </article>
+      <div class="person-text reveal">
+        <p>Алматыда туып, Алматыда өмірден озған тау-кен инженері, академик. 1960–1986 жылдары (1962–1964 жылдардағы үзілісті қоспағанда) Қазақстанды басқарды. Осы жылдары Алма-Ата миллион тұрғыны бар ірі қалаға айналды.</p>
+        <div class="quote">«Туған қала тарихы — тұлға қызметінің айнасы».<small>ЖОБАНЫҢ БАСТЫ ИДЕЯСЫ</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRIBUTION -->
+<section id="enbek" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">02 · <b>Алматыға еңбегі</b></span></div>
+      <h2>Қала қалай өзгерді</h2>
+      
+    </div>
+    <div class="contrib">
+      <article class="c-card reveal"><span class="num">01</span>
+        <svg viewBox="0 0 48 48"><path d="M8 44V14l8-4v34M16 44V6l10 4v34M26 44V18h14v26M4 44h40M30 24h6M30 30h6M30 36h6"/></svg>
+        <h3>Биік қала</h3><p>Сейсмикалық аймақта 26 қабатты «Қазақстан» қонақүйі мен 372 метрлік телемұнара тұрғызылды.</p>
+        <div class="chips"><span class="chip g">1977</span><span class="chip g">1983</span></div>
+      </article>
+      <article class="c-card reveal"><span class="num">02</span>
+        <svg viewBox="0 0 48 48"><path d="M4 40c6-10 10-22 20-30 10 8 14 20 20 30M10 40h28M14 32h20M24 10v30"/></svg>
+        <h3>Селден қорғау</h3><p>Медеу бөгеті 1973 жылғы алапат селден қаланы қорғап қалды.</p>
+        <div class="chips"><span class="chip g">1966–67</span><span class="chip g">1973</span></div>
+      </article>
+      <article class="c-card reveal"><span class="num">03</span>
+        <svg viewBox="0 0 48 48"><path d="M4 18h40L24 6 4 18zM8 18v20M16 18v20M24 18v20M32 18v20M40 18v20M4 42h40M6 38h36"/></svg>
+        <h3>Мәдениет пен спорт</h3><p>Республика сарайы, Медеу мұз айдыны, цирк, «Арасан» мен Республика алаңы осы жылдары салынды.</p>
+        <div class="chips"><span class="chip g">1970</span><span class="chip g">1972</span><span class="chip g">1980</span></div>
+      </article>
+      <article class="c-card reveal"><span class="num">04</span>
+        <svg viewBox="0 0 48 48"><path d="M6 42V22h12v20M18 42V12h14v30M32 42V26h10v16M2 42h44M22 18h6M22 24h6M22 30h6"/></svg>
+        <h3>Миллионер қала</h3><p>Халық 456 мыңнан (1959) 1,07 миллионға (1989) дейін өсті.</p>
+        <div class="chips"><span class="chip">×2,4</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="shezhire" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">03 · <b>Уақыт сызығы</b></span></div>
+      <h2>Өмір мен қаланың ортақ шежіресі</h2>
+      <p class="lead">12 негізгі оқиға. Төмен айналдырыңыз.</p>
+    </div>
+    <div class="tl">
+      <aside class="tl-side" aria-live="polite">
+        <div class="tl-year" id="tlYear">1912</div>
+        <div class="tl-era" id="tlEra">Верный</div>
+        <div class="tl-age" id="tlAge">Туған жылы</div>
+        <div class="tl-bar"><i id="tlBar"></i></div>
+        <div class="tl-bar-l"><span>1912</span><span>1993</span><span>2026</span></div>
+      </aside>
+      <ol class="tl-list" id="tlList"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="karta" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">04 · <b>Кеңістік пен уақыт</b></span></div>
+      <h2>Алматының нақты 3D картасы</h2>
+      <p class="lead">OpenStreetMap деректерінен салынған Алматы: 32 мыңнан астам нақты ғимарат (биіктігі қабат санынан алынған), көшелер, өзендер, саябақтар және метро. Жылды сырғытыңыз немесе ▶ басыңыз: Қонаев дәуірінде салынған нысандар алтынмен жанады, ал әлі салынбағандары картадан жоғалады. Алтын сызық — Қонаев көшесі.</p>
+    </div>
+    <div class="frame map-frame" id="mapFrame">
+      <div class="map-stage">
+        <canvas id="mapCanvas" aria-label="Алматының интерактивті 3D картасы (OpenStreetMap)"></canvas>
+        <div class="osm-attr">© OpenStreetMap contributors</div>
+        <div class="pins" id="pins"></div>
+        <div class="hud hud-tl">
+          <div class="hud-year" id="mapYear">1986</div>
+          <div class="hud-pop" id="mapPop">Халық: ≈ 1,07 млн</div>
+          <div class="hud-ev" id="mapEv"></div>
+          <div class="legend"><span><i style="background:var(--gold)"></i>Қонаев дәуірі</span><span><i style="background:var(--paper)"></i>Қонаев мұрасы</span><span><i style="background:var(--sky)"></i>Бүгінгі нысан</span><span><i style="background:#ff5d8f"></i>Метро (2011)</span></div>
+        </div>
+        <div class="hud hud-b">
+          <button class="play" id="mapPlay" aria-label="Уақытты ойнату"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button>
+          <div class="range">
+            <div class="track"></div>
+            <div class="kband" id="kband"></div>
+            <input type="range" id="yearRange" min="1930" max="2026" step="1" value="1986" aria-label="Жыл">
+          </div>
+          <div class="ticks"><span>1930</span><span>1950</span><b>1960 — 1986</b><span>2000</span><span>2026</span></div>
+        </div>
+      </div>
+      <div class="map-card" id="mapCard" hidden>
+        <button class="x" id="mapCardX" aria-label="Жабу">×</button>
+        <div class="row" id="mcTags"></div>
+        <div id="mcPh"></div>
+        <h3 id="mcTitle"></h3>
+        <div class="y" id="mcYear"></div>
+        <p id="mcText"></p>
+        <div class="row" id="mcLinks"></div>
+      </div>
+    </div>
+    <p class="map-note">Карта деректері: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> қатысушылары, ODbL лицензиясы. Қабат саны белгісіз ғимараттардың биіктігі шамамен алынған, биіктіктер 1,5 есе үлкейтілген. Оңтүстіктегі таулар — көркемдік бейне. Тышқанмен айналдырып, дөңгелекпен жақындатыңыз.</p>
+  </div>
+</section>
+
+<!-- LAB -->
+<section id="lab" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">05 · <b>3D зертхана</b></span></div>
+      <h2>Кеше және бүгін</h2>
+      <p class="lead">Нақты фотолар: сол жақта — кеңестік кезең, оң жақта — бүгін. Ортадағы тұтқаны жылжытыңыз. «3D модель» батырмасы сол ғимараттың фото бойынша жасалған моделін ашады.</p>
+    </div>
+    <div class="tabs" role="tablist" id="labTabs">
+      <button class="tab" role="tab" data-b="hotel" aria-selected="true">«Қазақстан» қонақүйі<small>1977 · 26 қабат</small></button>
+      <button class="tab" role="tab" data-b="kbtu" aria-selected="false">КБТУ · бұрынғы Үкімет үйі<small>1957 · Төле би, 59</small></button>
+      <button class="tab" role="tab" data-b="palace" aria-selected="false">Республика сарайы<small>1970 · Ленин сарайы</small></button>
+      <button class="tab" role="tab" data-b="medeu" aria-selected="false">Медеу<small>1972 · мұз айдыны</small></button>
+      <button class="tab" role="tab" data-b="memorial" aria-selected="false">Даңқ мемориалы<small>1975 · Панфилов саябағы</small></button>
+      <button class="tab" role="tab" data-b="koktobe" aria-selected="false">Көктөбе телемұнарасы<small>1983 · ≈372 м</small></button>
+    </div>
+    <div class="modes" role="group" aria-label="Көрініс"><button class="tbtn" id="modePhoto" aria-pressed="true">Нақты фото</button><button class="tbtn" id="mode3d" aria-pressed="false">3D модель</button><span class="mode-note" id="modeNote"></span></div>
+    <div class="lab">
+      <div class="frame lab-frame" id="labFrame">
+        <img class="lab-photo" id="labPhoto" alt="" hidden>
+        <div class="pc" id="pc"><div class="pc-now" id="pcNowWrap"><img id="pcNow" alt=""></div><div class="pc-then" id="pcThenWrap"><img id="pcThen" alt=""></div><div class="pc-cr"><span id="pcCrL"></span><span id="pcCrR"></span></div></div>
+        <canvas id="labCanvas" aria-label="Ғимараттың 3D моделі: кеше және бүгін"></canvas>
+        <div class="ov-bar" id="ovBar" hidden><div class="cap"><b>ФОТО + 3D БЕТТЕСТІРУ</b><span id="ovCap"></span></div><label for="ovOp">3D <input type="range" id="ovOp" min="0" max="100" value="70"></label><button class="tbtn" id="ovWire" aria-pressed="false">Каркас</button><button class="tbtn" id="ovReset">Ракурс</button><button class="tbtn" id="ovExit">Шығу ×</button></div>
+        <div class="lab-then" id="labThen"></div>
+        <div class="lab-handle" id="labHandle" role="slider" tabindex="0" aria-label="Кеше мен бүгін арасындағы шекара" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span>⇆</span></div>
+        <div class="lab-tag l" id="labTagL">Кеше · 1977</div>
+        <div class="lab-tag r" id="labTagR">Бүгін · 2026</div>
+        <div class="lab-tools">
+          <div class="only3d"><button class="tbtn" id="btnNight" aria-pressed="false">Түнгі қала</button><button class="tbtn" id="btnRot" aria-pressed="true">Айналу</button></div>
+          <div><button class="tbtn" data-split="0.08">Тек бүгін</button><button class="tbtn" data-split="0.5">50 / 50</button><button class="tbtn" data-split="0.92">Тек кеше</button></div>
+        </div>
+      </div>
+      <aside class="lab-info" id="labInfo" aria-live="polite"></aside>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO ARCHIVE -->
+<section id="foto" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">06 · <b>Фотомұрағат</b></span></div>
+      <h2>Нақты фотолар: тұлға, қала, кеше мен бүгін</h2>
+      <p class="lead">Барлық суреттер Wikimedia Commons-тан алынды және еркін лицензиямен таралады. Әр суреттің авторы, лицензиясы мен түпнұсқа беті көрсетілген. Суретті басып, үлкейтіп көріңіз; «3D-мен беттестіру» батырмасы фотоны 3D модельмен қабаттастырады.</p>
+    </div>
+    <div class="arch-tabs" role="group" aria-label="Сүзгі"><button class="tbtn" data-ag="all" aria-pressed="true">Барлығы</button><button class="tbtn" data-ag="p" aria-pressed="false">Қонаев</button><button class="tbtn" data-ag="t" aria-pressed="false">Кеше</button><button class="tbtn" data-ag="n" aria-pressed="false">Бүгін</button></div>
+    <div class="arch" id="arch"></div>
+  </div>
+</section>
+
+<!-- GROWTH -->
+<section id="osim" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">07 · <b>Урбанистикалық секіріс</b></span></div>
+      <h2>Санақтар не дейді</h2>
+    </div>
+    <div class="growth">
+      <div class="chart-box reveal">
+        <h3>Алматы халқы, мың адам</h3>
+        <p class="muted">Ресми санақ жылдары · алтын аймақ — Қонаев басшылық еткен кезең</p>
+        <svg id="chart" viewBox="0 0 800 380" role="img" aria-label="Алматы халқының 1939–2021 жылдардағы өсімі"></svg>
+        <div class="tip" id="tip" hidden></div>
+        <details class="table"><summary>Кесте түрінде көру</summary><table id="popTable"></table></details>
+      </div>
+      <div class="big-n reveal">
+        <span class="eyebrow">1959 → 1989</span>
+        <b>×2,4</b>
+        <span>Отыз жылда қала халқы екі еседен астам өсті: шамамен 456 мыңнан 1 073 мыңға дейін. Бұл кезеңнің 27 жылы Қонаевтың республиканы басқарған уақытына тұспа-тұс келеді.</span>
+        <span class="muted" style="font-size:13px">Дереккөз: 1939, 1959 — Бүкілодақтық санақтар; 1970–2009 — Большая российская энциклопедия; 2021 — ҚР ұлттық санағы (≈2,03 млн).</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MYTH vs FACT -->
+<section id="aqiqat" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">08 · <b>Аңыз бен ақиқат</b></span></div>
+      <h2>Тарихи деректерді сүзгіден өткізу</h2>
+      <p class="lead">Нысанның белгілі бір басшының кезеңінде салынуы мен оның тікелей сол тұлғаның бастамасымен жүзеге асуы бірдей ұғым емес. Әр тұжырымды ашып, дәлелдерін қараңыз.</p>
+    </div>
+    <div class="funnel">
+      <div class="fn"><span class="ic v-ok">✓</span><span><b>Расталды</b> — құжаттар мен ғылыми еңбектер бір-біріне сәйкес</span></div>
+      <div class="fn"><span class="ic v-mid">◐</span><span><b>Басшылық кезеңінде</b> — салынған уақыты расталған, бастамашысы нақтылауды қажет етеді</span></div>
+      <div class="fn"><span class="ic v-q">?</span><span><b>Тексеру қажет</b> — көпшілік пікір мен құжаттар сәйкес келмейді</span></div>
+    </div>
+    <div class="claims" id="claims"></div>
+  </div>
+</section>
+
+<!-- MUSEUM -->
+<section id="muzei" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">09 · <b>Қазіргі Қонаев музейі</b></span></div>
+      <h2>Д.А. Қонаев мұражайы бүгін</h2>
+      <p class="lead">Музей екі кешеннен тұрады: Көктем-3 шағын ауданындағы экспозиция және Қонаев 24 жыл тұрған мемориалдық пәтер. 2022 жылы, 110 жылдық мерейтойға орай, экспозиция қайта жасалып, көп бөлігі интерактивті форматқа көшті.</p>
+    </div>
+    <div class="museum">
+      <div class="stage3d reveal" id="stage">
+        <div class="ring" id="ring"></div>
+        <div class="stage-ctl">
+          <button class="tbtn" id="ringPrev" aria-label="Алдыңғы зал">← Алдыңғы</button>
+          <button class="tbtn" id="ringNext" aria-label="Келесі зал">Келесі →</button>
+        </div>
+      </div>
+      <div class="m-cards reveal">
+        <div class="m-years">
+          <div><b>2002</b><span>Музей ашылды · 90 жылдық</span></div>
+          <div><b>2012</b><span>Мемориалдық пәтер ашылды · 100 жылдық</span></div>
+          <div><b>2022</b><span>Интерактивті реэкспозиция · 110 жылдық</span></div>
+        </div>
+        <div class="m-card">
+          <span class="tag m">1-кешен · экспозиция</span>
+          <h3>Д.А. Қонаевтың үй-музейі</h3>
+          <p>Үш экспозициялық зал: балалық шақ пен студенттік жылдар, еңбек жолының басталуы және мемлекеттік қызмет.</p>
+          <div class="addr">Алматы, Көктем-3 шағын ауданы, 22/1</div>
+          <div class="row" style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn ghost sm" target="_blank" rel="noopener" href="https://2gis.kz/almaty/search/%D0%94%D0%BE%D0%BC-%D0%BC%D1%83%D0%B7%D0%B5%D0%B9%20%D0%9A%D1%83%D0%BD%D0%B0%D0%B5%D0%B2%D0%B0">2GIS-те ашу ↗</a><a class="btn ghost sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D0%94%D0%BE%D0%BC-%D0%BC%D1%83%D0%B7%D0%B5%D0%B9+%D0%9A%D1%83%D0%BD%D0%B0%D0%B5%D0%B2%D0%B0+%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B">Google Maps ↗</a></div>
+        </div>
+        <div class="m-card">
+          <span class="tag m">2-кешен · мемориалдық пәтер</span>
+          <h3>Қонаев тұрған пәтер (1969–1993)</h3>
+          <p>Қонаев 24 жыл тұрған пәтер 2012 жылы, 100 жылдық мерейтойға орай, мемориалдық музей ретінде ашылды.</p>
+          <div class="addr">Мұқан Төлебаев көшесі, 117 (OSM; музей әкімшілігінің деректерінде — 119)</div>
+        </div>
+        <div class="m-card">
+          <span class="tag k">Бонус-нысан</span>
+          <h3>КБТУ ғимаратындағы Қонаев кабинеті</h3>
+          <p>Бұрынғы Үкімет үйінде Қонаевтың кабинеті сақталған. 2025 жылғы 11 қаңтардағы өрт кезінде кабинет ғимараттың басқа бөлігінде болғандықтан зардап шекпеген.</p>
+        </div>
+        <p class="lab-note">Жұмыс уақыты (дереккөздер бойынша): сейсенбі–жексенбі 10:00–19:00, дүйсенбі — санитарлық күн. Барар алдында музейден нақтылаңыз.</p>
+      </div>
+    </div>
+    <div class="visit reveal">
+      <div class="visit-head">
+        <span class="eyebrow">Музейге сапар · <b>2026</b></span>
+        <h3>Д.А. Қонаев музейіндегі зерттеу</h3>
+        <p class="muted">Жоба авторы музейдің «Алма-Ата 1964–1986» экспозициясымен және Қонаевтың қызмет жолына арналған стендтермен танысты. Стендтердегі деректер сайттағы мәліметтермен салыстырылды.</p>
+        <blockquote class="kq">«…Балдәурен балалық шағым, қайран жастық дәуренім өткен осынау әсем қала мен үшін оттай ыстық».<small>Д.А. Қонаев, «Ақиқаттан аттауға болмайды», 12-бет · музей экспозициясынан</small></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section id="oqu" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">10 · <b>Интерактивті оқыту</b></span></div>
+      <h2>Викторина және зерттеуші дәптері</h2>
+      <p class="lead">Сайттағы деректерді қаншалықты есте сақтадыңыз? Содан кейін өз байқауларыңызды дәптерге жазыңыз: жазбалар осы браузерде сақталады.</p>
+    </div>
+    <div class="learn">
+      <div class="quiz" id="quiz" aria-live="polite"></div>
+      <div class="notebook">
+        <h3>Зерттеуші дәптері</h3>
+        <label for="nbTopic">Зерттеу нысаны</label>
+        <select id="nbTopic">
+          <option>«Қазақстан» қонақүйі</option><option>КБТУ ғимараты (Үкімет үйі)</option><option>Республика сарайы</option><option>Медеу бөгеті мен мұз айдыны</option><option>Көктөбе телемұнарасы</option><option>Қонаев музейі</option><option>Өз тақырыбым</option>
+        </select>
+        <label for="nbText">Байқауларым, сұрақтарым, дереккөздерім</label>
+        <textarea id="nbText" placeholder="Мысалы: Қонақүйдің «тәжі» алғашқы жобада болмаған — оны лифт шахтасын жабу үшін құрылыс кезінде қосқан. Мұны қай дереккөзден тексеруге болады?"></textarea>
+        <div class="nb-row"><span class="nb-status" id="nbStatus">Жазба әлі сақталмаған</span><button class="btn ghost sm" id="nbCopy">Мәтінді көшіру</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section id="adis" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">11 · <b>Әдіснама</b></span></div>
+      <h2>Жоба қалай жасалды</h2>
+      <p class="lead">Мақсат — Д. Қонаевтың Алматының дамуындағы рөлін тарихи деректер негізінде зерттеп, нәтижесін оқушыларға түсінікті интерактивті цифрлық шежіреге айналдыру.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><span class="k">1 · Ізденіс</span><h3>Деректер жинау</h3><p>Кезеңдерді анықтау, ғылыми еңбектер, мұрағат құжаттары, музей материалдары мен жарияланымдарды жинақтау.</p></div>
+      <div class="step"><span class="k">2 · Валидация</span><h3>Сенімділікті тексеру</h3><p>Дереккөздерді салыстыру, «кезеңінде салынды» мен «тікелей бастамасымен» дегенді ажырату.</p></div>
+      <div class="step"><span class="k">3 · Цифрландыру</span><h3>3D және карта</h3><p>Уақыт сызығы, жылдар бойынша өсетін 3D карта, ғимараттардың «кеше / бүгін» модельдері.</p></div>
+      <div class="step"><span class="k">4 · Апробация</span><h3>Кері байланыс</h3><p>Оқушыларға таныстыру, викторина мен дәптер арқылы пікір жинап, өнімді жетілдіру.</p></div>
+    </div>
+    <div class="aud">
+      <div><b>Оқушылар мен мектептер</b><span>Жергілікті тарихты көрнекі әрі деректерге негізделген форматта оқыту.</span></div>
+      <div><b>Зерттеушілер</b><span>Тарихи-мәдени мұраны зерделеуге арналған тексерілген база.</span></div>
+      <div><b>Қала тұрғындары мен туристер</b><span>Алматының қалыптасуы мен мәдени мұрасын тереңірек тану.</span></div>
+    </div>
+    <div class="sources">
+      <ul>
+        <li>Гостиница «Казахстан»: тапсырыс, құрылыс, тәж тарихы — <a target="_blank" rel="noopener" href="https://sxodim.com/almaty/article/arhitekturnyy-gid-sovetskiy-modernizm-v-almaty">sxodim.com</a></li>
+        <li>Hotel Kazakhstan: биіктігі, 2008 жылға дейінгі рекорд — <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hotel_Kazakhstan">Wikipedia</a>, <a target="_blank" rel="noopener" href="https://welcome.kz/en/info-cities/almaty/kazakhstan-hotel">welcome.kz</a></li>
+        <li>Үкімет үйі (КБТУ), сәулетшілері, 1947–1957 — <a target="_blank" rel="noopener" href="https://www.gov.kz/uploads/2020/8/7/8360bdc08ec259bac86170fb598b8560_original.18749.docx">gov.kz, ескерткіштер тізімі</a></li>
+        <li>Тәуелсіздік туралы заңға арналған ескерткіш тақта — <a target="_blank" rel="noopener" href="https://www.inform.kz/ru/pamyatnuyu-dosku-na-fasade-zdaniya-kbtu-otkryli-v-almaty_a2979542">inform.kz</a></li>
+      </ul>
+      <ul>
+        <li>КБТУ-дағы өрт және Қонаев кабинеті — <a target="_blank" rel="noopener" href="https://bes.media/news/kabinet-kunaeva-v-kbtu-predpolozhitelno-ne-postradal-332ba1/">bes.media</a>, <a target="_blank" rel="noopener" href="https://24.kz/ru/news/incidents/689601-pozhar-v-zdanii-kbtu-rassleduyut-prichiny-vozgoraniya">24.kz</a></li>
+        <li>Қонаев музейі: кешендер, жылдар — <a target="_blank" rel="noopener" href="https://sxodim.com/almaty/place/dom-muzej-d-a-kunaeva">sxodim.com</a>, <a target="_blank" rel="noopener" href="https://newtimes.kz/obshchestvo/156519-k-100-letiyu-dinmuhameda-kunaeva-ekskursiya-iz-ego-doma-muzeya-v-almaty">newtimes.kz</a></li>
+        <li>1973 жылғы сел және Медеу бөгеті — <a target="_blank" rel="noopener" href="https://informburo.kz/stati/sel-1973-go-kak-almaty-spasli-ot-razruseniya">informburo.kz</a>, <a target="_blank" rel="noopener" href="https://prg.kz/m/amp/document/30198870/">prg.kz</a></li>
+        <li>Алматы халқы, санақтар — <a target="_blank" rel="noopener" href="https://bigenc.ru/c/alma-ata-3b58de">bigenc.ru</a></li>
+        <li>3D карта — <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/copyright">© OpenStreetMap қатысушылары</a> (ODbL)</li>
+        <li>Барлық фотолар — <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/">Wikimedia Commons</a> (авторлары мен лицензиялары «Фотомұрағат» бөлімінде)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="finale">
+  <div class="wrap finale-grid">
+    <div style="display:grid;gap:18px">
+      <p class="eyebrow">Қорытынды</p>
+      <h2>Қала тарихы — <span>біздің ортақ шежіреміз.</span></h2>
+      <p class="muted" style="max-width:60ch">Сайтты телефоннан ашу үшін QR-кодты сканерлеңіз. Назарларыңызға рақмет!</p>
+      <p style="max-width:60ch;color:#c6d0df">Орындаған: <b>Абибулла Айсара Жанабайқызы</b><br>Ғылыми жетекшісі: <b>Ауылбай Нұржан</b><br><span class="muted">Шоқан Уалиханов атындағы №12 мамандандырылған лицей, Алматы</span></p>
+    </div>
+    <div class="qr" id="qr"><div id="qrSvg"></div><span>ЦИФРЛЫҚ МҰРАҒАТ</span></div>
+  </div>
+</section>
+</main>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Фото"><button class="x" id="lbX" aria-label="Жабу">×</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure></div>
+<footer><div class="wrap"><span>«Қонаев және Алматы» · цифрлық шежіре жобасы · Орындаған: Абибулла Айсара Жанабайқызы · Жетекшісі: Ауылбай Нұржан · Шоқан Уалиханов атындағы №12 мамандандырылған лицей, Алматы</span><span>3D модельдер — ғылыми-көпшілік реконструкция, масштабы шамамен</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SITE_URL='https://sherkhan07.github.io/qonaev-almaty/';
+/* Photos: Wikimedia Commons, free licences (author + licence shown with every photo) */
+const CM='https://commons.wikimedia.org/wiki/File:';
+const PH={
+ kunaev_inst:{src:'img/kunaev_inst.jpg',w:1280,h:880,y:'1930-жж.',c:'Қонаев (сол жақта) Мәскеудегі түсті металдар және алтын институтында',a:'Белгісіз автор',l:'Қоғамдық домен',p:CM+'Kunaev_at_the_Institute_of_Non-Ferrous_and_Fine_Metallurgy.png',g:'p'},
+ kunaev_1937:{src:'img/kunaev_1937.jpg',w:806,h:1280,y:'1937',c:'Қонаев Балқаштағы Прибалхашстрой кенішінде',a:'Белгісіз автор',l:'Қоғамдық домен',p:CM+'Kunayev_at_Pribalkhashatroi.png',g:'p'},
+ kunaev_1952:{src:'img/kunaev_1952.jpg',w:1269,h:1280,y:'1952',c:'Д.А. Қонаев — ҚазКСР Ғылым академиясының президенті, Алма-Ата',a:'Белгісіз автор',l:'Қоғамдық домен',p:CM+'Kunayev.jpg',g:'p'},
+ kunaev_1981:{src:'img/kunaev_1981.jpg',w:1280,h:931,y:'1981',c:'Қазақстан Компартиясының XV съезі, ақпан 1981: Қонаев — бірінші қатарда солдан 7-ші',a:'Липатова Е.А.',l:'CC BY-SA 3.0',lu:'https://creativecommons.org/licenses/by-sa/3.0',p:CM+'%D0%9A%D1%83%D0%BD%D0%B0%D0%B5%D0%B2-%D0%BD%D0%B0%D0%B7%D0%B0%D1%80%D0%B1%D0%B0%D0%B5%D0%B2.jpg',g:'p'},
+ kbtu_1969:{src:'img/kbtu_1969.jpg',w:841,h:1280,y:'1970-жж.',c:'Үкімет үйінің портигі (Commons атауы: «1969 ЦК Компартии Казахстана»)',a:'Andris Malygin',l:'CC BY 3.0',lu:'https://creativecommons.org/licenses/by/3.0',p:CM+'1969_%D0%A6%D0%9A_%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D1%80%D1%82%D0%B8%D0%B8_%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD%D0%B0_-_panoramio.jpg',g:'t'},
+ palace_1978:{src:'img/palace_1978.jpg',w:1280,h:902,y:'1978',c:'Ленин сарайы: ДДСҰ мен ЮНИСЕФ-тің алғашқы медициналық-санитариялық көмек жөніндегі конференциясы (Алма-Ата декларациясы)',a:'Wikimedia Commons',l:'CC BY-SA 3.0',lu:'https://creativecommons.org/licenses/by-sa/3.0/',p:CM+'International_conference_on_Primary_Health_Care_-_Conferencia_Internacional_sobre_Atenci%C3%B3n_Primaria_de_Salud_-_Almaty_-1978.jpg',g:'t'},
+ kbtu_stamp:{src:'img/kbtu_stamp.jpg',w:1280,h:909,y:'1980',c:'КСРО маркасы: Қазақ КСР-і мен Қазақстан Компартиясының 60 жылдығы (суретші Т. Панченко)',a:'КСРО поштасы',l:'Қоғамдық домен',p:CM+'The_Soviet_Union_1980_CPA_5104_stamp_(Soviet_Socialist_Republics._60th_anniversary_of_Kazakh_SSR_and_Communist_Party_of_Kazakhstan)_1200dpi.jpg',g:'t'},
+ palace_stamp:{src:'img/palace_stamp.jpg',w:915,h:1280,y:'1990',c:'КСРО маркасы «Алма-Ата»: Ғылым академиясы, Үкімет үйі және Республика сарайы',a:'КСРО поштасы',l:'Қоғамдық домен',p:CM+'The_Soviet_Union_1990_CPA_6170_stamp_(Academy_of_Sciences,_Government_House_and_Palace_of_the_Republic,_Almaty,_Kazakhstan).jpg',g:'t'},
+ kbtu_1999:{src:'img/kbtu_1999.jpg',w:1280,h:859,y:'1999',c:'Астана алаңы: сол кездегі қалалық парламент ғимараты, қазіргі КБТУ',a:'Brian Harrington Spier',l:'CC BY-SA 2.0',lu:'https://creativecommons.org/licenses/by-sa/2.0',p:CM+'Astana_Square_(Almaty,_1999).jpg',g:'t'},
+ hotel_cc0:{src:'img/hotel_cc0.jpg',op:'50% 0%',w:920,h:1280,y:'2025',c:'«Қазақстан» қонақүйі, Құрманғазы көшесінен көрініс',a:'Dauren Nabijan',l:'CC0',lu:'http://creativecommons.org/publicdomain/zero/1.0/deed.en',p:CM+'%D2%9A%D0%B0%D0%B7%D0%B0%D2%9B%D1%81%D1%82%D0%B0%D0%BD_%D2%9B%D0%BE%D0%BD%D0%B0%D2%9B_%D2%AF%D0%B9%D1%96.jpg',g:'n'},
+ hotel_tyl:{src:'img/hotel_tyl.jpg',op:'35% 25%',w:719,h:1280,y:'2018',c:'«Қазақстан» қонақүйі, бүйір қасбеті',a:'t_y_l',l:'CC BY-SA 2.0',lu:'https://creativecommons.org/licenses/by-sa/2.0',p:CM+'Kazakhstan_P9190597_03_(26251529628).jpg',g:'n'},
+ kbtu_mb:{src:'img/kbtu_mb.jpg',w:1280,h:851,y:'2024',c:'КБТУ ғимараты (бұрынғы Үкімет үйі), Төле би көшесі',a:'Matti Blume',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0/deed.en',p:CM+'Kazakh-British_Technical_University,_Almaty_(P1180218).jpg',g:'n'},
+ kbtu_2026:{src:'img/kbtu_2026.jpg',w:1280,h:719,y:'2026',c:'КБТУ ғимараты, Төле би көшесінен',a:'Nikolai Bulykin',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:CM+'%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B,_%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D0%9A%D0%91%D0%A2%D0%A3.jpg',g:'n'},
+ palace_2022:{src:'img/palace_2022.jpg',w:1280,h:960,y:'2022',c:'Республика сарайы',a:'DS28',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:CM+'Palace_of_the_Republic,_Almaty_2022.jpg',g:'n'},
+ tower_cc0:{src:'img/tower_cc0.jpg',w:960,h:1280,y:'2020',c:'Көктөбе телемұнарасы және Іле Алатауы',a:'Gulim 8',l:'CC0',lu:'http://creativecommons.org/publicdomain/zero/1.0/deed.en',p:CM+'Kok_Tobe,_Kazakhstan.jpg',g:'n'},
+ tower_grau:{src:'img/tower_grau.jpg',w:1280,h:960,y:'2012',c:'Телемұнара мен таулар, қаладан көрініс',a:'Michael Grau',l:'CC BY-SA 3.0',lu:'https://creativecommons.org/licenses/by-sa/3.0',p:CM+'TV-Turm_Almaty_-_3.jpg',g:'n'},
+ medeu_dam:{src:'img/medeu_dam.jpg',w:838,h:1280,y:'1960–70-жж.',c:'Медеу шатқалындағы бөгет құрылысының жер жұмыстары (Commons атауында — 1969)',a:'Andris Malygin',l:'CC BY 3.0',lu:'https://creativecommons.org/licenses/by/3.0',p:'https://commons.wikimedia.org/wiki/File:1969_-_panoramio_-_Andris_Malygin_(1).jpg',g:'t'},
+ medeu_70s:{src:'img/medeu_70s.jpg',w:1280,h:841,y:'1970-жж.',c:'Медеу мұз айдыны, кеңестік кезең (Commons атауында — 1969)',a:'Andris Malygin',l:'CC BY 3.0',lu:'https://creativecommons.org/licenses/by/3.0',p:'https://commons.wikimedia.org/wiki/File:1969_-_panoramio_-_Andris_Malygin_(2).jpg',g:'t'},
+ memorial_70s:{src:'img/memorial_70s.jpg',op:'50% 35%',w:808,h:1280,y:'1975 ж. кейін',c:'Панфиловшылар саябағындағы Даңқ мемориалы мен Мәңгілік алау (Commons атауында — 1969)',a:'Andris Malygin',l:'CC BY 3.0',lu:'https://creativecommons.org/licenses/by/3.0',p:'https://commons.wikimedia.org/wiki/File:1969_-_panoramio_-_Andris_Malygin_(9).jpg',g:'t'},
+ cathedral_70s:{src:'img/cathedral_70s.jpg',w:841,h:1280,y:'1970-жж.',c:'Вознесенский (Зенков) соборы, кеңестік кезең (Commons атауында — 1969)',a:'Andris Malygin',l:'CC BY 3.0',lu:'https://creativecommons.org/licenses/by/3.0',p:'https://commons.wikimedia.org/wiki/File:1969_-_panoramio_-_Andris_Malygin_(6).jpg',g:'t'},
+ medeu_1982:{src:'img/medeu_1982.jpg',w:1280,h:826,y:'1982',c:'Медеу мұз айдыны мен шатқал, жоғарыдан көрініс',a:'Mr Ptero',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:'https://commons.wikimedia.org/wiki/File:%D0%9C%D0%B5%D0%B4%D0%B5%D0%BE_1982.jpg',g:'t'},
+ medeu_stamp:{src:'img/medeu_stamp.jpg',w:1280,h:900,y:'1974',c:'КСРО маркасы: Медеудегі әйелдер арасындағы Еуропа чемпионаты',a:'КСРО поштасы',l:'Қоғамдық домен',p:'https://commons.wikimedia.org/wiki/File:1974_Speed_Skating_Women_Europe_Championship.jpg',g:'t'},
+ panfilov_1982:{src:'img/panfilov_1982.jpg',w:1280,h:875,y:'1982',c:'28 панфиловшылар атындағы саябақ',a:'SkySex',l:'CC BY-SA 3.0',lu:'https://creativecommons.org/licenses/by-sa/3.0',p:'https://commons.wikimedia.org/wiki/File:Park_named_after_Panfilov%E2%80%99s_28_guardsmen,_1982_year.jpg',g:'t'},
+ gorky_1980:{src:'img/gorky_1980.jpg',w:1280,h:882,y:'1980',c:'Горький атындағы мәдениет және демалыс саябағы',a:'SkySex',l:'CC BY-SA 3.0',lu:'https://creativecommons.org/licenses/by-sa/3.0',p:'https://commons.wikimedia.org/wiki/File:Gorky_park,_Almaty_city,_1980_year.jpg',g:'t'},
+ medeu_2010:{src:'img/medeu_2010.jpg',w:1280,h:457,y:'2010',c:'Медеу мұз айдыны, бөгеттен көрініс',a:'Igors Jefimovs',l:'CC BY 3.0',lu:'https://creativecommons.org/licenses/by/3.0',p:'https://commons.wikimedia.org/wiki/File:Medeu_skating_stadium_view_from_dam_-_panoramio.jpg',g:'n'},
+ medeu_2022:{src:'img/medeu_2022.jpg',w:1280,h:960,y:'2022',c:'Медеу мұз айдынының қасбеті',a:'Key2xanadu',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:'https://commons.wikimedia.org/wiki/File:Medeu_-_rink_at_sunset_-_2022-06-21.jpg',g:'n'},
+ memorial_2017:{src:'img/memorial_2017.jpg',w:1280,h:960,y:'2017',c:'Даңқ мемориалы, Панфиловшылар саябағы',a:'Radosław Botev',l:'CC BY 3.0 pl',lu:'https://creativecommons.org/licenses/by/3.0/pl/deed.en',p:'https://commons.wikimedia.org/wiki/File:WWII_Monument_Almaty.jpg',g:'n'},
+ memorial_2019:{src:'img/memorial_2019.jpg',w:1280,h:960,y:'2019',c:'Даңқ мемориалының орталық бөлігі',a:'Мазур Владимир',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:'https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B0%D1%80%D0%BA_28_%D0%BF%D0%B0%D0%BD%D1%84%D0%B8%D0%BB%D0%BE%D0%B2%D1%86%D0%B5%D0%B2._%D0%9C%D0%B5%D0%BC%D0%BE%D1%80%D0%B8%D0%B0%D0%BB_%D0%A1%D0%BB%D0%B0%D0%B2%D1%8B_2019_34.jpg',g:'n'},
+ cathedral_now:{src:'img/cathedral_now.jpg',w:960,h:1280,y:'2019',c:'Вознесенский (Зенков) соборы бүгін',a:'Rudolph.A.furtado',l:'CC0',lu:'http://creativecommons.org/publicdomain/zero/1.0/deed.en',p:'https://commons.wikimedia.org/wiki/File:Ascension_Cathedral_in_Almaty_in_Kazakhstan.JPG',g:'n'}
+};
+function credit(p){ return p.a+' · '+(p.lu?'<a href="'+p.lu+'" target="_blank" rel="noopener">'+p.l+'</a>':p.l)+' · <a href="'+p.p+'" target="_blank" rel="noopener">Wikimedia Commons ↗</a>'; }
+
+
+/* ---------------- DATA ---------------- */
+const POP=[[1926,45],[1939,221],[1959,456],[1970,778],[1979,958],[1989,1073],[1999,1131],[2009,1366],[2021,2030]];
+function popAt(y){ if(y<=POP[0][0]) return POP[0][1]; for(let i=1;i<POP.length;i++){ if(y<=POP[i][0]){ const [y0,p0]=POP[i-1],[y1,p1]=POP[i]; return p0+(p1-p0)*(y-y0)/(y1-y0);} } return POP[POP.length-1][1]; }
+function fmtPop(k){ return k>=1000 ? (k/1000).toFixed(2).replace('.',',')+' млн' : Math.round(k)+' мың'; }
+
+const TL=[
+ {y:1912,d:'1912',t:'Верныйда туды',p:'Қазіргі Алматыда дүниеге келді.',era:'Верный',c:[]},
+ {y:1936,d:'1936',im:'kunaev_inst',t:'Тау-кен инженері',p:'Мәскеуде оқып, Балқаш пен Риддер кеніштерінде жұмыс істеді.',era:'Еңбек жолы',c:[]},
+ {y:1952,d:'1952',im:'kunaev_1952',t:'Академик',p:'Ғылым академиясын, 1955 жылдан республика үкіметін басқарды.',era:'Ғылым және үкімет',c:[]},
+ {y:1960,d:'1960–1986',im:'kbtu_1969',t:'Республика басшысы',p:'Қазақстан КП ОК бірінші хатшысы (1962–1964 жылдардағы үзіліспен).',era:'Қонаев дәуірі',c:[],k:1},
+ {y:1966,d:'1966–1973',im:'medeu_dam',t:'Медеу бөгеті',p:'1973 жылғы алапат селді ұстап, қаланы қорғап қалды.',era:'Қонаев дәуірі',c:[],k:1},
+ {y:1970,d:'1970',t:'Ленин сарайы',p:'Қазіргі Республика сарайы ашылды.',era:'Қонаев дәуірі',c:[],k:1},
+ {y:1972,d:'1972',im:'medeu_70s',t:'Медеу мұз айдыны',p:'Биік таулы мұз айдыны әлемдік рекордтар орнына айналды.',era:'Қонаев дәуірі',c:[],k:1},
+ {y:1977,d:'1977',im:'hotel_cc0',t:'«Қазақстан» қонақүйі',p:'26 қабат — 2008 жылға дейін қаладағы ең биік ғимарат.',era:'Қонаев дәуірі',c:[],k:1},
+ {y:1983,d:'1983',im:'tower_cc0',t:'Көктөбе телемұнарасы',p:'Биіктігі шамамен 372 метр.',era:'Қонаев дәуірі',c:[],k:1},
+ {y:1986,d:'16 желтоқсан 1986',t:'Қызметтен босатылды',p:'Келесі күні Алматыда Желтоқсан оқиғалары басталды.',era:'Желтоқсан',c:[],k:1},
+ {y:1993,d:'1993',t:'Өмірден озды',p:'22 тамызда Алматыда қайтыс болды.',era:'Мұра',c:[]},
+ {y:2002,d:'2002–2022',t:'Мұра',p:'Қонаев музейі (2002), пәтер-музей (2012), Қонаев қаласы (2022).',era:'Мұра',c:[]}
+];
+
+const LM=[
+ {id:'kbtu',n:'Үкімет үйі → КБТУ',s:'КБТУ',y:1957,lat:43.25574,lon:76.94313,h:30,c:'k',lab:'kbtu',q:'КБТУ Толе би 59 Алматы',
+  t:'1947–1957 жылдары салынған Үкімет үйі (сәулетшілер Б.Р. Рубаненко, Т.А. Симонов). Қонаев 1955 жылдан осы үкіметті басқарды. 1991 жылы мұнда тәуелсіздік туралы Конституциялық заңға қол қойылды; 2001 жылдан — Қазақстан-Британ техникалық университеті.'},
+ {id:'palace',n:'Ленин сарайы → Республика сарайы',s:'Республика сарайы',y:1970,lat:43.24335,lon:76.95945,h:28,c:'k',lab:'palace',q:'Дворец Республики Алматы',
+  t:'1970 жылы ашылған қаланың басты концерт сарайы. Кеңестік модернизмнің үлгісі: пилондар мен кең шатыр-плита.'},
+ {id:'medeu',n:'Медеу: бөгет және мұз айдыны',s:'Медеу',y:1972,lab:'medeu',lat:43.15768,lon:77.059,h:22,c:'k',q:'Медеу Алматы',
+  t:'Бөгет 1966–1967 жылдары бағытталған жарылыспен тұрғызылды, 1973 жылғы селді ұстап қалды. Биік таулы мұз айдыны 1972 жылы ашылды.'},
+ {id:'circus',n:'Алматы циркі',s:'Цирк',y:1972,lat:43.23918,lon:76.91728,h:20,c:'k',q:'Казахский государственный цирк Алматы',
+  t:'Цирктің жаңа ғимараты 1972 жылы ашылды; күмбезді пішіні — киіз үйге ұқсас қала бағдары.'},
+ {id:'hotel',n:'«Қазақстан» қонақүйі',s:'«Қазақстан»',y:1977,lat:43.24489,lon:76.95753,h:102,c:'k',lab:'hotel',q:'Гостиница Казахстан Алматы',
+  t:'1975–1977 жылдары салынған 26 қабатты қонақүй. 2008 жылға дейін Алматыдағы ең биік ғимарат болды. Алтын «тәжі» лифт шахтасын жабу үшін құрылыс кезінде қосылған.'},
+ {id:'square',n:'Республика алаңы',s:'Республика алаңы',y:1980,lat:43.23888,lon:76.94533,h:38,c:'k',q:'Площадь Республики Алматы',
+  t:'1980 жылы салынған ансамбль мен ОК ғимараты (қазір — Алматы қаласының әкімдігі). 1986 жылғы желтоқсандағы жастар көтерілісі осы алаңда өтті.'},
+ {id:'arasan',n:'«Арасан» моншасы',s:'Арасан',y:1982,lat:43.25906,lon:76.94872,h:16,c:'k',q:'Арасан Алматы',
+  t:'1982 жылы ашылған ірі монша кешені — кеңестік модернизмнің үлгісі.'},
+ {id:'koktobe',n:'Көктөбе телемұнарасы',s:'Көктөбе',y:1983,lat:43.22871,lon:76.97631,h:372,c:'k',lab:'koktobe',q:'Кок-Тобе телебашня',
+  t:'1983 жылы іске қосылған, биіктігі шамамен 372 м болат мұнара. Көктөбе төбесіне 1967 жылдан аспалы жол жүреді.'},
+ {id:'csm',n:'Орталық мемлекеттік музей',s:'Орталық музей',y:1985,lat:43.23589,lon:76.95075,h:24,c:'k',q:'Центральный государственный музей Алматы',
+  t:'Музейдің жаңа ғимараты 1985 жылы ашылды; көгілдір күмбезі — қазақ сәулетінің мотиві.'},
+ {id:'kmus',n:'Д.А. Қонаев музейі',s:'Қонаев музейі',y:2002,lat:43.23401,lon:76.91757,h:12,c:'m',q:'Дом-музей Кунаева Алматы',
+  t:'2002 жылы ашылған музей, Көктем-3 шағын ауданы, 22/1. Картада шағын аудан орталығы көрсетілген (OSM-да үй нөмірі жоқ). 2022 жылы интерактивті реэкспозиция жасалды.'},
+ {id:'kapt',n:'Қонаевтың пәтер-музейі',s:'Пәтер-музей',y:2012,lat:43.25272,lon:76.94846,h:12,c:'m',q:'музей-квартира Кунаева Тулебаева Алматы',
+  t:'Қонаев 1969–1993 жылдары тұрған пәтер, 2012 жылдан мемориалдық музей. OSM бойынша мекенжайы — Мұқан Төлебаев көшесі, 117 (кейбір дереккөздерде — 119).'},
+ {id:'kmon',n:'Қонаев саябағы мен ескерткіші',s:'Қонаев ескерткіші',y:1994,ny:1,lat:43.25281,lon:76.94963,h:8,c:'m',q:'Памятник Кунаеву Алматы парк',
+  t:'Қонаев көшесіндегі шағын саябақ: ескерткіш пен субұрқақтар (OSM деректері бойынша). Картадағы алтын сызық — Қонаев есімімен аталған көше.'},
+ {id:'esentai',n:'Esentai Tower',s:'Esentai Tower',y:2008,lat:43.21926,lon:76.92936,h:162,c:'s',q:'Esentai Tower Алматы',
+  t:'2008 жылы «Қазақстан» қонақүйінен биіктік рекордын алған зәулім ғимарат — бүгінгі Алматының салыстыру нүктесі.'}
+];
+
+const EVENTS=[[1930,'Алма-Ата 1929 жылдан — Қазақ АКСР-інің астанасы'],[1941,'Соғыс жылдары қалаға зауыттар мен киностудиялар көшірілді'],[1955,'Қонаев — Министрлер Кеңесінің төрағасы'],[1957,'Үкімет үйі (қазіргі КБТУ) аяқталды'],[1960,'Қонаев — Қазақстан КП ОК бірінші хатшысы'],[1966,'Медеуде селге қарсы бөгет тұрғызылды'],[1970,'Ленин сарайы ашылды'],[1972,'Медеу мұз айдыны мен цирк ашылды'],[1973,'15 шілде: Медеу бөгеті селді ұстап қалды'],[1977,'«Қазақстан» қонақүйі — қаладағы ең биік ғимарат'],[1980,'Жаңа алаң ансамблі салынды'],[1983,'Көктөбе телемұнарасы іске қосылды'],[1985,'Орталық мемлекеттік музейдің жаңа ғимараты'],[1986,'16 желтоқсан: Қонаев қызметтен босатылды'],[1993,'Қонаев өмірден озды'],[1997,'Ел астанасы Ақмолаға көшті'],[2002,'Қонаев музейі ашылды'],[2008,'Esentai Tower биіктік рекордын жаңартты'],[2011,'Алматы метросының алғашқы кезегі ашылды'],[2012,'Қонаевтың 100 жылдығы: пәтер-музей ашылды'],[2022,'Қапшағай — енді Қонаев қаласы'],[2025,'КБТУ ғимаратындағы өрт; Қонаев кабинеті аман']];
+
+/* ---------------- UTIL ---------------- */
+function hash(x,y){ const s=Math.sin(x*127.1+y*311.7)*43758.5453; return s-Math.floor(s); }
+function vnoise(x,y){ const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=xf*xf*(3-2*xf),w=yf*yf*(3-2*yf);
+  const a=hash(xi,yi),b=hash(xi+1,yi),c=hash(xi,yi+1),d=hash(xi+1,yi+1); return a+(b-a)*u+(c-a)*w+(a-b-c+d)*u*w; }
+function fbm(x,y){ let s=0,a=.5,f=1; for(let i=0;i<5;i++){ s+=a*vnoise(x*f,y*f); f*=2.03; a*=.5; } return s; }
+function ridged(x,y){ let s=0,a=.55,f=1; for(let i=0;i<5;i++){ const n=1-Math.abs(vnoise(x*f,y*f)*2-1); s+=a*n*n; f*=2.1; a*=.5; } return s; }
+function smooth(a,b,x){ const t=Math.max(0,Math.min(1,(x-a)/(b-a))); return t*t*(3-2*t); }
+function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function el(tag,attrs,html){ const e=document.createElement(tag); if(attrs) for(const k in attrs) e.setAttribute(k,attrs[k]); if(html!=null) e.innerHTML=html; return e; }
+function mapLinks(q){ const e=encodeURIComponent(q); return '<a class="btn ghost sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+e+'">Google Maps ↗</a><a class="btn ghost sm" target="_blank" rel="noopener" href="https://2gis.kz/almaty/search/'+e+'">2GIS ↗</a>'; }
+
+/* ---------------- NAV / PROGRESS / REVEAL ---------------- */
+const prog=$('#prog'); const navLinks=$$('.nav nav a');
+function onScroll(){ const h=document.documentElement; const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1); prog.style.width=(p*100).toFixed(2)+'%'; }
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+const secObs=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); } }); },{rootMargin:'-45% 0px -50% 0px'});
+$$('main section[id]').forEach(s=>secObs.observe(s));
+const revObs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target);} }),{rootMargin:'0px 0px -8% 0px'});
+$$('.reveal').forEach(r=>revObs.observe(r));
+
+/* ---------------- PORTRAIT (generative monogram) ---------------- */
+(function(){ const c=$('#portrait'); if(!c||!c.getContext) return; const g=c.getContext('2d'), W=c.width, H=c.height;
+  g.fillStyle='#d6c6a0'; g.fillRect(0,0,W,H);
+  const r=rng(1912);
+  for(let i=0;i<1400;i++){ g.fillStyle='rgba(60,45,20,'+(r()*.08)+')'; g.fillRect(r()*W,r()*H,1.5,1.5); }
+  g.strokeStyle='rgba(45,37,22,.35)'; g.lineWidth=1;
+  for(let y=14;y<H;y+=7){ g.beginPath(); for(let x=0;x<=W;x+=4){ const yy=y+Math.sin(x*.05+y*.11)*1.6; x?g.lineTo(x,yy):g.moveTo(x,yy);} g.stroke(); }
+  g.fillStyle='#2d2516'; g.font='700 92px "PT Serif", Georgia, serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('ДҚ',W/2,H/2-10);
+  g.font='600 15px "JetBrains Mono", monospace'; g.fillText('1912 · 1993',W/2,H-30);
+  g.strokeStyle='#2d2516'; g.lineWidth=2; g.strokeRect(8,8,W-16,H-16);
+})();
+
+/* ---------------- TIMELINE ---------------- */
+(function(){
+  const list=$('#tlList');
+  TL.forEach((it,i)=>{ const li=el('li',{class:'tl-item'+(it.k?' k':''),'data-i':i});
+    li.innerHTML='<div class="d">'+it.d+'</div><h3>'+it.t+'</h3><p>'+it.p+'</p>'+(it.c.length?'<div class="chips">'+it.c.map(c=>'<span class="chip'+(it.k?' g':'')+'">'+c+'</span>').join('')+'</div>':'')+(it.im?'<button class="tl-ph" data-ph="'+it.im+'"><img src="'+PH[it.im].src+'" alt="" loading="lazy"><span>'+PH[it.im].y+' · '+PH[it.im].c+'</span></button>':'');
+    list.appendChild(li); });
+  const yEl=$('#tlYear'), eraEl=$('#tlEra'), ageEl=$('#tlAge'), bar=$('#tlBar'); let cur=-1;
+  function setItem(i){ if(i===cur) return; cur=i; const it=TL[i]; $$('.tl-item').forEach((n,j)=>n.classList.toggle('on',j===i));
+    yEl.textContent=it.y; yEl.classList.add('flash'); setTimeout(()=>yEl.classList.remove('flash'),350);
+    eraEl.textContent=it.era;
+    ageEl.textContent= it.y<=1993 ? (it.y===1912?'Туған жылы':'Жасы: '+(it.y-1912)) : 'Қайтыс болғаннан кейін '+(it.y-1993)+' жыл';
+    bar.style.width=((it.y-1912)/(2026-1912)*100).toFixed(1)+'%'; }
+  const obs=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting) setItem(+e.target.dataset.i); }); },{rootMargin:'-40% 0px -55% 0px'});
+  $$('.tl-item').forEach(n=>obs.observe(n)); setItem(0);
+})();
+
+/* ---------------- CLAIMS ---------------- */
+(function(){
+  const V={ok:['v-ok','✓ Расталды'],mid:['v-mid','◐ Басшылық кезеңінде'],q:['v-q','? Тексеру қажет']};
+  const C=[
+   {q:'«Қазақстан» қонақүйін Қонаев өзі салдырды',v:'mid',e:['Жобалауға тапсырысты одақтық «Главинтурист» берді; тапсырыс 1970 жылы «Алматыгипрогор» институтына жіберілді.','Құрылыс 1975–1977 жылдары жүрді — бұл Қонаевтың басшылық кезеңі.','Республика басшысының жеке ықпалы мемуарлар мен мұрағат құжаттарымен салыстыруды қажет етеді.'],s:'sxodim.com · Архитектуралық гид'},
+   {q:'КБТУ ғимараты — Қонаев тұсында салынған құрылыс',v:'mid',e:['Үкімет үйі 1947–1957 жылдары салынды, сәулетшілері Б.Р. Рубаненко мен Т.А. Симонов.','Құрылыс Қонаев үкімет басшысы болғанға дейін басталды; ол Министрлер Кеңесін 1955 жылдан басқарды.','Ғимаратта Қонаевтың кабинеті сақталған.'],s:'gov.kz · Тарих және мәдениет ескерткіштерінің тізімі; bes.media'},
+   {q:'Медеу бөгеті 1973 жылы Алматыны селден құтқарды',v:'ok',e:['Бөгет 1966 және 1967 жылдары екі бағытталған жарылыспен тұрғызылды.','15 шілде 1973 жылы сел бөгетке келіп тоқтады.','Бірақ су тастайтын тоннель әлі аяқталмаған еді — бөгет толып кету қаупі болды.'],s:'informburo.kz · prg.kz'},
+   {q:'Алматы метросы — Қонаев дәуірінің жобасы',v:'q',e:['Метроның құрылысы 1988 жылы, Қонаев қызметтен кеткеннен кейін басталды.','Бірінші кезек 2011 жылы ашылды.','Жоспарлау кезеңіндегі Қонаевтың нақты рөлін құжат арқылы анықтау керек.'],s:'Тексеру жалғасуда'},
+   {q:'Даңқ мемориалы 1975 жылы ашылды',v:'q',e:['Wikipedia, ruwiki және sxodim: мемориал 1975 жылы, Жеңістің 30 жылдығына ашылды, авторлары — А. Артимович, В. Андрющенко.','Қонаев музейінің стенді: «Қазан революциясының 50 жылдығы қарсаңында» (1967) ашылды, авторлары — сол скульпторлар.','Мүмкін түсіндірме: алғашқы ескерткіш пен алау ертерек, ал үш бөлікті композиция 1975 жылы орнатылған. Мұрағат құжатымен нақтылау керек.'],s:'Музейге сапар (2026) · Wikipedia · sxodim.com'},
+  ];
+  const wrap=$('#claims');
+  C.forEach(c=>{ const d=el('details',{class:'claim reveal'}); const v=V[c.v];
+    d.innerHTML='<summary><div class="cq">«'+c.q.replace(/^«|»$/g,'')+'»</div><div class="meta"><span class="verdict '+v[0]+'">'+v[1]+'</span><span class="open">Дәлелдерді ашу ↓</span></div></summary><div class="ev"><ul>'+c.e.map(x=>'<li>'+x+'</li>').join('')+'</ul><div class="src">Дереккөз: '+c.s+'</div></div>';
+    wrap.appendChild(d); revObs.observe(d); });
+})();
+
+/* ---------------- CHART ---------------- */
+(function(){
+  const svg=$('#chart'), tip=$('#tip'), NS='http://www.w3.org/2000/svg';
+  const D=POP.filter(p=>p[0]>=1939);
+  const W=800,H=380,m={l:56,r:24,t:24,b:40};
+  const x=y=>m.l+(y-1935)/(2025-1935)*(W-m.l-m.r), yv=v=>H-m.b-(v/2200)*(H-m.t-m.b);
+  const s=(t,a)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); svg.appendChild(e); return e; };
+  const defs=document.createElementNS(NS,'defs'); defs.innerHTML='<linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0b25a" stop-opacity=".35"/><stop offset="1" stop-color="#e0b25a" stop-opacity="0"/></linearGradient>'; svg.appendChild(defs);
+  s('rect',{x:x(1960),y:m.t,width:x(1986)-x(1960),height:H-m.t-m.b,fill:'rgba(224,178,90,.10)'});
+  s('text',{x:(x(1960)+x(1986))/2,y:m.t+16,'text-anchor':'middle',fill:'#f4d68f','font-size':12,'font-family':'JetBrains Mono, monospace'}).textContent='Қонаев дәуірі 1960–1986';
+  [0,500,1000,1500,2000].forEach(v=>{ s('line',{x1:m.l,x2:W-m.r,y1:yv(v),y2:yv(v),stroke:'rgba(147,163,187,.16)'}); s('text',{x:m.l-10,y:yv(v)+4,'text-anchor':'end',fill:'#93a3bb','font-size':12,'font-family':'JetBrains Mono, monospace'}).textContent=v.toLocaleString('ru-RU'); });
+  [1940,1960,1980,2000,2020].forEach(y=>{ s('text',{x:x(y),y:H-m.b+22,'text-anchor':'middle',fill:'#93a3bb','font-size':12,'font-family':'JetBrains Mono, monospace'}).textContent=y; });
+  s('line',{x1:m.l,x2:W-m.r,y1:yv(0),y2:yv(0),stroke:'rgba(147,163,187,.4)'});
+  const pts=D.map(p=>[x(p[0]),yv(p[1])]);
+  s('path',{d:'M'+pts.map(p=>p.join(',')).join('L')+'L'+pts[pts.length-1][0]+','+yv(0)+'L'+pts[0][0]+','+yv(0)+'Z',fill:'url(#ga)'});
+  const line=s('path',{d:'M'+pts.map(p=>p.join(',')).join('L'),fill:'none',stroke:'#e0b25a','stroke-width':2.5,'stroke-linejoin':'round','stroke-linecap':'round'});
+  const len=line.getTotalLength(); if(!REDUCED){ line.style.strokeDasharray=len; line.style.strokeDashoffset=len; line.style.transition='stroke-dashoffset 2.2s ease';
+    new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ line.style.strokeDashoffset=0; o.disconnect(); } }).observe(svg); }
+  const dots=pts.map((p,i)=>s('circle',{cx:p[0],cy:p[1],r:5,fill:'#0b1424',stroke:'#e0b25a','stroke-width':2}));
+  [[1989,'1,07 млн',-14],[2021,'≈2,03 млн',-14],[1959,'456 мың',-14]].forEach(([y,t,dy])=>{ const v=POP.find(p=>p[0]===y)[1]; s('text',{x:x(y),y:yv(v)+dy,'text-anchor':y===2021?'end':'middle',fill:'#e8edf5','font-size':13,'font-weight':600,'font-family':'Golos Text, sans-serif'}).textContent=t; });
+  const cross=s('line',{y1:m.t,y2:H-m.b,stroke:'rgba(232,237,245,.35)','stroke-dasharray':'3 3',visibility:'hidden'});
+  const hit=s('rect',{x:m.l,y:m.t,width:W-m.l-m.r,height:H-m.t-m.b,fill:'transparent'});
+  function show(ev){ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W; let bi=0,bd=1e9; pts.forEach((p,i)=>{ const d=Math.abs(p[0]-px); if(d<bd){bd=d;bi=i;} });
+    const p=pts[bi]; cross.setAttribute('x1',p[0]); cross.setAttribute('x2',p[0]); cross.setAttribute('visibility','visible'); dots.forEach((d,i)=>d.setAttribute('r',i===bi?7:5));
+    tip.hidden=false; tip.innerHTML='<b>'+D[bi][1].toLocaleString('ru-RU')+' мың</b>'+D[bi][0]+' жылғы санақ';
+    const box=svg.parentElement.getBoundingClientRect(); tip.style.left=(r.left-box.left+p[0]/W*r.width)+'px'; tip.style.top=(r.top-box.top+p[1]/H*r.height)+'px'; }
+  hit.addEventListener('pointermove',show); hit.addEventListener('pointerdown',show);
+  hit.addEventListener('pointerleave',()=>{ tip.hidden=true; cross.setAttribute('visibility','hidden'); dots.forEach(d=>d.setAttribute('r',5)); });
+  $('#popTable').innerHTML='<tr><th>Жыл</th><th>Халық, мың</th></tr>'+D.map(p=>'<tr><td>'+p[0]+'</td><td>'+p[1].toLocaleString('ru-RU')+'</td></tr>').join('');
+})();
+
+/* ---------------- MUSEUM CAROUSEL ---------------- */
+(function(){
+  const ex=[
+   ['01','Балалық шақ','Верныйдағы отбасы, мектеп жылдары және қаланың ескі келбеті.','<path d="M8 40V20l16-12 16 12v20H8zM20 40V28h8v12"/>'],
+   ['02','Студенттік жылдар','Мәскеудегі түсті металдар және алтын институты, тау-кен инженері дипломы.','<path d="M4 18l20-10 20 10-20 10L4 18zM12 22v10c0 3 6 6 12 6s12-3 12-6V22"/>'],
+   ['03','Еңбек жолы','Балқаш, Қоңырат кеніші, Риддер комбинаты — өндірістен басталған мансап.','<path d="M6 40l14-14M20 26l6-14 8 8-14 6M30 10l8 8M4 44h40"/>'],
+   ['04','Мемлекеттік қызмет','Министрлер Кеңесі, Ғылым академиясы, Орталық Комитет — құжаттар мен марапаттар.','<path d="M24 4l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z"/>'],
+   ['05','Мемориалдық пәтер','Қонаев 1969–1993 жылдары тұрған пәтердегі мемориалдық экспозиция.','<path d="M6 42V16h36v26M6 16l18-10 18 10M14 42V26h8v16M28 26h8v8h-8z"/>'],
+   ['06','Интерактивті зал','2022 жылғы реэкспозиция: экспозицияның көп бөлігі интерактивті форматқа көшті.','<rect x="6" y="8" width="36" height="24" rx="2"/><path d="M18 40h12M24 32v8M14 20l6 4-6 4M24 28h8"/>']
+  ];
+  const ring=$('#ring'), N=ex.length, R=Math.round(220/2/Math.tan(Math.PI/N))+40; let idx=0;
+  ex.forEach((e,i)=>{ const d=el('div',{class:'exh'}); d.style.transform='rotateY('+(i*360/N)+'deg) translateZ('+R+'px)';
+    d.innerHTML='<div><div class="n">ЗАЛ '+e[0]+'</div></div><svg viewBox="0 0 48 48">'+e[3]+'</svg><div><h4>'+e[1]+'</h4><p>'+e[2]+'</p></div>'; ring.appendChild(d); });
+  function go(){ ring.style.transform='translateZ(-'+R+'px) rotateY('+(-idx*360/N)+'deg)'; }
+  $('#ringNext').onclick=()=>{ idx++; go(); }; $('#ringPrev').onclick=()=>{ idx--; go(); };
+  go(); let hover=false; $('#stage').addEventListener('pointerenter',()=>hover=true); $('#stage').addEventListener('pointerleave',()=>hover=false);
+  if(!REDUCED) setInterval(()=>{ if(!hover && !document.hidden){ idx++; go(); } },3600);
+})();
+
+/* ---------------- QUIZ ---------------- */
+(function(){
+  const Q=[
+   ['Қонаев қай жылы және қай қалада туған?',['1905, Семей','1912, Верный','1920, Шымкент','1912, Орынбор'],1,'1912 жылы 12 қаңтарда Верныйда — қазіргі Алматыда туған.'],
+   ['«Қазақстан» қонақүйінің неше қабаты бар?',['16','22','26','32'],2,'26 қабат, биіктігі шамамен 102 м. 2008 жылға дейін қаладағы ең биік ғимарат болды.'],
+   ['Қазіргі КБТУ ғимараты бастапқыда не болған?',['Қонақүй','ҚазКСР Үкімет үйі','Опера театры','Вокзал'],1,'1947–1957 жылдары салынған Үкімет үйі. Мұнда 1991 жылы тәуелсіздік туралы Конституциялық заңға қол қойылды.'],
+   ['1973 жылғы селден қаланы не қорғады?',['Көктөбе төбесі','Медеу бөгеті','Үлкен Алматы көлі','Метро тоннелі'],1,'1966–1967 жылдары бағытталған жарылыспен салынған Медеу бөгеті селді ұстап қалды.'],
+   ['Қонақүйдің алтын «тәжі» не үшін қосылған?',['Антенна үшін','Лифт шахтасын жабу үшін','Сағат орнату үшін','Мейрамхана үшін'],1,'Лифт шахтасы ғимараттан жоғары шығып тұрғандықтан, оны алюминий күмбезбен жапқан.'],
+   ['Қонаев қашан бірінші хатшы қызметінен босатылды?',['1982 ж.','1985 ж. наурыз','1986 ж. 16 желтоқсан','1991 ж.'],2,'16 желтоқсан 1986 жыл. Келесі күні Алматыда Желтоқсан оқиғалары басталды.'],
+   ['Көктөбе телемұнарасы қай жылы іске қосылды?',['1967','1977','1983','1991'],2,'1983 жылы. Ал Көктөбеге апаратын аспалы жол 1967 жылдан бері жұмыс істейді.'],
+   ['2022 жылы Қонаев есімі қай қалаға берілді?',['Талдықорған','Қапшағай','Есік','Текелі'],1,'Қапшағай Қонаев болып өзгертіліп, Алматы облысының орталығы болды.'],
+   ['Д.А. Қонаев музейінің мемориалдық пәтері қашан ашылды?',['1997','2002','2012','2022'],2,'2012 жылы, 100 жылдыққа орай. Ал музейдің өзі 2002 жылы ашылған.'],
+   ['1959–1989 жылдары Алматы халқы шамамен неше есе өсті?',['1,2 есе','2,4 есе','4 есе','6 есе'],1,'456 мыңнан 1 073 мыңға дейін — шамамен 2,4 есе.']
+  ];
+  const box=$('#quiz'); let i=0,score=0;
+  function render(){
+    if(i>=Q.length){ const r=score>=8?'Тарихшы-зерттеуші':score>=5?'Білімді алматылық':'Жаңа зерттеуші';
+      box.innerHTML='<div class="q-top"><span>НӘТИЖЕ</span><span class="q-score">'+score+' / '+Q.length+'</span></div><div class="q-end"><b>'+score*100+'</b><div class="q-q">Ұпай. Атағыңыз: «'+r+'»</div><p class="muted">Қате жауаптардың түсіндірмесін «Аңыз бен ақиқат» және «Уақыт сызығы» бөлімдерінен табасыз.</p><div><button class="btn gold" id="qRe">Қайта бастау</button></div></div>';
+      $('#qRe').onclick=()=>{ i=0; score=0; render(); }; return; }
+    const q=Q[i];
+    box.innerHTML='<div class="q-top"><span>СҰРАҚ '+(i+1)+' / '+Q.length+'</span><span class="q-score">Ұпай: '+score*100+'</span></div><div class="q-prog"><i style="width:'+(i/Q.length*100)+'%"></i></div><div class="q-q">'+q[0]+'</div><div class="q-opts">'+q[1].map((o,k)=>'<button class="q-opt" data-k="'+k+'">'+String.fromCharCode(65+k)+'. '+o+'</button>').join('')+'</div><div id="qExp"></div>';
+    box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{ const k=+b.dataset.k; const ok=k===q[2]; if(ok) score++;
+      box.querySelectorAll('.q-opt').forEach(x=>{ x.disabled=true; if(+x.dataset.k===q[2]) x.classList.add('right'); });
+      if(!ok) b.classList.add('wrong');
+      $('#qExp').innerHTML='<div class="q-exp"><b>'+(ok?'Дұрыс! ':'Дұрыс жауап: '+q[1][q[2]]+'. ')+'</b>'+q[3]+'</div><div style="margin-top:12px"><button class="btn gold" id="qNext">'+(i===Q.length-1?'Нәтижені көру':'Келесі сұрақ →')+'</button></div>';
+      box.querySelector('.q-score').textContent='Ұпай: '+score*100; $('#qNext').onclick=()=>{ i++; render(); }; $('#qNext').focus({preventScroll:true}); });
+  }
+  render();
+})();
+
+/* ---------------- PHOTO ARCHIVE + LIGHTBOX ---------------- */
+const lb=$('#lb');
+function openLightbox(k){ const p=PH[k]; $('#lbImg').src=p.src; $('#lbImg').alt=p.c; $('#lbCap').innerHTML='<b>'+p.y+'</b> '+p.c+'<small>'+credit(p)+'</small>'; lb.hidden=false; $('#lbX').focus(); }
+$('#lbX').onclick=()=>lb.hidden=true; lb.addEventListener('click',e=>{ if(e.target===lb) lb.hidden=true; }); addEventListener('keydown',e=>{ if(e.key==='Escape') lb.hidden=true; });
+document.addEventListener('click',e=>{ const b=e.target.closest('.tl-ph,.pf img,.arch img,.mc-img'); if(b&&b.dataset.ph) openLightbox(b.dataset.ph); const v=e.target.closest('img[data-vis]'); if(v){ $('#lbImg').src=v.src; $('#lbImg').alt=v.alt; $('#lbCap').innerHTML=v.closest('figure').querySelector('figcaption').textContent+'<small>Фото: жоба авторы, Д.А. Қонаев музейі</small>'; lb.hidden=false; $('#lbX').focus(); } });
+(function(){ const box=$('#arch'); const order=['kunaev_inst','kunaev_1937','kunaev_1952','kunaev_1981','kbtu_1969','medeu_dam','medeu_70s','memorial_70s','cathedral_70s','medeu_stamp','palace_1978','gorky_1980','medeu_1982','panfilov_1982','kbtu_stamp','palace_stamp','kbtu_1999','hotel_cc0','hotel_tyl','kbtu_mb','kbtu_2026','palace_2022','medeu_2010','medeu_2022','memorial_2017','memorial_2019','cathedral_now','tower_cc0','tower_grau'];
+  const go3d={hotel_cc0:1,kbtu_1969:1,kbtu_1999:1,kbtu_mb:1,palace_2022:1,tower_cc0:1};
+  box.innerHTML=order.map(k=>{ const p=PH[k]; return '<figure data-g="'+p.g+'"><img src="'+p.src+'" alt="'+p.c.replace(/"/g,'')+'" loading="lazy" data-ph="'+k+'" width="'+p.w+'" height="'+p.h+'"><figcaption><b>'+p.y+'</b>'+p.c+'<small>'+credit(p)+'</small>'+(go3d[k]?'<button class="btn ghost sm go3d" data-go="'+k+'">3D-мен беттестіру ⇄</button>':'')+'</figcaption></figure>'; }).join('');
+  box.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{ if(window.__labPhoto) window.__labPhoto(b.dataset.go); });
+  $$('[data-ag]').forEach(b=>b.onclick=()=>{ $$('[data-ag]').forEach(x=>x.setAttribute('aria-pressed',x===b)); const g=b.dataset.ag; box.querySelectorAll('figure').forEach(f=>f.hidden=!(g==='all'||f.dataset.g===g)); });
+})();
+
+/* ---------------- NOTEBOOK ---------------- */
+(function(){
+  const t=$('#nbText'), s=$('#nbTopic'), st=$('#nbStatus'); const KEY='qonaev-notebook';
+  try{ const d=JSON.parse(localStorage.getItem(KEY)||'null'); if(d){ t.value=d.text||''; if(d.topic) s.value=d.topic; st.textContent='Сақталған жазба жүктелді'; } }catch(e){}
+  let to; function save(){ clearTimeout(to); to=setTimeout(()=>{ try{ localStorage.setItem(KEY,JSON.stringify({text:t.value,topic:s.value})); st.textContent='Сақталды · '+new Date().toLocaleTimeString('kk-KZ',{hour:'2-digit',minute:'2-digit'}); }catch(e){ st.textContent='Бұл браузерде сақтау мүмкін емес'; } },400); }
+  t.addEventListener('input',save); s.addEventListener('change',save);
+  $('#nbCopy').onclick=()=>{ const txt='Зерттеу нысаны: '+s.value+'\n\n'+t.value; const done=()=>{ st.textContent='Мәтін көшірілді'; };
+    try{ navigator.clipboard.writeText(txt).then(done,()=>{ t.select(); st.textContent='Мәтін белгіленді — Ctrl/Cmd+C басыңыз'; }); }catch(e){ t.select(); st.textContent='Мәтін белгіленді — Ctrl/Cmd+C басыңыз'; } };
+})();
+
+/* ---------------- QR ---------------- */
+(function(){ try{ const url=SITE_URL||location.href; const q=qrcode(0,'M'); q.addData(url); q.make(); $('#qrSvg').innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}); }catch(e){ $('#qr').hidden=true; } })();
+
+const LABINFO={
+  hotel:{t:'«Қазақстан» қонақүйі',s:'Достық даңғылы · 1975–1977 · «Алматыгипрогор» жобасы',rows:[
+    ['Мәртебесі','Алматыдағы ең биік ғимарат: 26 қабат, ≈102 м','2008 жылы рекорд Esentai Tower-ге өтті; сәулет ескерткіші'],
+    ['Тапсырысшы','Одақтық «Главинтурист» — шетелдік туристерге арналған','Жұмыс істеп тұрған қонақүй, қаланың символы'],
+    ['Қасбеті','Ұлутас (ракушняк) қаптама — алғашқы жылдары аппақ','Уақыт өте сұрғылт реңк алды'],
+    ['Тәжі','Лифт шахтасын жабу үшін құрылыс кезінде қосылған алюминий «тәж»','Түнде жарқырайтын қала бағдары'],
+    ['Айналасы','4–5 қабатты кеңестік үйлер, жас ағаштар','Зәулім шыны ғимараттар, тығыз көше қозғалысы']]},
+  kbtu:{t:'Үкімет үйі → КБТУ',s:'Төле би, 59 · 1947–1957 · сәулетшілер Б.Р. Рубаненко, Т.А. Симонов',rows:[
+    ['Атауы','ҚазКСР Үкімет үйі','Қазақстан-Британ техникалық университеті (2001 жылдан)'],
+    ['Қызметі','Республиканың басқару органдары; Қонаев 1955 жылдан үкімет басшысы','Университет; Қонаевтың кабинеті сақталған'],
+    ['Тарихи сәт','1957 — құрылыс аяқталды','1991 — тәуелсіздік туралы Конституциялық заңға осында қол қойылды'],
+    ['Символдар','ҚазКСР елтаңбасы мен туы','Қазақстан Республикасының елтаңбасы мен туы'],
+    ['2025','—','11 қаңтардағы өрт: шатырдың бір бөлігі зақымдалды, кабинет аман']]},
+  palace:{t:'Ленин сарайы → Республика сарайы',s:'Достық даңғылы · 1970 · кеңестік модернизм',rows:[
+    ['Атауы','В.И. Ленин атындағы сарай','Республика сарайы'],
+    ['Оқиға','1978 — ДДСҰ мен ЮНИСЕФ-тің Алма-Ата конференциясы осында өтті','Қаланың басты концерт және форум алаңы'],
+    ['Сәулеті','Шыны көлем, екі жұп пилон, торлы өрнекті сатылы шатыр','Негізгі көлемі сақталған; түнгі жарық көрнекі түрде берілген'],
+    ['Көршісі','1977 жылдан «Қазақстан» қонақүйі','Қонақүй мен сарай — бір ансамбль']]},
+  koktobe:{t:'Көктөбе телемұнарасы',s:'Көктөбе төбесі · 1983 · болат құбырлы конструкция',rows:[
+    ['Биіктігі','≈372 м — қаладағы ең биік құрылыс','Әлі де қаланың ең биік нүктелерінің бірі'],
+    ['Пішіні','Торлы цилиндр діңгек, екі алаң-«капсула», қызыл-ақ шпиль','Сол пішін; түнгі жарық'],
+    ['Аспалы жол','1967 жылдан жұмыс істейді','Жаңартылған аспалы жол'],
+    ['Төбе','Бос, шөп басқан баурай','Көктөбе саябағы, шолу дөңгелегі, кафелер']]},
+  medeu:{t:'Медеу',s:'Биік таулы мұз айдыны мен селге қарсы бөгет · Медеу шатқалы',rows:[
+    ['Мұз айдыны','1972 жылы қайта салынды; жылдамдыққа коньки тебуден көптеген әлемдік рекордтар орнатылды','Жөндеуден өткен спорт кешені, қаланың басты туристік орны'],
+    ['Бөгет','1966–1967 жылдары бағытталған жарылыспен тұрғызылды','Қаланы селден қорғауды жалғастырады'],
+    ['1973','15 шілдедегі алапат селді ұстап қалды','—']]},
+  memorial:{t:'Даңқ мемориалы',s:'28 панфиловшылар атындағы саябақ · 1975 (музейде — 1967) · Мәңгілік алау',rows:[
+    ['Ашылуы','1975 — Жеңістің 30 жылдығына (Wikipedia); музей стендінде — 1967','Қаланың басты мемориалдық орындарының бірі'],
+    ['Құрамы','Үш бөлікті композиция, Мәңгілік алау','Сол күйінде сақталған']]}
+};
+const LABPH={hotel:['hotel_cc0','hotel_tyl'],kbtu:['kbtu_1969','kbtu_1999','kbtu_mb','kbtu_2026'],palace:['palace_1978','palace_stamp','palace_2022'],koktobe:['tower_cc0','tower_grau'],medeu:['medeu_1982','medeu_70s','medeu_dam','medeu_2010','medeu_2022','medeu_stamp'],memorial:['memorial_70s','memorial_2017','memorial_2019']};
+const PAIRS={hotel:['hotel_tyl','hotel_cc0'],kbtu:['kbtu_1969','kbtu_mb'],palace:['palace_1978','palace_2022'],medeu:['medeu_1982','medeu_2010'],memorial:['memorial_70s','memorial_2017'],koktobe:['tower_grau','tower_cc0']};
+const NO_THEN={hotel:'Қонақүйдің 1977–1991 жылдардағы еркін лицензиялы фотосы табылмады, сондықтан екі бүгінгі ракурс көрсетілген.',koktobe:'Мұнараның кеңестік кезеңдегі еркін лицензиялы фотосы табылмады.'};
+const MATCH={
+  hotel_cc0:{b:'hotel',era:'now',pos:[30,1.6,100],t:[6,50,-8],fov:64},
+  kbtu_1969:{b:'kbtu',era:'then',pos:[-55,1.6,40],t:[10,14,14],fov:55},
+  kbtu_1999:{b:'kbtu',era:'now',pos:[-120,2,140],t:[45,12,0],fov:40},
+  kbtu_mb:{b:'kbtu',era:'now',pos:[110,1.7,150],t:[-25,12,0],fov:34},
+  palace_2022:{b:'palace',era:'now',pos:[0,1.6,112],t:[0,12,0],fov:58},
+  tower_cc0:{b:'koktobe',era:'now',pos:[0,150,3170],t:[45,263,0],fov:9.5}
+};
+/* =========================================================
+   3D
+   ========================================================= */
+if(typeof THREE==='undefined'){ try{ labPhotoOnly(); }catch(e){} ['#heroCanvas','#mapCanvas'].forEach(s=>{ const c=$(s); if(c&&c.parentElement){ const d=el('div',{class:'no3d'},'3D кітапханасы жүктелмеді. Интернет байланысын тексеріп, бетті қайта ашыңыз.'); c.parentElement.appendChild(d);} }); return; }
+
+const views=[];
+function createView(canvas,o){
+  let renderer;
+  try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:!!o.alpha,powerPreference:'high-performance'}); }
+  catch(e){ if(!o.quiet){ const d=el('div',{class:'no3d'},'Бұл құрылғыда WebGL қолжетімсіз, сондықтан 3D көрініс көрсетілмейді.'); canvas.parentElement.appendChild(d); } return null; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,o.dpr||2));
+  const scene=new THREE.Scene(); scene.background=new THREE.Color(o.bg);
+  const camera=new THREE.PerspectiveCamera(o.fov||40,1,o.near||1,o.far||5000);
+  const v={renderer,scene,camera,canvas,active:false,w:1,h:1,update:null,render:null,onResize:null};
+  const fit=()=>{ const r=canvas.getBoundingClientRect(); v.w=Math.max(1,r.width); v.h=Math.max(1,r.height); renderer.setSize(v.w,v.h,false); camera.aspect=v.w/v.h; camera.updateProjectionMatrix(); v.onResize&&v.onResize(); };
+  new ResizeObserver(fit).observe(canvas); fit();
+  new IntersectionObserver(es=>{ v.active=es[0].isIntersecting; },{rootMargin:'100px'}).observe(canvas);
+  views.push(v); return v;
+}
+let lastT=performance.now();
+function loop(t){ const dt=Math.min(.05,(t-lastT)/1000); lastT=t; for(const v of views){ if(!v.active) continue; v.update&&v.update(dt,t/1000); if(v.render) v.render(); else v.renderer.render(v.scene,v.camera); } requestAnimationFrame(loop); }
+
+/* ---------- textures ---------- */
+function canvasTex(w,h,draw){ const c=document.createElement('canvas'); c.width=w; c.height=h; draw(c.getContext('2d'),w,h); const t=new THREE.CanvasTexture(c); t.anisotropy=4; return t; }
+const STY={
+  stoneThen:{wall:'#efe7d4',glass:'#55585b',frame:'#e3d9c3',ww:.5,wh:.56,rib:'#d8ceb6'},
+  stoneNow:{wall:'#bbb5a9',glass:'#24303d',frame:'#a8a296',ww:.5,wh:.56,rib:'#a29c90',lit:.42},
+  podThen:{wall:'#e9e1cc',glass:'#4d5154',frame:'#d9cfb8',ww:.9,wh:.5},
+  podNow:{wall:'#b0aa9e',glass:'#1f2b38',frame:'#9b968b',ww:.9,wh:.5,lit:.6},
+  classicThen:{wall:'#d6c095',glass:'#4a4437',frame:'#e6d4ab',ww:.4,wh:.58,arch:1,pil:'#e2cfa6'},
+  classicNow:{wall:'#e7dcc3',glass:'#29384a',frame:'#f3ecdc',ww:.4,wh:.58,arch:1,pil:'#f1e8d4',lit:.35},
+  khrush:{wall:'#d4cebf',glass:'#5c6166',frame:'#c4bdac',ww:.56,wh:.48,panel:1},
+  glassNow:{wall:'#3d566d',glass:'#152231',frame:'#5d7890',ww:.94,wh:.8,lit:.5,metal:.45,rough:.35},
+  balcThen:{wall:'#e6ddc8',glass:'#6d6c66',frame:'#d9cfb8',ww:.84,wh:.72,diag:1},
+  balcNow:{wall:'#c2bcaf',glass:'#2a3542',frame:'#aaa499',ww:.84,wh:.72,diag:1,lit:.45},
+  palThen:{wall:'#3a3e40',glass:'#6a7477',frame:'#2f3335',ww:.96,wh:.94},
+  palNow:{wall:'#1a2633',glass:'#21384f',frame:'#16202b',ww:.96,wh:.94,lit:.75}
+};
+const tileCache={}, nightMats=[];
+function tile(key){ if(tileCache[key]) return tileCache[key]; const S=STY[key], r=rng(key.length*997+7);
+  const lit=[]; for(let i=0;i<16;i++) lit.push(S.lit!=null && r()<S.lit ? .55+.45*r() : 0);
+  const map=canvasTex(256,256,(g)=>{ g.fillStyle=S.wall; g.fillRect(0,0,256,256);
+    for(let rr=0;rr<4;rr++) for(let cc=0;cc<4;cc++){ const x=cc*64,y=rr*64;
+      if(S.pil){ g.fillStyle=S.pil; g.fillRect(x,y,7,64); }
+      if(S.panel){ g.strokeStyle='rgba(0,0,0,.12)'; g.strokeRect(x+.5,y+.5,63,63); }
+      const ww=64*S.ww, wh=64*S.wh, wx=x+(64-ww)/2, wy=y+(64-wh)/2+3;
+      g.fillStyle=S.glass; g.fillRect(wx,wy,ww,wh);
+      g.fillStyle='rgba(255,255,255,.07)'; g.fillRect(wx,wy,ww,wh*.35);
+      if(S.arch){ g.beginPath(); g.arc(wx+ww/2,wy,ww/2,Math.PI,0); g.fillStyle=S.glass; g.fill(); }
+      g.strokeStyle=S.frame; g.lineWidth=2; g.strokeRect(wx,wy,ww,wh); g.beginPath(); g.moveTo(wx+ww/2,wy); g.lineTo(wx+ww/2,wy+wh); g.stroke();
+      if(S.rib){ g.fillStyle=S.rib; g.fillRect(x,y,6,64); }
+      if(S.diag){ g.strokeStyle=S.frame; g.lineWidth=4; g.beginPath(); g.moveTo(x,y+32); g.lineTo(x+32,y); g.lineTo(x+64,y+32); g.lineTo(x+32,y+64); g.closePath(); g.stroke(); }
+    }
+    g.fillStyle='rgba(0,0,0,.05)'; g.fillRect(0,60,256,4); g.fillRect(0,124,256,4); g.fillRect(0,188,256,4); g.fillRect(0,252,256,4);
+  });
+  const emis=canvasTex(256,256,(g)=>{ g.fillStyle='#000'; g.fillRect(0,0,256,256);
+    for(let rr=0;rr<4;rr++) for(let cc=0;cc<4;cc++){ const L=lit[rr*4+cc]; if(!L) continue; const x=cc*64,y=rr*64, ww=64*S.ww, wh=64*S.wh, wx=x+(64-ww)/2, wy=y+(64-wh)/2+3;
+      g.fillStyle='rgba(255,'+(196+Math.round(40*L))+','+(110+Math.round(60*L))+','+L+')'; g.fillRect(wx,wy,ww,wh); if(S.arch){ g.beginPath(); g.arc(wx+ww/2,wy,ww/2,Math.PI,0); g.fill(); } }
+  });
+  return tileCache[key]={map,emis};
+}
+function facade(key,rx,ry){ const S=STY[key], t=tile(key);
+  const map=t.map.clone(); map.needsUpdate=true; map.wrapS=map.wrapT=THREE.RepeatWrapping; map.repeat.set(rx,ry);
+  const o={map,roughness:S.rough!=null?S.rough:.85,metalness:S.metal||0};
+  if(S.lit!=null){ const e=t.emis.clone(); e.needsUpdate=true; e.wrapS=e.wrapT=THREE.RepeatWrapping; e.repeat.set(rx,ry); o.emissiveMap=e; o.emissive=new THREE.Color(0xffffff); o.emissiveIntensity=0; }
+  const m=new THREE.MeshStandardMaterial(o); if(o.emissiveMap) nightMats.push(m); return m; }
+function std(c,o){ return new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.85,metalness:0},o||{})); }
+function glow(c,base){ const m=std('#d4d8dc',{emissive:new THREE.Color(c),emissiveIntensity:base||0}); m.userData.nightE=1.4; nightMats.push(m); return m; }
+function textTex(text,o){ o=o||{}; return canvasTex(o.w||1024,o.h||96,(g,W,H)=>{ g.fillStyle=o.bg||'rgba(0,0,0,0)'; g.fillRect(0,0,W,H); g.fillStyle=o.color||'#fff'; g.font=(o.weight||700)+' '+(o.size||54)+'px '+(o.font||'"Golos Text", Arial, sans-serif'); g.textAlign='center'; g.textBaseline='middle'; g.fillText(text,W/2,H/2+2); }); }
+
+/* ---------- mesh helpers ---------- */
+function tag(o,pair,era){ if(pair) o.userData.mat=pair; if(era) o.userData.era=era; return o; }
+function mesh(geo,pair,era,shadow){ const m=new THREE.Mesh(geo,pair.now||pair); if(pair.now) m.userData.mat=pair; if(era) m.userData.era=era; m.castShadow=shadow!==false; m.receiveShadow=true; return m; }
+function facadeBox(w,h,d,kThen,kNow,bay,floor){ bay=bay||3.2; floor=floor||3.3;
+  const ry=h/floor/4, rx=l=>Math.max(.25,l/bay/4);
+  const roofT=std('#c7bfab'), roofN=std('#5c636d');
+  const mk=k=>[facade(k,rx(d),ry),facade(k,rx(d),ry),k===kThen?roofT:roofN,k===kThen?roofT:roofN,facade(k,rx(w),ry),facade(k,rx(w),ry)];
+  const geo=new THREE.BoxGeometry(w,h,d); geo.translate(0,h/2,0);
+  const a=mk(kThen), b=kNow===kThen?a:mk(kNow); if(kNow!==kThen){ b[2]=roofN; b[3]=roofN; }
+  const m=new THREE.Mesh(geo,b); m.userData.mat={then:a,now:b}; m.castShadow=true; m.receiveShadow=true; return m; }
+function cylBetween(a,b,r,mat){ const dir=new THREE.Vector3().subVectors(b,a), len=dir.length(); const g=new THREE.CylinderGeometry(r,r,len,8,1); const m=new THREE.Mesh(g,mat.now||mat); if(mat.now) m.userData.mat=mat;
+  m.position.copy(a).addScaledVector(dir,.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.normalize()); m.castShadow=true; return m; }
+
+/* ---------- shared environment pieces ---------- */
+function mountains(group,z,width,hBase,hVar,seed){
+  const depth=width*.45, geo=new THREE.PlaneGeometry(width,depth,200,70); geo.rotateX(-Math.PI/2); geo.translate(0,0,z-depth/2);
+  const pos=geo.attributes.position, col=[]; const cSnow=new THREE.Color('#eef3f7'), cRock=new THREE.Color('#6a7a8c'), cLow=new THREE.Color('#566b55');
+  for(let i=0;i<pos.count;i++){ const x=pos.getX(i), zz=pos.getZ(i); const d=z-zz; const rise=smooth(0,depth*.35,d);
+    const h=rise*(hBase*.35+ (hBase+hVar)*ridged(x*.0009+seed,zz*.0011+seed*.37)*smooth(0,depth*.6,d)); pos.setY(i,h-4);
+    const t=h/(hBase+hVar); const c=t>.55?cSnow:(t>.18?cRock:cLow); col.push(c.r,c.g,c.b); }
+  geo.setAttribute('color',new THREE.Float32BufferAttribute(col,3)); geo.computeVertexNormals();
+  const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,flatShading:true,roughness:1})); group.add(m); return m; }
+function groundDisc(group,r,cThen,cNow){ const g=new THREE.CircleGeometry(r,64); g.rotateX(-Math.PI/2); const m=mesh(g,{then:std(cThen),now:std(cNow)}); m.castShadow=false; group.add(m); return m; }
+function trees(group,list,era,scale,leaf){ const n=list.length; const trunkG=new THREE.CylinderGeometry(.25,.35,3,6); trunkG.translate(0,1.5,0); const crownG=new THREE.IcosahedronGeometry(2.4,0); crownG.translate(0,4.6,0);
+  const tr=new THREE.InstancedMesh(trunkG,std('#5b4a37'),n), cr=new THREE.InstancedMesh(crownG,std(leaf,{flatShading:true}),n); const d=new THREE.Object3D();
+  list.forEach((p,i)=>{ const s=scale*(.8+.4*hash(p[0],p[1])); d.position.set(p[0],0,p[1]); d.scale.set(s,s,s); d.rotation.y=hash(p[1],p[0])*6; d.updateMatrix(); tr.setMatrixAt(i,d.matrix); cr.setMatrixAt(i,d.matrix); });
+  [tr,cr].forEach(m=>{ m.castShadow=true; m.userData.era=era; group.add(m); }); }
+function cars(group,list,era,colors){ const g=new THREE.BoxGeometry(4.4,1.4,1.9); g.translate(0,.75,0); const m=new THREE.InstancedMesh(g,std('#ffffff',{roughness:.4,metalness:.3}),list.length); const d=new THREE.Object3D();
+  list.forEach((p,i)=>{ d.position.set(p[0],0,p[1]); d.rotation.y=p[2]||0; d.updateMatrix(); m.setMatrixAt(i,d.matrix); m.setColorAt(i,new THREE.Color(colors[i%colors.length])); });
+  m.castShadow=true; m.userData.era=era; group.add(m); }
+function road(group,len,z,w){ const g=new THREE.PlaneGeometry(len,w); g.rotateX(-Math.PI/2); const m=mesh(g,{then:std('#9d968a'),now:std('#2b3038')}); m.position.set(0,.05,z); m.castShadow=false; group.add(m);
+  const lg=new THREE.PlaneGeometry(len,.25); lg.rotateX(-Math.PI/2); const l=mesh(lg,{then:std('#c9c2b2'),now:std('#e8e2c8')}); l.position.set(0,.07,z); l.castShadow=false; group.add(l); }
+function scatter(n,seed,fn){ const r=rng(seed), out=[]; let guard=0; while(out.length<n && guard++<n*50){ const p=fn(r); if(p) out.push(p); } return out; }
+
+/* ---------- BUILDINGS (geometry checked against Wikimedia Commons photos) ---------- */
+function superPt(a,b,t,p){ const c=Math.cos(t),s=Math.sin(t); return [a*Math.sign(c)*Math.pow(Math.abs(c),p),b*Math.sign(s)*Math.pow(Math.abs(s),p)]; }
+
+/* «Қазақстан» қонақүйі: тікбұрышты мұнара, ортасында ромб-балконды белдеу, жоғарыда кеңейген белдеу және үшкір «тәждер» қатары */
+function buildHotel(){
+  const g=new THREE.Group(), core=new THREE.Group(); g.add(core); g.userData.core=core;
+  const W=50,D=24,H=82,FL=26,fh=H/FL,BW=36;
+  const tower=facadeBox(W,H,D,'stoneThen','stoneNow',3.4,fh); tower.position.z=-D/2; core.add(tower);
+  const bay=facadeBox(BW,H-1,2.6,'balcThen','balcNow',2.75,fh); bay.position.set(0,.5,1.3); core.add(bay);
+  const SP={then:std('#efe7d4'),now:std('#cbc5b8')};
+  const sh=new THREE.Shape(), n=12, pw=BW/n; sh.moveTo(-BW/2,0); for(let i=0;i<n;i++){ sh.lineTo(-BW/2+pw*(i+.5),2.2); sh.lineTo(-BW/2+pw*(i+1),0); } sh.lineTo(-BW/2,0);
+  const sg=new THREE.ExtrudeGeometry(sh,{depth:.4,bevelEnabled:false}); sg.rotateX(Math.PI/2);
+  const slabs=new THREE.InstancedMesh(sg,SP.now,FL-1); slabs.userData.mat=SP; const d=new THREE.Object3D();
+  for(let f=1;f<FL;f++){ d.position.set(0,f*fh,2.6); d.updateMatrix(); slabs.setMatrixAt(f-1,d.matrix); } slabs.castShadow=true; slabs.receiveShadow=true; core.add(slabs);
+  const fg=new THREE.BoxGeometry(.35,H-1,1.4); fg.translate(0,(H-1)/2+.5,0);
+  const fins=new THREE.InstancedMesh(fg,SP.now,n+1); fins.userData.mat=SP;
+  for(let i=0;i<=n;i++){ d.position.set(-BW/2+pw*i,0,3.3); d.updateMatrix(); fins.setMatrixAt(i,d.matrix); } fins.castShadow=true; core.add(fins);
+  const GPband={then:std('#e9e1cc'),now:std('#d6cfbf')};
+  const band=facadeBox(W+4,6.5,D+4,'podThen','podNow',3.2,3.25); band.position.set(0,H,-D/2); core.add(band);
+  const zs=new THREE.Shape(), zn=15, zw=(W+4)/zn; zs.moveTo(-(W+4)/2,0); for(let i=0;i<zn;i++){ zs.lineTo(-(W+4)/2+zw*(i+.5),2.6); zs.lineTo(-(W+4)/2+zw*(i+1),0); } zs.lineTo(-(W+4)/2,0);
+  const zg=new THREE.ExtrudeGeometry(zs,{depth:2.6,bevelEnabled:false}); zg.rotateX(Math.PI/2);
+  [[H+6.5,2],[H+3.2,2]].forEach(a=>{ const z1=mesh(zg,GPband); z1.position.set(0,a[0],a[1]); core.add(z1); const z2=mesh(zg,GPband); z2.rotation.y=Math.PI; z2.position.set(0,a[0],-D-2); core.add(z2); });
+  const shaft=mesh(new THREE.BoxGeometry(20,8,10).translate(0,4,0),{then:std('#e6decb'),now:std('#b3ada1')}); shaft.position.set(0,H+6.5,-D/2); core.add(shaft);
+  const goldT=std('#d8c48e',{metalness:.55,roughness:.35}), goldN=std('#e2c26c',{metalness:.7,roughness:.3,emissive:new THREE.Color('#ffc65a'),emissiveIntensity:0}); goldN.userData.nightE=.9; nightMats.push(goldN);
+  const GP={then:goldT,now:goldN};
+  function spikes(a,b,y,cnt,h,w){ const geo=new THREE.ConeGeometry(w,h,4,1); geo.translate(0,h/2,0); geo.scale(1,1,.22);
+    const m=new THREE.InstancedMesh(geo,GP.now,cnt); m.userData.mat=GP;
+    for(let i=0;i<cnt;i++){ const p=superPt(a,b,i/cnt*Math.PI*2,.35); d.position.set(p[0],y,-D/2+p[1]); d.rotation.set(0,Math.atan2(p[0],p[1]),0); d.updateMatrix(); m.setMatrixAt(i,d.matrix); }
+    m.castShadow=true; core.add(m); }
+  spikes(W/2+1.2,D/2+1.2,H+6.5,50,10,1.9);
+  spikes(W/2-5,D/2-4,H+6.5,34,13,1.7);
+  const pod=facadeBox(84,9,24,'podThen','podNow',3.2,4.5); pod.position.set(0,0,18); g.add(pod);
+  const can=mesh(new THREE.BoxGeometry(22,.8,9),{then:std('#e9e1cc'),now:std('#9f9a8f')}); can.position.set(0,5.4,34.5); g.add(can);
+  // environment
+  groundDisc(g,5000,'#bdb397','#3a4049'); road(g,1400,54,16);
+  const plaza=mesh(new THREE.PlaneGeometry(100,14).rotateX(-Math.PI/2),{then:std('#ddd5c1'),now:std('#6b6f75')}); plaza.position.set(0,.06,39); plaza.castShadow=false; g.add(plaza);
+  trees(g,scatter(14,3,r=>[(r()-.5)*170,44+r()*4]).concat(scatter(10,4,r=>[(r()<.5?-1:1)*(55+r()*40),(r()-.5)*40])),'then',.55,'#8c9a62');
+  trees(g,scatter(36,5,r=>[(r()-.5)*190,r()<.5?44+r()*4:64+r()*6]).concat(scatter(26,6,r=>[(r()<.5?-1:1)*(52+r()*60),(r()-.5)*70])),'now',1.35,'#3f6b3a');
+  cars(g,scatter(5,7,r=>[(r()-.5)*160,r()<.5?50:58,0]),'then',['#c8c2a6','#7d8c7c','#b39a70','#d8d2c4','#6f7d8e']);
+  cars(g,scatter(22,8,r=>[(r()-.5)*300,r()<.5?49.5+r()*2:57.5+r()*2,0]),'now',['#f2f2f2','#1d1f22','#9aa1a8','#5e6b78','#b23a2e','#e6e6e6']);
+  [[-110,-25,.25],[115,-10,-.2],[-150,40,.1]].forEach(p=>{ const k=facadeBox(52,15,12,'khrush','khrush',3,3); k.position.set(p[0],0,p[1]); k.rotation.y=p[2]; k.userData.era='then'; g.add(k); });
+  [[-130,-150,30,150],[140,-130,26,120],[30,-260,34,190],[-60,-300,24,140],[220,-60,30,95]].forEach(p=>{ const t=facadeBox(p[2],p[3],p[2],'glassNow','glassNow',3,3.6); t.position.set(p[0],0,p[1]); t.userData.era='now'; g.add(t); });
+  mountains(g,-1300,7000,420,700,2.3);
+  return {root:g,target:[0,46,-6],pos:[120,56,190],shadow:180,minD:60,maxD:620,year:'1977'};
+}
+
+/* Үкімет үйі / КБТУ: ұзын 5 қабатты блок, гранит цоколь, екі массивті пилон арасында 8 колонналы портик */
+function flagTex(kind){ return canvasTex(256,160,(g,W,H)=>{
+  if(kind==='kzssr'){ g.fillStyle='#c8102e'; g.fillRect(0,0,W,H); g.fillStyle='#4fa3d1'; g.fillRect(0,H*.66,W,H*.12); g.fillStyle='#f2c230'; g.font='bold 34px serif'; g.fillText('☭',22,52); g.beginPath(); const cx=38,cy=18; for(let i=0;i<10;i++){ const r=i%2?3:7, a=-Math.PI/2+i*Math.PI/5; g.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a)); } g.fill(); }
+  else { g.fillStyle='#00afca'; g.fillRect(0,0,W,H); g.fillStyle='#fec50c'; g.beginPath(); g.arc(W/2+10,H/2-8,26,0,Math.PI*2); g.fill(); g.strokeStyle='#fec50c'; g.lineWidth=3; for(let i=0;i<32;i++){ const a=i/32*Math.PI*2; g.beginPath(); g.moveTo(W/2+10+31*Math.cos(a),H/2-8+31*Math.sin(a)); g.lineTo(W/2+10+40*Math.cos(a),H/2-8+40*Math.sin(a)); g.stroke(); }
+    g.beginPath(); g.moveTo(W/2-45,H/2+30); g.quadraticCurveTo(W/2+10,H/2+5,W/2+65,H/2+30); g.quadraticCurveTo(W/2+10,H/2+18,W/2-45,H/2+30); g.fill();
+    for(let y=6;y<H;y+=18){ g.fillRect(10,y,14,10); g.fillRect(14,y+4,6,10); } }
+}); }
+function buildKBTU(){
+  const g=new THREE.Group(), core=new THREE.Group(); g.add(core); g.userData.core=core;
+  const L=150,Dp=22,Hm=26, F=Dp/2;
+  const ST={then:std('#e2cfa6'),now:std('#ece2cc')}, GR={then:std('#8c6f5c'),now:std('#7b5d50')};
+  core.add(facadeBox(L,Hm,Dp,'classicThen','classicNow',3.8,5));
+  [-64,64].forEach(x=>{ const w=facadeBox(22,Hm,50,'classicThen','classicNow',3.8,5); w.position.set(x,0,-36); core.add(w); });
+  core.add(mesh(new THREE.BoxGeometry(L+.8,3.2,Dp+.8).translate(0,1.6,0),GR));
+  const corn=mesh(new THREE.BoxGeometry(L+3,1.8,Dp+3),ST); corn.position.y=Hm+.9; core.add(corn);
+  const par=mesh(new THREE.BoxGeometry(L+1,1.2,Dp+1),ST); par.position.y=Hm+2.4; core.add(par);
+  const sty=mesh(new THREE.BoxGeometry(66,4,14).translate(0,2,0),GR); sty.position.z=F+7; core.add(sty);
+  for(let k=0;k<4;k++){ const st=mesh(new THREE.BoxGeometry(52,4-k,2.4).translate(0,(4-k)/2,0),GR); st.position.z=F+14+1.2+k*2.4; core.add(st); }
+  [-29.5,29.5].forEach(x=>{ const p=mesh(new THREE.BoxGeometry(7,Hm-4,9).translate(0,(Hm-4)/2,0),ST); p.position.set(x,4,F+4.5); core.add(p); });
+  for(let i=0;i<8;i++){ const x=-24+i*48/7; const c=mesh(new THREE.CylinderGeometry(1.05,1.2,18.4,18).translate(0,9.2,0),ST); c.position.set(x,4,F+6.5); core.add(c);
+    const cap=mesh(new THREE.BoxGeometry(3,1.1,3),ST); cap.position.set(x,22.95,F+6.5); core.add(cap); }
+  const ent=mesh(new THREE.BoxGeometry(66,3.3,10),ST); ent.position.set(0,25.15,F+4.5); core.add(ent);
+  const embT=new THREE.Mesh(new THREE.CircleGeometry(1.5,40),new THREE.MeshStandardMaterial({map:canvasTex(256,256,(c)=>{ c.fillStyle='#c9a24a'; c.beginPath(); c.arc(128,128,124,0,7); c.fill(); c.fillStyle='#b4202a'; c.beginPath(); for(let i=0;i<10;i++){ const r=i%2?18:42,a=-Math.PI/2+i*Math.PI/5; c.lineTo(128+r*Math.cos(a),78+r*Math.sin(a)); } c.fill(); c.fillStyle='#8a6a22'; c.font='bold 70px serif'; c.textAlign='center'; c.fillText('☭',128,168); }),metalness:.4,roughness:.5}));
+  embT.position.set(0,25.2,F+9.55); tag(embT,null,'then'); core.add(embT);
+  const embN=new THREE.Mesh(new THREE.CircleGeometry(1.5,40),new THREE.MeshStandardMaterial({map:canvasTex(256,256,(c)=>{ c.fillStyle='#d9b24a'; c.beginPath(); c.arc(128,128,124,0,7); c.fill(); c.fillStyle='#1f7fae'; c.beginPath(); c.arc(128,128,96,0,7); c.fill(); c.strokeStyle='#f2d27a'; c.lineWidth=8; for(let i=0;i<12;i++){ const a=i/12*Math.PI*2; c.beginPath(); c.moveTo(128,128); c.lineTo(128+90*Math.cos(a),128+90*Math.sin(a)); c.stroke(); } c.beginPath(); c.arc(128,128,30,0,7); c.fillStyle='#f2d27a'; c.fill(); }),metalness:.4,roughness:.5}));
+  embN.position.set(0,25.2,F+9.55); tag(embN,null,'now'); core.add(embN);
+  const pole=mesh(new THREE.CylinderGeometry(.18,.22,14,8).translate(0,7,0),{then:std('#cfcfcf',{metalness:.6}),now:std('#e6e6e6',{metalness:.6})}); pole.position.set(-4,Hm+3,2); core.add(pole);
+  const fgT=new THREE.Mesh(new THREE.PlaneGeometry(6.4,3.8),new THREE.MeshStandardMaterial({map:flagTex('kzssr'),side:THREE.DoubleSide})); fgT.position.set(-.6,Hm+15,2); tag(fgT,null,'then'); core.add(fgT);
+  const fgN=new THREE.Mesh(new THREE.PlaneGeometry(6.4,3.8),new THREE.MeshStandardMaterial({map:flagTex('kz'),side:THREE.DoubleSide})); fgN.position.set(-.6,Hm+15,2); tag(fgN,null,'now'); core.add(fgN);
+  g.userData.flags=[fgT,fgN];
+  groundDisc(g,5000,'#bdb397','#3a4049'); road(g,1400,58,18);
+  const sq=mesh(new THREE.PlaneGeometry(130,12).rotateX(-Math.PI/2),{then:std('#d9d0bb'),now:std('#70747a')}); sq.position.set(0,.06,44); sq.castShadow=false; g.add(sq);
+  trees(g,scatter(18,11,r=>[(r()-.5)*180,46+r()*2]).filter(p=>Math.abs(p[0])>34),'then',.6,'#8c9a62');
+  trees(g,scatter(40,12,r=>[(r()-.5)*220,r()<.6?46+r()*3:70+r()*8]).filter(p=>Math.abs(p[0])>34||p[1]>60).concat(scatter(16,13,r=>[(r()<.5?-1:1)*(85+r()*40),(r()-.5)*60])),'now',1.3,'#3f6b3a');
+  cars(g,scatter(4,14,r=>[(r()-.5)*150,r()<.5?54:62,0]),'then',['#c8c2a6','#7d8c7c','#b39a70','#556b7a']);
+  cars(g,scatter(20,15,r=>[(r()-.5)*300,r()<.5?53+r()*2:61+r()*2,0]),'now',['#f2f2f2','#1d1f22','#9aa1a8','#5e6b78','#e6e6e6']);
+  [[-170,-140,30,130],[160,-180,28,110],[60,-320,34,170]].forEach(p=>{ const t=facadeBox(p[2],p[3],p[2],'glassNow','glassNow',3,3.6); t.position.set(p[0],0,p[1]); t.userData.era='now'; g.add(t); });
+  mountains(g,-1300,7000,420,700,5.1);
+  return {root:g,target:[0,13,0],pos:[130,50,175],shadow:170,minD:50,maxD:600,year:'1957'};
+}
+
+/* Ленин сарайы / Республика сарайы: шыны көлем, әр қасбетте екі жұп ақ пилон, торлы өрнегі бар сатылы шатыр */
+function latticeMat(rx,ry,tint){ const t=tileCache.lattice||(tileCache.lattice=canvasTex(256,64,(c,W,H)=>{ c.fillStyle='#f1ebdf'; c.fillRect(0,0,W,H); c.fillStyle='#5b544a';
+    for(let r=0;r<3;r++) for(let x=0;x<W;x+=16){ c.fillRect(x+(r%2?8:0)+3,6+r*20,10,9); } }));
+  const map=t.clone(); map.needsUpdate=true; map.wrapS=map.wrapT=THREE.RepeatWrapping; map.repeat.set(rx,ry); return std(tint||'#ffffff',{map}); }
+function buildPalace(){
+  const g=new THREE.Group(), core=new THREE.Group(); g.add(core); g.userData.core=core;
+  const STN={then:std('#ece6d8'),now:std('#f6f3ec')};
+  core.add(mesh(new THREE.BoxGeometry(120,2.6,96).translate(0,1.3,0),{then:std('#c9b9a0'),now:std('#9b7f6c')}));
+  const hall=facadeBox(84,15,60,'palThen','palNow',4.2,5); hall.position.y=2.6; core.add(hall);
+  const pyG=new THREE.BoxGeometry(5,15.2,5); pyG.translate(0,7.6+2.6,0); const py=new THREE.InstancedMesh(pyG,STN.now,8); py.userData.mat=STN; const d=new THREE.Object3D(); let k=0;
+  [-1,1].forEach(sz=>[-1,1].forEach(sx=>[0,1].forEach(j=>{ d.position.set(sx*(26.5+j*6.3),0,sz*31); d.updateMatrix(); py.setMatrixAt(k++,d.matrix); }))); py.castShadow=true; core.add(py);
+  const mk=(w,h,dd)=>{ const top=std('#d8d2c6'); const T=[latticeMat(dd/16,1,'#f1e4c8'),latticeMat(dd/16,1,'#f1e4c8'),top,latticeMat(w/16,dd/16,'#f1e4c8'),latticeMat(w/16,1,'#f1e4c8'),latticeMat(w/16,1,'#f1e4c8')];
+    const N=[latticeMat(dd/16,1),latticeMat(dd/16,1),top,latticeMat(w/16,dd/16),latticeMat(w/16,1),latticeMat(w/16,1)];
+    const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,dd),N); m.userData.mat={then:T,now:N}; m.castShadow=true; m.receiveShadow=true; return m; };
+  const r1=mk(94,1.8,78); r1.position.y=17.8+.9; core.add(r1);
+  const r2=mk(103,2.8,86); r2.position.y=19.6+1.4; core.add(r2);
+  const r3=mesh(new THREE.BoxGeometry(106,.9,90),STN); r3.position.y=22.4+.45; core.add(r3);
+  const led=new THREE.Mesh(new THREE.BoxGeometry(103.6,.5,86.6),glow('#39d0ff')); led.position.y=19.4; tag(led,null,'now'); core.add(led);
+  for(let s=0;s<6;s++){ const st=mesh(new THREE.BoxGeometry(84,.45,2.2),{then:std('#c9b9a0'),now:std('#9b7f6c')}); st.position.set(0,.22+s*.43,61-s*2.2); core.add(st); }
+  groundDisc(g,5000,'#bdb397','#3a4049'); road(g,1400,92,18);
+  const pl=mesh(new THREE.PlaneGeometry(160,22).rotateX(-Math.PI/2),{then:std('#ddd5c1'),now:std('#6b6f75')}); pl.position.set(0,.06,73); pl.castShadow=false; g.add(pl);
+  trees(g,scatter(20,21,r=>[(r()<.5?-1:1)*(66+r()*30),(r()-.5)*90]),'then',.6,'#8c9a62');
+  trees(g,scatter(50,22,r=>[(r()<.5?-1:1)*(66+r()*70),(r()-.5)*150]),'now',1.35,'#3f6b3a');
+  cars(g,scatter(4,23,r=>[(r()-.5)*150,r()<.5?88:96,0]),'then',['#c8c2a6','#7d8c7c','#b39a70']);
+  cars(g,scatter(20,24,r=>[(r()-.5)*300,r()<.5?87+r()*2:95+r()*2,0]),'now',['#f2f2f2','#1d1f22','#9aa1a8','#5e6b78']);
+  const hk=new THREE.Group(); hk.add(facadeBox(40,82,22,'stoneThen','stoneNow',3.4,3.15)); const hb=facadeBox(45,6.5,27,'podThen','podNow',3.2,3.25); hb.position.y=82; hk.add(hb); hk.position.set(-150,0,-190); hk.userData.era='now'; g.add(hk);
+  [[160,-200,30,150],[-260,-120,26,120]].forEach(p=>{ const t=facadeBox(p[2],p[3],p[2],'glassNow','glassNow',3,3.6); t.position.set(p[0],0,p[1]); t.userData.era='now'; g.add(t); });
+  mountains(g,-1300,7000,420,700,8.7);
+  return {root:g,target:[0,10,0],pos:[150,60,175],shadow:200,minD:60,maxD:650,year:'1970'};
+}
+
+/* Көктөбе телемұнарасы: цилиндр торлы діңгек, екі «капсула» алаң, қызыл-ақ шпиль */
+function latticeCyl(r1,r2,h,pair){ const alpha=tileCache.latA||(tileCache.latA=canvasTex(128,128,(c,W,H)=>{ c.fillStyle='#000'; c.fillRect(0,0,W,H); c.strokeStyle='#fff'; c.lineWidth=7;
+    c.beginPath(); c.moveTo(0,0); c.lineTo(W,H); c.moveTo(W,0); c.lineTo(0,H); c.moveTo(0,2); c.lineTo(W,2); c.moveTo(0,H-2); c.lineTo(W,H-2); c.moveTo(2,0); c.lineTo(2,H); c.moveTo(W-2,0); c.lineTo(W-2,H); c.stroke(); }));
+  const mats={}; ['then','now'].forEach(e=>{ const a=alpha.clone(); a.needsUpdate=true; a.wrapS=a.wrapT=THREE.RepeatWrapping; a.repeat.set(10,h/9); const m=pair[e].clone(); m.alphaMap=a; m.alphaTest=.5; m.side=THREE.DoubleSide; if(pair[e].userData.nightE){ m.userData.nightE=pair[e].userData.nightE; nightMats.push(m); } mats[e]=m; });
+  const geo=new THREE.CylinderGeometry(r2,r1,h,28,1,true); geo.translate(0,h/2,0); const m=new THREE.Mesh(geo,mats.now); m.userData.mat=mats; m.castShadow=true; return m; }
+function buildKokTobe(){
+  const g=new THREE.Group(), core=new THREE.Group(); g.add(core); g.userData.core=core; const HILL=78, HR=240;
+  const hg=new THREE.SphereGeometry(HR,64,24,0,Math.PI*2,0,Math.PI/2); hg.scale(1,HILL/HR,1);
+  const hp=hg.attributes.position; for(let i=0;i<hp.count;i++){ const x=hp.getX(i),z=hp.getZ(i),y=hp.getY(i); hp.setY(i,y+(fbm(x*.02,z*.02)-.5)*8*(y/HILL)); } hg.computeVertexNormals();
+  g.add(mesh(hg,{then:std('#a9a07c',{flatShading:true}),now:std('#56724a',{flatShading:true})}));
+  core.position.y=HILL-1;
+  const sT=std('#cfc8b8',{metalness:.3,roughness:.55}), sN=std('#ddd2bb',{metalness:.35,roughness:.5,emissive:new THREE.Color('#57d3ff'),emissiveIntensity:0}); sN.userData.nightE=.55; nightMats.push(sN);
+  const SP={then:sT,now:sN}, CON={then:std('#bdb6a6'),now:std('#c9c1b0')};
+  core.add(mesh(new THREE.CylinderGeometry(9,12,10,28).translate(0,5,0),CON));
+  const s1=latticeCyl(6.6,5.8,162,SP); s1.position.y=10; core.add(s1);
+  const c1=mesh(new THREE.CylinderGeometry(2.4,2.4,236,10).translate(0,118,0),SP); c1.position.y=10; core.add(c1);
+  const podG=(r,h)=>new THREE.CylinderGeometry(r,r,h,36);
+  const p1=facadeBoxCyl(10.5,11,'podThen','podNow'); p1.position.y=172; core.add(p1);
+  [[172,11.6],[183,11.6],[238,10],[247,10],[205,7.4],[150,8]].forEach(a=>{ const r=mesh(podG(a[1],1),SP); r.position.y=a[0]; core.add(r); });
+  const s2=latticeCyl(5.4,5,55,SP); s2.position.y=183; core.add(s2);
+  const p2=facadeBoxCyl(9.2,9,'podThen','podNow'); p2.position.y=238; core.add(p2);
+  const s3=latticeCyl(3.6,2.8,40,SP); s3.position.y=247; core.add(s3);
+  const stripe=canvasTex(16,128,(c,W,H)=>{ for(let i=0;i<8;i++){ c.fillStyle=i%2?'#ffffff':'#d63a2a'; c.fillRect(0,i*16,W,16); } }); stripe.wrapT=THREE.RepeatWrapping; stripe.repeat.set(1,4);
+  const ant=new THREE.Mesh(new THREE.CylinderGeometry(.9,2.2,85,12).translate(0,42.5,0),std('#ffffff',{map:stripe})); ant.position.y=287; ant.castShadow=true; core.add(ant);
+  [183,247,320,371].forEach(y=>{ const l=new THREE.Mesh(new THREE.SphereGeometry(1.1,8,6),new THREE.MeshBasicMaterial({color:'#ff3b2f'})); l.position.y=y; core.add(l); });
+  // cable car (since 1967)
+  const a=new THREE.Vector3(420,2,420), b=new THREE.Vector3(70,HILL-6,70);
+  [-3,3].forEach(o=>{ const lg=new THREE.BufferGeometry().setFromPoints([a.clone().add(new THREE.Vector3(o,24,-o)),b.clone().add(new THREE.Vector3(o,22,-o))]); g.add(new THREE.Line(lg,new THREE.LineBasicMaterial({color:'#2a2f36'}))); });
+  const cabins=[]; for(let i=0;i<4;i++){ const c=mesh(new THREE.BoxGeometry(5,4,5),{then:std('#c2453a'),now:std('#e14b3c')}); g.add(c); cabins.push({m:c,t:i/4,o:i%2?3:-3}); }
+  const wheel=new THREE.Group(); const WR=18; const wm=std('#f2f2f2',{metalness:.4,emissive:new THREE.Color('#ffd27a'),emissiveIntensity:0}); wm.userData.nightE=1; nightMats.push(wm);
+  wheel.add(new THREE.Mesh(new THREE.TorusGeometry(WR,.5,8,48),wm)); for(let i=0;i<12;i++){ const s=new THREE.Mesh(new THREE.BoxGeometry(.35,WR*2,.35),wm); s.rotation.z=i*Math.PI/12; wheel.add(s); const cb=new THREE.Mesh(new THREE.BoxGeometry(2.4,2.4,2.4),std('#36c6ea')); const f=i/12*Math.PI*2; cb.position.set(WR*Math.cos(f),WR*Math.sin(f),0); wheel.add(cb); }
+  const wy=HILL*Math.sqrt(1-Math.pow(80/HR,2)); wheel.position.set(-70,wy+WR+3,40); wheel.rotation.y=.6; wheel.userData.era='now'; g.add(wheel);
+  g.userData.anim=(dt)=>{ cabins.forEach(c=>{ c.t=(c.t+dt*.02)%1; const p=a.clone().lerp(b,c.t); c.m.position.set(p.x+c.o,p.y+17.5,p.z-c.o); }); wheel.rotation.z+=dt*.08; };
+  [[60,-40,18,8,12],[-40,-70,14,6,10],[30,60,20,7,14]].forEach(p=>{ const hy=HILL*Math.sqrt(Math.max(0,1-(p[0]*p[0]+p[1]*p[1])/(HR*HR))); const b2=facadeBox(p[2],p[3],p[4],'podNow','podNow',3,3.5); b2.position.set(p[0],hy-1,p[1]); b2.userData.era='now'; g.add(b2); });
+  trees(g,scatter(60,31,r=>{ const rr=110+r()*120,f=r()*6.28; return [rr*Math.cos(f),rr*Math.sin(f)]; }),'now',2,'#3f6b3a');
+  g.children.filter(c=>c.isInstancedMesh&&c.userData.era==='now').forEach(m=>{ const dd=new THREE.Object3D(), mt=new THREE.Matrix4(); for(let i=0;i<m.count;i++){ m.getMatrixAt(i,mt); mt.decompose(dd.position,dd.quaternion,dd.scale); const r2=dd.position.x*dd.position.x+dd.position.z*dd.position.z; dd.position.y=r2<HR*HR?HILL*Math.sqrt(1-r2/(HR*HR))-1:0; dd.updateMatrix(); m.setMatrixAt(i,dd.matrix); } m.instanceMatrix.needsUpdate=true; });
+  groundDisc(g,6000,'#bdb397','#3a4049');
+  mountains(g,-2600,10000,700,1000,1.7);
+  return {root:g,target:[0,225,0],pos:[470,250,600],shadow:420,minD:120,maxD:1500,year:'1983'};
+}
+function facadeBoxCyl(r,h,kT,kN){ const circ=2*Math.PI*r; const geo=new THREE.CylinderGeometry(r,r,h,36); const mT=facade(kT,circ/3.2/4,h/3.3/4), mN=facade(kN,circ/3.2/4,h/3.3/4); const capT=std('#cfc8b8'), capN=std('#ddd2bb');
+  const m=new THREE.Mesh(geo,[mN,capN,capN]); m.userData.mat={then:[mT,capT,capT],now:[mN,capN,capN]}; geo.translate(0,h/2,0); m.castShadow=true; return m; }
+
+/* ---------------- HERO SCENE ---------------- */
+function initHero(){
+  const v=createView($('#heroCanvas'),{bg:0x070d18,fov:40,near:1,far:5000,dpr:1.75,alpha:true}); if(!v) return;
+  const {scene,camera}=v;
+  scene.background=null; v.renderer.setClearColor(0x000000,0);
+  scene.add(new THREE.HemisphereLight(0x5b8bb5,0x060a12,.9)); const dl=new THREE.DirectionalLight(0x9fd8ff,.6); dl.position.set(-200,300,200); scene.add(dl);
+  // hologram hotel (form after Commons photos)
+  const holo=new THREE.Group(); scene.add(holo);
+  const W=50,D=24,H=82,FL=26,BW=36; const segs=[], gold=[]; const Ln=(a,b)=>segs.push(...a,...b);
+  for(let f=0;f<=FL;f++){ const y=f*H/FL; Ln([-W/2,y,0],[W/2,y,0]); Ln([W/2,y,0],[W/2,y,-D]); Ln([-W/2,y,0],[-W/2,y,-D]); }
+  [[-W/2,0],[W/2,0],[W/2,-D],[-W/2,-D]].forEach(p=>Ln([p[0],0,p[1]],[p[0],H,p[1]]));
+  for(let i=1;i<6;i++){ const x=-W/2+i*W/6; Ln([x,0,-D],[x,H,-D]); }
+  const nz=12,pw=BW/nz; for(let f=1;f<FL;f++){ const y=f*H/FL; for(let i=0;i<nz;i++){ const x0=-BW/2+pw*i; Ln([x0,y,2.6],[x0+pw/2,y,4.8]); Ln([x0+pw/2,y,4.8],[x0+pw,y,2.6]); } }
+  for(let i=0;i<=nz;i++){ const x=-BW/2+pw*i; Ln([x,0,2.6],[x,H,2.6]); }
+  const bw=W/2+2; [H,H+6.5].forEach(y=>{ Ln([-bw,y,2],[bw,y,2]); Ln([bw,y,2],[bw,y,-D-2]); Ln([bw,y,-D-2],[-bw,y,-D-2]); Ln([-bw,y,-D-2],[-bw,y,2]); }); const zn=15,zw=(W+4)/zn; for(let i=0;i<zn;i++){ const x0=-bw+zw*i; [H+3.2,H+6.5].forEach(y=>{ Ln([x0,y,2],[x0+zw/2,y,4.6]); Ln([x0+zw/2,y,4.6],[x0+zw,y,2]); }); }
+  for(let i=0;i<50;i++){ const t=i/50*Math.PI*2, c=Math.cos(t), s2=Math.sin(t); const px=(W/2+1.6)*Math.sign(c)*Math.pow(Math.abs(c),.35), pz=-D/2+(D/2+1.6)*Math.sign(s2)*Math.pow(Math.abs(s2),.35); const tx=-Math.sin(t), tz=Math.cos(t), yb=H+6.5;
+    gold.push(px-tx*1.9,yb,pz-tz*1.9, px,yb+10,pz, px,yb+10,pz, px+tx*1.9,yb,pz+tz*1.9); }
+  const sg=new THREE.BufferGeometry(); sg.setAttribute('position',new THREE.Float32BufferAttribute(segs,3));
+  const holoMat=new THREE.LineBasicMaterial({color:0x5fd8f5,transparent:true,opacity:.75}); holo.add(new THREE.LineSegments(sg,holoMat));
+  const gg2=new THREE.BufferGeometry(); gg2.setAttribute('position',new THREE.Float32BufferAttribute(gold,3)); holo.add(new THREE.LineSegments(gg2,new THREE.LineBasicMaterial({color:0xf4d68f})));
+  const fill=new THREE.Mesh(new THREE.BoxGeometry(W,H,D).translate(0,H/2,-D/2),new THREE.MeshBasicMaterial({color:0x36c6ea,transparent:true,opacity:.06,depthWrite:false})); holo.add(fill);
+  const ring=new THREE.Mesh(new THREE.RingGeometry(58,62,96),new THREE.MeshBasicMaterial({color:0xe0b25a,transparent:true,opacity:.5,side:THREE.DoubleSide})); ring.rotation.x=-Math.PI/2; ring.position.set(0,.5,-8); holo.add(ring);
+  const scan=new THREE.Mesh(new THREE.RingGeometry(40,46,96),new THREE.MeshBasicMaterial({color:0x36c6ea,transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false})); scan.rotation.x=-Math.PI/2; scan.position.z=-8; holo.add(scan);
+  let mx=0,my=0; addEventListener('pointermove',e=>{ mx=e.clientX/innerWidth-.5; my=e.clientY/innerHeight-.5; },{passive:true});
+  v.onResize=()=>{ if(v.w>820){ camera.aspect=v.w*1.5/v.h; camera.setViewOffset(v.w*1.5,v.h,0,0,v.w,v.h); } else { camera.clearViewOffset(); camera.aspect=v.w/v.h; camera.updateProjectionMatrix(); } };
+  v.onResize();
+  let ang=.55, sy=0; const clock=$('#heroClock');
+  v.update=(dt,t)=>{ if(!REDUCED) ang+=dt*.05; const rad=255; camera.position.set(Math.sin(ang)*rad+mx*40,120-my*30,Math.cos(ang)*rad-8); camera.lookAt(0,62,-8);
+    sy=(sy+dt*14)%(H+20); scan.position.y=sy; scan.material.opacity=.4*(1-sy/(H+20)); holoMat.opacity=.6+.15*Math.sin(t*2.2);
+    if(clock && (t*10|0)%5===0) clock.textContent='Кадр · '+(t*60|0).toString().padStart(6,'0'); };
+}
+
+/* ---------------- MAP SCENE: real Almaty from OpenStreetMap (© OpenStreetMap contributors, ODbL) ---------------- */
+function initMap(){
+  const v=createView($('#mapCanvas'),{bg:0x060b15,fov:42,near:1,far:9000,dpr:1.75}); if(!v) return;
+  const {scene,camera,renderer}=v; scene.fog=new THREE.Fog(0x060b15,1100,3600);
+  const LAT0=43.245,LON0=76.935,KX=Math.cos(LAT0*Math.PI/180)*111320/10,KZ=110574/10, VE=1.5;
+  const P=(lat,lon)=>({x:(lon-LON0)*KX,z:-(lat-LAT0)*KZ});
+  const KT=P(43.22871,76.97631), MD=P(43.15768,77.059);
+  function hAt(x,z){ let h=Math.max(0,(z+460)/920)*12;
+    h+=22*Math.exp(-((x-KT.x)**2+(z-KT.z)**2)/(2*45*45));
+    const s=smooth(440,1150,z); h+=s*(28+90*fbm(x*.004+1.3,z*.004))+smooth(900,2300,z)*270*(.35+.75*ridged(x*.0018+2,z*.002));
+    h-=34*Math.exp(-((x-MD.x)**2+(z-MD.z)**2)/(2*70*70))*s; return Math.max(0,h); }
+  scene.add(new THREE.HemisphereLight(0x9cc4ff,0x0a0f1c,.8)); const sun=new THREE.DirectionalLight(0xffe3b8,.75); sun.position.set(-300,500,-200); scene.add(sun);
+  // terrain + mountain scanlines
+  const tg=new THREE.PlaneGeometry(3200,3600,320,360); tg.rotateX(-Math.PI/2); tg.translate(150,0,1150);
+  const tp=tg.attributes.position; for(let i=0;i<tp.count;i++) tp.setY(i,hAt(tp.getX(i),tp.getZ(i))-.05); tg.computeVertexNormals();
+  scene.add(new THREE.Mesh(tg,new THREE.MeshStandardMaterial({color:0x0a1426,roughness:1,flatShading:true})));
+  const cl=[],cc=[]; const c1=new THREE.Color('#1c5b78'), c2=new THREE.Color('#d7f3ff');
+  for(let z=440;z<=2700;z+=14){ let prev=null; for(let x=-1400;x<=1700;x+=9){ const y=hAt(x,z); const cur=[x,y+.3,z]; if(prev&&y>16){ cl.push(...prev,...cur); const c=c1.clone().lerp(c2,Math.min(1,y/300)); cc.push(c.r,c.g,c.b,c.r,c.g,c.b); } prev=cur; } }
+  const cg=new THREE.BufferGeometry(); cg.setAttribute('position',new THREE.Float32BufferAttribute(cl,3)); cg.setAttribute('color',new THREE.Float32BufferAttribute(cc,3));
+  scene.add(new THREE.LineSegments(cg,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.5})));
+  const gl=[]; for(let x=-450;x<=450;x+=50){ for(let z=-450;z<450;z+=10){ gl.push(x,hAt(x,z)+.08,z,x,hAt(x,z+10)+.08,z+10); } } for(let z=-450;z<=450;z+=50){ for(let x=-450;x<450;x+=10){ gl.push(x,hAt(x,z)+.08,z,x+10,hAt(x+10,z)+.08,z); } }
+  const gg=new THREE.BufferGeometry(); gg.setAttribute('position',new THREE.Float32BufferAttribute(gl,3)); scene.add(new THREE.LineSegments(gg,new THREE.LineBasicMaterial({color:0x17405e,transparent:true,opacity:.35})));
+  // camera + controls
+  camera.position.set(-300,360,-700); const ctl=new THREE.OrbitControls(camera,renderer.domElement); ctl.target.set(30,0,40); ctl.enableDamping=true; ctl.dampingFactor=.08; ctl.maxPolarAngle=1.42; ctl.minDistance=18; ctl.maxDistance=1900; ctl.autoRotate=!REDUCED; ctl.autoRotateSpeed=.22; ctl.update();
+  renderer.domElement.addEventListener('pointerdown',()=>{ ctl.autoRotate=false; });
+  // HUD / year
+  const yr=$('#yearRange'), yEl=$('#mapYear'), popEl=$('#mapPop'), evEl=$('#mapEv');
+  const kb=$('#kband'); kb.style.left=((1960-1930)/(2026-1930)*100)+'%'; kb.style.width=((1986-1960)/(2026-1930)*100)+'%';
+  let year=+yr.value; const lmObjs=[]; let metroMat=null;
+  function setYear(y){ year=y; yr.value=y; yEl.textContent=y; yEl.classList.toggle('k',y>=1960&&y<=1986);
+    popEl.textContent='Халық: ≈ '+fmtPop(popAt(Math.min(y,2021)))+(y>2021?' (2021 санағы)':y<1939?' (бағалау)':'');
+    let ev=EVENTS[0]; for(const e of EVENTS){ if(e[0]<=y) ev=e; } evEl.innerHTML='<b>'+ev[0]+'</b>'+ev[1];
+    lmObjs.forEach(o=>{ o.tgt=o.l.y<=y?1:0; o.btn.classList.toggle('off',!o.tgt); }); if(metroMat) metroMat.opacity=y>=2011?.9:0; }
+  yr.addEventListener('input',()=>{ stop(); setYear(+yr.value); });
+  let playing=false, pAcc=0; const pb=$('#mapPlay');
+  function stop(){ playing=false; pb.innerHTML='<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>'; pb.setAttribute('aria-label','Уақытты ойнату'); }
+  pb.onclick=()=>{ if(playing){ stop(); return; } playing=true; if(year>=2026) setYear(1930); pb.innerHTML='<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>'; pb.setAttribute('aria-label','Тоқтату'); };
+  // selection card
+  const card=$('#mapCard'); let fly=null, sel=null;
+  function select(o){ sel=o; lmObjs.forEach(x=>x.btn.classList.toggle('sel',x===o)); const l=o.l;
+    $('#mcTags').innerHTML=(l.c==='k'?'<span class="tag k">Қонаев дәуірі</span>':l.c==='m'?'<span class="tag m">Қонаев мұрасы</span>':'<span class="tag s">Бүгінгі Алматы</span>')+(l.lab?'<span class="tag s">Кеше / Бүгін фото</span>':'');
+    $('#mcTitle').textContent=l.n; const phk=l.lab&&LABPH[l.lab]&&LABPH[l.lab][LABPH[l.lab].length-1]; $('#mcPh').innerHTML=phk?'<img src="'+PH[phk].src+'" alt="" data-ph="'+phk+'" class="mc-img"><small class="mc-cr">'+credit(PH[phk])+'</small>':'';
+    $('#mcYear').textContent=(l.ny?'Бүгін':l.y)+' · '+(l.ny?'Қонаевтан кейін':l.y<1960?'Қонаевқа дейін':l.y<=1986?'Қонаев басшылығы кезінде':'Қонаевтан кейін'); $('#mcText').textContent=l.t;
+    $('#mcLinks').innerHTML=mapLinks(l.q)+(l.lab?'<button class="btn gold sm" id="mcLab">Кеше / Бүгін →</button>':''); card.hidden=false;
+    const b=$('#mcLab'); if(b) b.onclick=()=>{ window.__labSelect&&window.__labSelect(l.lab); document.getElementById('lab').scrollIntoView({behavior:REDUCED?'auto':'smooth'}); };
+    if(year<l.y) setYear(l.y);
+    ctl.autoRotate=false; const tgt=o.p.clone().add(new THREE.Vector3(0,o.top*.35,0)); const dist=l.id==='medeu'?420:l.id==='koktobe'?230:l.id==='esentai'?170:110;
+    const off=camera.position.clone().sub(ctl.target).normalize().multiplyScalar(dist); if(off.y<dist*.35) off.y=dist*.45;
+    fly={t:0,fromT:ctl.target.clone(),toT:tgt,fromP:camera.position.clone(),toP:tgt.clone().add(off)}; }
+  $('#mapCardX').onclick=()=>{ card.hidden=true; sel=null; lmObjs.forEach(x=>x.btn.classList.remove('sel')); };
+  // build city from OSM data (loaded lazily as a script file)
+  const loadEl=el('div',{class:'map-load'},'<span>OpenStreetMap деректері жүктелуде…</span>'); $('#mapFrame .map-stage').appendChild(loadEl);
+  let built=false;
+  function build(D){
+    const lmB={}; Object.entries(D.lm).forEach(([k,arr])=>arr.forEach(i=>lmB[i]=k));
+    const dec=d=>{ const out=[]; let x=0,z=0; for(let i=0;i<d.length;i+=2){ x+=d[i]; z+=d[i+1]; out.push([x/10,z/10]); } return out; };
+    const sArea=r=>{ let a=0; for(let i=0;i<r.length;i++){ const p=r[i],q=r[(i+1)%r.length]; a+=p[0]*q[1]-q[0]*p[1]; } return a/2; };
+    const cA=[new THREE.Color('#2f3e57'),new THREE.Color('#465b7d'),new THREE.Color('#6a82a6'),new THREE.Color('#a6bddb')];
+    function prism(ring,holes,y0,y1,A,col,roof){
+      if(sArea(ring)<0) ring=ring.slice().reverse(); holes=(holes||[]).map(h=>sArea(h)>0?h.slice().reverse():h);
+      for(const r of [ring].concat(holes)){ const n=r.length; for(let i=0;i<n;i++){ const a=r[i], b=r[(i+1)%n]; const dx=b[0]-a[0], dz=b[1]-a[1], l=Math.hypot(dx,dz)||1, nx=dz/l, nz=-dx/l;
+          A.p.push(a[0],y0,a[1], b[0],y1,b[1], b[0],y0,b[1],  a[0],y0,a[1], a[0],y1,a[1], b[0],y1,b[1]); for(let k=0;k<6;k++){ A.n.push(nx,0,nz); A.c.push(col.r,col.g,col.b); } } }
+      let tris=[]; try{ tris=THREE.ShapeUtils.triangulateShape(ring.map(p=>new THREE.Vector2(p[0],p[1])),holes.map(h=>h.map(p=>new THREE.Vector2(p[0],p[1])))); }catch(e){}
+      const flat=ring.concat(...holes);
+      for(const t of tris){ let [i,j,k]=t; const p=flat[i],q=flat[j],r=flat[k]; if(!p||!q||!r) continue; if((q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0])>0){ const s=j; j=k; k=s; }
+        [i,j,k].forEach(m=>{ const u=flat[m]; A.p.push(u[0],y1,u[1]); A.n.push(0,1,0); A.c.push(roof.r,roof.g,roof.b); }); } }
+    const city={p:[],n:[],c:[]}, lmA={};
+    D.b.forEach((b,idx)=>{ const ring=dec(b[2]); if(ring.length<3) return; const holes=b[3]?b[3].map(dec):[];
+      let cx=0,cz=0; ring.forEach(p=>{ cx+=p[0]; cz+=p[1]; }); cx/=ring.length; cz/=ring.length; const base=hAt(cx,cz);
+      const h=b[0]/10*VE, mh=(b[4]||0)/10*VE; const key=lmB[idx];
+      if(key){ const A=lmA[key]||(lmA[key]={p:[],n:[],c:[],base}); const w=new THREE.Color('#ffffff'); prism(ring,holes,base+mh,base+h,A,w,w); return; }
+      const col=cA[b[0]<8?0:b[0]<20?1:b[0]<45?2:3]; prism(ring,holes,base+mh,base+h,city,col,col.clone().multiplyScalar(1.18)); });
+    const mkGeo=A=>{ const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(A.p,3)); g.setAttribute('normal',new THREE.Float32BufferAttribute(A.n,3)); if(A.c.length) g.setAttribute('color',new THREE.Float32BufferAttribute(A.c,3)); return g; };
+    scene.add(new THREE.Mesh(mkGeo(city),new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,metalness:.05})));
+    // ribbons (roads, rivers, metro, Kunaev street)
+    function ribbonInto(A,pts,w,y,col){ for(let i=0;i<pts.length-1;i++){ const a=pts[i],b=pts[i+1]; const dx=b[0]-a[0],dz=b[1]-a[1],l=Math.hypot(dx,dz)||1, nx=-dz/l*w/2, nz=dx/l*w/2;
+        const ya=hAt(a[0],a[1])+y, yb=hAt(b[0],b[1])+y;
+        A.p.push(a[0]+nx,ya,a[1]+nz, b[0]+nx,yb,b[1]+nz, b[0]-nx,yb,b[1]-nz,  a[0]+nx,ya,a[1]+nz, b[0]-nx,yb,b[1]-nz, a[0]-nx,ya,a[1]-nz); for(let k=0;k<6;k++){ A.n.push(0,1,0); A.c.push(col.r,col.g,col.b); } } }
+    const RW=[2.6,1.8,1.25,.6,.5], RC=['#3f7da1','#326785','#28536d','#1e3f57','#2a4a5f'].map(c=>new THREE.Color(c));
+    const roads={p:[],n:[],c:[]}; const longest={};
+    D.r.forEach(r=>{ const pts=dec(r[2]); ribbonInto(roads,pts,RW[r[0]],.06+(4-r[0])*.02,RC[r[0]]);
+      if(r[1]>=0&&r[0]<=1){ let L=0; for(let i=0;i<pts.length-1;i++) L+=Math.hypot(pts[i+1][0]-pts[i][0],pts[i+1][1]-pts[i][1]); const cur=longest[r[1]]; if(!cur||L>cur.L) longest[r[1]]={L,pts}; } });
+    scene.add(new THREE.Mesh(mkGeo(roads),new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide})));
+    const water={p:[],n:[],c:[]}, wc=new THREE.Color('#2a8fd0'); D.w.forEach(w=>ribbonInto(water,dec(w[1]),w[0]===0?1.8:1,.05,wc));
+    scene.add(new THREE.Mesh(mkGeo(water),new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide})));
+    const green={p:[],n:[],c:[]}, gC=[new THREE.Color('#163b2b'),new THREE.Color('#203127')];
+    D.g.forEach(g=>{ const ring=dec(g[1]); let tris=[]; try{ tris=THREE.ShapeUtils.triangulateShape(ring.map(p=>new THREE.Vector2(p[0],p[1])),[]); }catch(e){} const col=gC[g[0]];
+      tris.forEach(t=>t.forEach(m=>{ const u=ring[m]; green.p.push(u[0],hAt(u[0],u[1])+.03,u[1]); green.n.push(0,1,0); green.c.push(col.r,col.g,col.b); })); });
+    scene.add(new THREE.Mesh(mkGeo(green),new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide})));
+    const metro={p:[],n:[],c:[]}; D.m.forEach(m=>ribbonInto(metro,dec(m),1,.5,new THREE.Color('#ff5d8f')));
+    metroMat=new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false}); scene.add(new THREE.Mesh(mkGeo(metro),metroMat));
+    const kun={p:[],n:[],c:[]}; D.k.forEach(k=>ribbonInto(kun,dec(k),1.5,.35,new THREE.Color('#f4c35a')));
+    scene.add(new THREE.Mesh(mkGeo(kun),new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide})));
+    // street labels (Kazakh names from OSM)
+    Object.entries(longest).sort((a,b)=>b[1].L-a[1].L).slice(0,34).forEach(([ni,o])=>{ const name=D.n[ni]; const pts=o.pts; const m=Math.floor(pts.length/2); const a=pts[Math.max(0,m-1)], b=pts[Math.min(pts.length-1,m+1)]||a;
+      let ang=-Math.atan2(b[1]-a[1],b[0]-a[0]); if(ang>Math.PI/2) ang-=Math.PI; if(ang<-Math.PI/2) ang+=Math.PI;
+      const isK=/Қонаев/.test(name); const t=textTex(name,{color:isK?'#f4d68f':'#8fe3f7',size:40,w:768,h:72,weight:600});
+      const lab=new THREE.Mesh(new THREE.PlaneGeometry(36,3.4),new THREE.MeshBasicMaterial({map:t,transparent:true,depthWrite:false,opacity:.92})); lab.rotation.x=-Math.PI/2; lab.rotation.z=ang;
+      const p=pts[m]; lab.position.set(p[0],hAt(p[0],p[1])+.7,p[1]); scene.add(lab); });
+    // landmarks
+    const pinsEl=$('#pins');
+    LM.forEach(l=>{ const p=P(l.lat,l.lon); const y0=hAt(p.x,p.z); const g=new THREE.Group(); g.position.y=y0; g.scale.y=.001; scene.add(g);
+      const colHex=l.c==='k'?0xe0b25a:(l.c==='m'?0xebe0c8:0x36c6ea); let top=6;
+      const A=lmA[l.id];
+      if(A){ for(let i=1;i<A.p.length;i+=3){ A.p[i]-=y0; if(A.p[i]>top) top=A.p[i]; } const m=new THREE.Mesh(mkGeo({p:A.p,n:A.n,c:[]}),new THREE.MeshStandardMaterial({color:colHex,emissive:colHex,emissiveIntensity:.32,roughness:.5,metalness:.2})); g.add(m); }
+      else if(l.id==='koktobe'){ const H=371.5/10*VE, mat=new THREE.MeshStandardMaterial({color:0xe9e1cf,emissive:colHex,emissiveIntensity:.35});
+        g.add(new THREE.Mesh(new THREE.CylinderGeometry(.55,.75,H*.62,12).translate(0,H*.31,0),mat)); [[.47,1.35],[.65,1.2]].forEach(a=>g.add(new THREE.Mesh(new THREE.CylinderGeometry(a[1],a[1],1.2,16).translate(0,H*a[0],0),mat)));
+        g.add(new THREE.Mesh(new THREE.CylinderGeometry(.18,.4,H*.38,8).translate(0,H*.81,0),new THREE.MeshBasicMaterial({color:0xff6a5a}))); top=H; }
+      else { const hh=l.id==='medeu'?6:4; g.add(new THREE.Mesh(new THREE.CylinderGeometry(1.4,1.6,hh,20).translate(0,hh/2,0),new THREE.MeshStandardMaterial({color:colHex,emissive:colHex,emissiveIntensity:.45}))); top=hh;
+        if(l.id==='medeu'){ const rink=new THREE.Mesh(new THREE.CircleGeometry(8,40).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0xdff6ff})); rink.scale.set(1.6,1,1); rink.position.y=.2; g.add(rink); } }
+      const ring=new THREE.Mesh(new THREE.RingGeometry(5,6.2,48),new THREE.MeshBasicMaterial({color:colHex,transparent:true,opacity:.85,side:THREE.DoubleSide,depthWrite:false})); ring.rotation.x=-Math.PI/2; ring.position.y=.4; g.add(ring);
+      const beam=new THREE.Mesh(new THREE.CylinderGeometry(.35,.35,140,8).translate(0,70,0),new THREE.MeshBasicMaterial({color:colHex,transparent:true,opacity:.16,depthWrite:false,blending:THREE.AdditiveBlending})); g.add(beam);
+      const btn=el('button',{class:'pin '+(l.c==='k'?'k':l.c==='m'?'m':''),type:'button','aria-label':l.n+', '+(l.ny?'бүгін':l.y)},'<span class="t">'+l.s+'</span><small>'+(l.ny?'бүгін':l.y)+'</small>'); pinsEl.appendChild(btn);
+      const o={l,g,ring,top,btn,p:new THREE.Vector3(p.x,y0,p.z),cur:0,tgt:0}; btn.onclick=()=>select(o); lmObjs.push(o); });
+    setYear(year); built=true; loadEl.remove();
+  }
+  function load(){ if(built||load.started) return; load.started=1;
+    const go=()=>{ try{ build(window.__ALMATY_MAP); }catch(e){ loadEl.innerHTML='<span>Картаны құру мүмкін болмады: '+e.message+'</span>'; } };
+    if(window.__ALMATY_MAP) return go();
+    const s=document.createElement('script'); s.src='almaty-map.js'; s.onload=()=>setTimeout(go,30); s.onerror=()=>{ fetch('almaty-map.json').then(r=>r.json()).then(d=>{ window.__ALMATY_MAP=d; go(); }).catch(()=>{ loadEl.innerHTML='<span>Карта деректері жүктелмеді. Бетті сервер арқылы ашыңыз.</span>'; }); }; document.head.appendChild(s); }
+  new IntersectionObserver(es=>{ if(es[0].isIntersecting) load(); },{rootMargin:'600px'}).observe($('#mapFrame'));
+  window.__mapLoad=load;
+  setYear(year);
+  const vtmp=new THREE.Vector3();
+  v.update=(dt,t)=>{
+    if(playing){ pAcc+=dt; if(pAcc>.12){ pAcc=0; if(year>=2026) stop(); else setYear(year+1); } }
+    lmObjs.forEach(o=>{ o.cur+=(o.tgt-o.cur)*Math.min(1,dt*3); o.g.visible=o.cur>.02; o.g.scale.y=Math.max(.001,o.cur); const pul=o===sel?1.5+.3*Math.sin(t*4):1+.08*Math.sin(t*2+o.p.x); o.ring.scale.set(pul,pul,pul); });
+    if(fly){ fly.t=Math.min(1,fly.t+dt/1.4); const e=fly.t<.5?2*fly.t*fly.t:1-Math.pow(-2*fly.t+2,2)/2; ctl.target.lerpVectors(fly.fromT,fly.toT,e); camera.position.lerpVectors(fly.fromP,fly.toP,e); if(fly.t>=1) fly=null; }
+    ctl.update();
+    const W=v.w,H=v.h; lmObjs.forEach(o=>{ vtmp.copy(o.p); vtmp.y+=o.top*Math.max(.001,o.cur)+3; vtmp.project(camera); const vis=vtmp.z<1&&Math.abs(vtmp.x)<1.1&&Math.abs(vtmp.y)<1.1; o.btn.style.transform='translate('+((vtmp.x*.5+.5)*W).toFixed(1)+'px,'+((-vtmp.y*.5+.5)*H).toFixed(1)+'px) translate(-50%,-100%)'; o.btn.style.visibility=vis?'visible':'hidden'; });
+  };
+}
+
+/* ---------------- LAB SCENE ---------------- */
+function labPhotoOnly(){
+  const frame=$('#labFrame'), handle=$('#labHandle'); let split=.5;
+  frame.classList.add('photo'); $('#mode3d').disabled=true; $('#modeNote').textContent='Бұл құрылғыда 3D қолжетімсіз — нақты фотолар көрсетіледі.';
+  function setSplit(x){ split=Math.max(0,Math.min(1,x)); handle.style.left=(split*100)+'%'; $('#pcThenWrap').style.width=(split*100)+'%'; $('#pcNowWrap').style.left=(split*100)+'%'; handle.setAttribute('aria-valuenow',Math.round(split*100)); }
+  function select(key){ const [a,b]=PAIRS[key], A=PH[a], B=PH[b]; $('#pcThen').src=A.src; $('#pcNow').src=B.src; $('#pcThen').style.objectPosition=A.op||'50% 50%'; $('#pcNow').style.objectPosition=B.op||'50% 50%';
+    $('#labTagL').textContent=(NO_THEN[key]?'':'Кеше · ')+A.y; $('#labTagR').textContent=(NO_THEN[key]?'':'Бүгін · ')+B.y; $('#pcCrL').innerHTML=A.a+' · '+A.l; $('#pcCrR').innerHTML=B.a+' · '+B.l;
+    $$('#labTabs .tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.b===key?'true':'false')); const I=LABINFO[key];
+    $('#labInfo').innerHTML='<div><span class="eyebrow">Нақты фото</span><h3 style="margin-top:6px">'+I.t+'</h3><p class="sub" style="margin-top:6px">'+I.s+'</p></div><div class="ph-strip">'+LABPH[key].map(k=>'<button class="ph-th" data-ph="'+k+'"><img src="'+PH[k].src+'" alt="" loading="lazy"><span>'+PH[k].y+'</span></button>').join('')+'</div><div style="overflow-x:auto"><table class="cmp"><thead><tr><th></th><th>Кеше</th><th>Бүгін</th></tr></thead><tbody>'+I.rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>').join('')+'</tbody></table></div>'+(NO_THEN[key]?'<p class="lab-note">'+NO_THEN[key]+'</p>':'');
+    $$('#labInfo .ph-th').forEach(b=>b.onclick=()=>openLightbox(b.dataset.ph)); }
+  let drag=false; handle.addEventListener('pointerdown',e=>{ drag=true; handle.setPointerCapture(e.pointerId); e.preventDefault(); });
+  handle.addEventListener('pointermove',e=>{ if(!drag) return; const r=frame.getBoundingClientRect(); setSplit((e.clientX-r.left)/r.width); });
+  handle.addEventListener('pointerup',()=>drag=false);
+  handle.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') setSplit(split-.05); if(e.key==='ArrowRight') setSplit(split+.05); });
+  $$('[data-split]').forEach(b=>b.onclick=()=>setSplit(+b.dataset.split));
+  $$('#labTabs .tab').forEach(t=>t.onclick=()=>select(t.dataset.b));
+  window.__labSelect=select; select('hotel'); setSplit(.5);
+}
+function initLab(){
+  const v=createView($('#labCanvas'),{bg:0xd8d1c0,fov:34,near:1,far:9000,alpha:true,quiet:true}); if(!v){ labPhotoOnly(); return; }
+  const {scene,camera,renderer}=v; renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.setClearColor(0x000000,0);
+  const hemi=new THREE.HemisphereLight(0xdfeaff,0x6b6150,.75); scene.add(hemi);
+  const sun=new THREE.DirectionalLight(0xfff1d6,1.05); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); sun.shadow.bias=-.0006; scene.add(sun); scene.add(sun.target);
+  const fog=new THREE.Fog(0xd8d1c0,700,3200); scene.fog=fog;
+  const ctl=new THREE.OrbitControls(camera,renderer.domElement); ctl.enableDamping=true; ctl.dampingFactor=.08; ctl.maxPolarAngle=1.56; ctl.autoRotate=!REDUCED; ctl.autoRotateSpeed=.45;
+  const builders={hotel:buildHotel,kbtu:buildKBTU,palace:buildPalace,koktobe:buildKokTobe}; const cache={}; let cur=null, curKey=null, night=false, split=.5, ov=null, wire=false, mode='photo', sel='hotel';
+  const wireMat=new THREE.MeshBasicMaterial({color:0x36c6ea,wireframe:true});
+  function collect(root){ const list=[]; root.traverse(o=>{ if(o.userData.mat||o.userData.era) list.push(o); }); return list; }
+  function frameCam(){ camera.fov=34; camera.position.set(...cur.pos); ctl.target.set(...cur.target); ctl.minDistance=cur.minD; ctl.maxDistance=cur.maxD; camera.updateProjectionMatrix(); ctl.update(); }
+  function show(key){ if(!cache[key]){ const b=builders[key](); b.sw=collect(b.root); cache[key]=b; }
+    if(cur) scene.remove(cur.root); cur=cache[key]; curKey=key; scene.add(cur.root); frameCam();
+    const s=cur.shadow, sc=sun.shadow.camera; sc.left=-s; sc.right=s; sc.top=s; sc.bottom=-s; sc.near=10; sc.far=s*6; sc.updateProjectionMatrix();
+    sun.position.set(cur.target[0]-s*.9,cur.target[1]+s*1.4,cur.target[2]+s*1.1); sun.target.position.set(...cur.target);
+    fog.near=s*5; fog.far=s*26;
+    $('#labTagL').textContent='Кеше · '+cur.year; $('#labTagR').textContent='Бүгін · 2026'; info(key); }
+  function info(key){ $$('#labTabs .tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.b===key?'true':'false'));
+    const I=LABINFO[key];
+    $('#labInfo').innerHTML='<div><span class="eyebrow">'+(mode==='photo'?'Нақты фото':'3D модель')+'</span><h3 style="margin-top:6px">'+I.t+'</h3><p class="sub" style="margin-top:6px">'+I.s+'</p></div>'
+      +'<div><span class="eyebrow">Нақты фотолар · Wikimedia Commons</span><div class="ph-strip">'+LABPH[key].map(k=>{ const p=PH[k]; return '<button class="ph-th'+(MATCH[k]?' m':'')+'" data-ph="'+k+'"><img src="'+p.src+'" alt="'+p.c.replace(/"/g,'')+'" loading="lazy"><span>'+p.y+(MATCH[k]?' · 3D ⇄':'')+'</span></button>'; }).join('')+'</div><p class="lab-note" style="margin-top:8px">⇄ белгісі бар фотоны басыңыз: 3D модель сол фотоның ракурсымен беттеседі.</p></div>'
+      +'<div style="overflow-x:auto"><table class="cmp"><thead><tr><th></th><th>Кеше</th><th>Бүгін</th></tr></thead><tbody>'+I.rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>').join('')+'</tbody></table></div>'+(mode==='photo'?(NO_THEN[key]?'<p class="lab-note">'+NO_THEN[key]+'</p>':''):'<p class="lab-note">Модель Wikimedia Commons-тағы фотолар бойынша жеңілдетілген түрде қайта құрылды; пропорциялары шамамен.</p>');
+    $$('#labInfo .ph-th').forEach(b=>b.onclick=()=>{ const k=b.dataset.ph; if(MATCH[k]) enterOv(k); else openLightbox(k); }); }
+  const frameEl=$('#labFrame');
+  function showPhotos(key){ const [a,b]=PAIRS[key], A=PH[a], B=PH[b]; $('#pcThen').src=A.src; $('#pcThen').alt=A.c; $('#pcNow').src=B.src; $('#pcNow').alt=B.c; $('#pcThen').style.objectPosition=A.op||'50% 50%'; $('#pcNow').style.objectPosition=B.op||'50% 50%';
+    $('#labTagL').textContent=(NO_THEN[key]?'':'Кеше · ')+A.y; $('#labTagR').textContent=(NO_THEN[key]?'':'Бүгін · ')+B.y;
+    $('#pcCrL').innerHTML=A.a+' · '+(A.lu?'<a href="'+A.p+'" target="_blank" rel="noopener">'+A.l+'</a>':A.l); $('#pcCrR').innerHTML=B.a+' · '+(B.lu?'<a href="'+B.p+'" target="_blank" rel="noopener">'+B.l+'</a>':B.l); info(key); }
+  function select(key){ sel=key; const has3d=!!builders[key]; $('#mode3d').disabled=!has3d; $('#modeNote').textContent=has3d?'':'Бұл нысанның 3D моделі жоқ — тек нақты фото.';
+    if(!has3d&&mode==='3d') setMode('photo',true);
+    if(mode==='photo') showPhotos(key); else { exitOv(); show(key); } }
+  function setMode(m,quiet){ mode=m; frameEl.classList.toggle('photo',m==='photo'); $('#modePhoto').setAttribute('aria-pressed',m==='photo'); $('#mode3d').setAttribute('aria-pressed',m==='3d'); v.active=v.active; if(!quiet) select(sel); }
+  $('#modePhoto').onclick=()=>{ exitOv(); setMode('photo'); }; $('#mode3d').onclick=()=>setMode('3d');
+  window.__labSelect=k=>{ exitOv(); setMode('photo',true); select(k); };
+  const BG_THEN=new THREE.Color(0xc8bea6), BG_DAY=new THREE.Color(0xa9c6df), BG_NIGHT=new THREE.Color(0x0a1220);
+  function era(e,forceDay){ const sw=cur.sw; for(let i=0;i<sw.length;i++){ const o=sw[i]; if(o.userData.era) o.visible=o.userData.era===e; if(o.userData.mat) o.material=o.userData.mat[e]; }
+    const n=e==='now'&&night&&!forceDay; scene.background=e==='then'?BG_THEN:(n?BG_NIGHT:BG_DAY); fog.color.copy(scene.background);
+    sun.intensity=n?.12:(e==='then'?.85:1.1); sun.color.set(n?0x9db8ff:0xfff1d6); hemi.intensity=n?.22:(e==='then'?.6:.75);
+    for(const m of nightMats){ m.emissiveIntensity = n ? (m.userData.nightE||1) : 0; } }
+  // photo overlay
+  const photo=$('#labPhoto'), ovBar=$('#ovBar'), frame=$('#labFrame');
+  function ovRect(){ const W=v.w,H=v.h; let w=W,h=W/ov.ar; if(h>H){ h=H; w=H*ov.ar; } return {x:(W-w)/2,y:(H-h)/2,w,h}; }
+  function enterOv(k){ const M=MATCH[k], p=PH[k]; if(mode!=='3d'){ setMode('3d',true); sel=M.b; show(M.b); } else if(curKey!==M.b){ sel=M.b; show(M.b); }
+    ov={k,era:M.era,ar:p.w/p.h}; photo.src=p.src; photo.hidden=false; frame.classList.add('ov'); ovBar.hidden=false; renderer.domElement.style.opacity=$('#ovOp').value/100; $('#ovCap').textContent=p.y+' · '+p.c;
+    ctl.autoRotate=false; $('#btnRot').setAttribute('aria-pressed','false'); camera.fov=M.fov; camera.position.set(...M.pos); ctl.target.set(...M.t); ctl.minDistance=1; ctl.maxDistance=6000; camera.updateProjectionMatrix(); ctl.update();
+    frame.scrollIntoView({behavior:REDUCED?'auto':'smooth',block:'center'}); }
+  function exitOv(){ if(!ov) return; ov=null; photo.hidden=true; frame.classList.remove('ov'); ovBar.hidden=true; renderer.domElement.style.opacity=''; if(cur) frameCam(); }
+  $('#ovExit').onclick=exitOv;
+  $('#ovReset').onclick=()=>{ if(ov) enterOv(ov.k); };
+  $('#ovOp').oninput=e=>{ renderer.domElement.style.opacity=e.target.value/100; };
+  $('#ovWire').onclick=e=>{ wire=!wire; e.currentTarget.setAttribute('aria-pressed',wire); };
+  window.__labPhoto=enterOv; window.__labCtl=ctl;
+  v.render=()=>{ const W=v.w,H=v.h; if(mode==='photo') return;
+    if(ov){ const r=ovRect(); photo.style.cssText='left:'+r.x+'px;top:'+r.y+'px;width:'+r.w+'px;height:'+r.h+'px';
+      era(ov.era,true); const hidden=[]; cur.root.children.forEach(c=>{ if(c!==cur.root.userData.core&&c.visible){ c.visible=false; hidden.push(c); } }); scene.background=null; scene.fog=null; renderer.setScissorTest(false); renderer.setViewport(0,0,W,H); renderer.clear();
+      renderer.setScissorTest(true); renderer.setViewport(r.x,H-r.y-r.h,r.w,r.h); renderer.setScissor(r.x,H-r.y-r.h,r.w,r.h);
+      camera.aspect=r.w/r.h; camera.updateProjectionMatrix(); if(wire) scene.overrideMaterial=wireMat; renderer.render(scene,camera); scene.overrideMaterial=null;
+      camera.aspect=W/H; camera.updateProjectionMatrix(); renderer.setScissorTest(false); scene.fog=fog; hidden.forEach(c=>c.visible=true); return; }
+    const sx=Math.round(W*split); renderer.setScissorTest(true);
+    if(sx>0){ era('then'); renderer.setViewport(0,0,W,H); renderer.setScissor(0,0,sx,H); renderer.render(scene,camera); }
+    if(sx<W){ era('now'); renderer.setViewport(0,0,W,H); renderer.setScissor(sx,0,W-sx,H); renderer.render(scene,camera); }
+    renderer.setScissorTest(false); };
+  v.update=(dt,t)=>{ if(mode==='photo'||!cur) return; ctl.update(); if(cur.root.userData.anim) cur.root.userData.anim(dt,t); if(cur.root.userData.flags) cur.root.userData.flags.forEach(f=>{ f.rotation.y=Math.sin(t*1.6)*.12; }); };
+  const handle=$('#labHandle'), thenEl=$('#labThen');
+  function setSplit(s){ split=Math.max(0,Math.min(1,s)); handle.style.left=(split*100)+'%'; thenEl.style.width=(split*100)+'%'; $('#pcThenWrap').style.width=(split*100)+'%'; $('#pcNowWrap').style.left=(split*100)+'%'; handle.setAttribute('aria-valuenow',Math.round(split*100)); }
+  let drag=false; handle.addEventListener('pointerdown',e=>{ drag=true; handle.setPointerCapture(e.pointerId); e.preventDefault(); });
+  handle.addEventListener('pointermove',e=>{ if(!drag) return; const r=frame.getBoundingClientRect(); setSplit((e.clientX-r.left)/r.width); });
+  handle.addEventListener('pointerup',()=>drag=false); handle.addEventListener('pointercancel',()=>drag=false);
+  handle.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft'){ setSplit(split-.05); e.preventDefault(); } if(e.key==='ArrowRight'){ setSplit(split+.05); e.preventDefault(); } });
+  $$('[data-split]').forEach(b=>b.onclick=()=>setSplit(+b.dataset.split));
+  $('#btnNight').onclick=e=>{ night=!night; e.currentTarget.setAttribute('aria-pressed',night); };
+  $('#btnRot').onclick=e=>{ ctl.autoRotate=!ctl.autoRotate; e.currentTarget.setAttribute('aria-pressed',ctl.autoRotate); };
+  if(REDUCED) $('#btnRot').setAttribute('aria-pressed','false');
+  renderer.domElement.addEventListener('pointerdown',()=>{ if(ctl.autoRotate){ ctl.autoRotate=false; $('#btnRot').setAttribute('aria-pressed','false'); } });
+  $$('#labTabs .tab').forEach(t=>t.onclick=()=>{ exitOv(); select(t.dataset.b); });
+  setMode('photo',true); select('hotel'); setSplit(.5);
+}
+
+initHero(); initMap(); initLab();
+requestAnimationFrame(loop);
+window.__qonaevViews=views;
+window.__qonaevStep=function(n,force){ for(let i=0;i<(n||1);i++){ if(force) views.forEach(v=>v.active=true); loop(lastT+16); } };
+})();
+</script>
+
+</body>
+</html>
