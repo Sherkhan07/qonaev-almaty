@@ -465,6 +465,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .visit-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;cursor:zoom-in}
 .visit-grid figure.w img{aspect-ratio:16/10}
 .visit-grid figcaption{padding:8px 10px;font-size:12.5px;color:#c6d0df;line-height:1.35}
+.arch figcaption small,.lb figcaption small,.mc-cr,.pc-cr,.hero-cr,.pf figcaption,.visit .lab-note{display:none!important}
+.credits{margin-top:10px;font-size:12px;color:var(--dim)}
+.credits summary{cursor:pointer}
+.credits ul{margin:8px 0 0;padding-left:18px;display:grid;gap:3px}
+.credits a{color:var(--muted)}
 .reveal{transform:translateY(18px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{transform:none;transition:none}.ring{transition:none}}
@@ -538,7 +543,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div><dt>Наградасы</dt><dd>Социалистік Еңбек Ері — үш рет</dd></div>
           <div><dt>Қайтыс болды</dt><dd>22.08.1993, Алматы</dd></div>
         </dl>
-        <p class="sig">Карточка көпшілікке арналған дереккөздер негізінде цифрлық түрде құрастырылды. Фото: Wikimedia Commons.</p>
+        <p class="sig">Карточка көпшілікке арналған дереккөздер негізінде цифрлық түрде құрастырылды.</p>
       </article>
       <div class="person-text reveal">
         <p>Алматыда туып, Алматыда өмірден озған тау-кен инженері, академик. 1960–1986 жылдары (1962–1964 жылдардағы үзілісті қоспағанда) Қазақстанды басқарды. Осы жылдары Алма-Ата миллион тұрғыны бар ірі қалаға айналды.</p>
@@ -866,7 +871,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </section>
 </main>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Фото"><button class="x" id="lbX" aria-label="Жабу">×</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure></div>
-<footer><div class="wrap"><span>«Қонаев және Алматы» · цифрлық шежіре жобасы · Орындаған: Абибулла Айсара Жанабайқызы · Жетекшісі: Ауылбай Нұржан · Шоқан Уалиханов атындағы №12 мамандандырылған лицей, Алматы</span><span>3D модельдер — ғылыми-көпшілік реконструкция, масштабы шамамен</span></div></footer>
+<footer><div class="wrap"><span>«Қонаев және Алматы» · цифрлық шежіре жобасы · Орындаған: Абибулла Айсара Жанабайқызы · Жетекшісі: Ауылбай Нұржан · Шоқан Уалиханов атындағы №12 мамандандырылған лицей, Алматы</span><span>3D модельдер — ғылыми-көпшілік реконструкция, масштабы шамамен</span><details class="credits" style="flex-basis:100%"><summary>Фото авторлары мен лицензиялары</summary><ul id="credList"></ul></details></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -1120,6 +1125,7 @@ document.addEventListener('click',e=>{ const b=e.target.closest('.tl-ph,.pf img,
   $$('[data-ag]').forEach(b=>b.onclick=()=>{ $$('[data-ag]').forEach(x=>x.setAttribute('aria-pressed',x===b)); const g=b.dataset.ag; box.querySelectorAll('figure').forEach(f=>f.hidden=!(g==='all'||f.dataset.g===g)); });
 })();
 
+(function(){ const u=document.getElementById('credList'); if(!u) return; u.innerHTML=Object.values(PH).map(p=>'<li>'+p.c+' — '+credit(p)+'</li>').join('')+'<li>Басты беттегі фото: Michael Grau, CC BY-SA 3.0</li><li>Карта: © OpenStreetMap contributors, ODbL</li>'; })();
 /* ---------------- NOTEBOOK ---------------- */
 (function(){
   const t=$('#nbText'), s=$('#nbTopic'), st=$('#nbStatus'); const KEY='qonaev-notebook';
