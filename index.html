@@ -452,9 +452,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .lb img{max-width:100%;max-height:78vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .lb figcaption{display:grid;gap:4px;text-align:center;color:#e8edf5;font-size:14px;max-width:70ch}
 .lb .x{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:rgba(6,11,21,.8);color:#fff;font-size:20px;cursor:pointer}
-.visit{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr);max-width:760px;gap:clamp(20px,4vw,40px);align-items:start}
+.visit{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(20px,4vw,40px);align-items:start}
 @media (max-width:900px){.visit{grid-template-columns:1fr}}
-.visit-head{display:grid;gap:12px}
+.visit-head{display:grid;gap:12px;position:sticky;top:90px}
 @media (max-width:900px){.visit-head{position:static}}
 .visit-head h3{font-size:22px}
 .kq{margin:6px 0 0;padding:18px 20px;border-radius:12px;background:linear-gradient(135deg,rgba(224,178,90,.12),rgba(224,178,90,.02));font:italic 400 18px/1.45 var(--f-serif);color:var(--paper)}
@@ -792,6 +792,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <p class="muted">Жоба авторы музейдің «Алма-Ата 1964–1986» экспозициясымен және Қонаевтың қызмет жолына арналған стендтермен танысты. Стендтердегі деректер сайттағы мәліметтермен салыстырылды.</p>
         <blockquote class="kq">«…Балдәурен балалық шағым, қайран жастық дәуренім өткен осынау әсем қала мен үшін оттай ыстық».<small>Д.А. Қонаев, «Ақиқаттан аттауға болмайды», 12-бет · музей экспозициясынан</small></blockquote>
       </div>
+      <div class="visit-grid">
+        <figure class="w"><img src="img/visit6.png" alt="«Алма-Ата 1964–1986» стенді" data-vis="1" loading="lazy"><figcaption>«Алма-Ата 1964–1986» стенді: Қонаев жылдарында салынған нысандар</figcaption></figure>
+        <figure><img src="img/visit1.png" alt="Қонаевтың қызмет жолына арналған стендтер" data-vis="1" loading="lazy"><figcaption>Қызмет жолы: 1942–1952 және 1952–1955 жылдар стендтері</figcaption></figure>
+        <figure><img src="img/visit3.png" alt="Жоба авторы музейде" data-vis="1" loading="lazy"><figcaption>Жоба авторы «Алма-Ата 1964–1986» стенді алдында</figcaption></figure>
+        <figure><img src="img/visit2.png" alt="Экспозицияны зерттеу" data-vis="1" loading="lazy"><figcaption>Экспозициядағы фотоларды сайттағы деректермен салыстыру</figcaption></figure>
+        <figure><img src="img/visit4.png" alt="Қонаев өмірінен фотолар" data-vis="1" loading="lazy"><figcaption>Қонаевтың өмірінен мұрағат фотолары</figcaption></figure>
+        <figure class="w"><img src="img/visit5.png" alt="Даңқ мемориалы мен цирк туралы стенд" data-vis="1" loading="lazy"><figcaption>Стенд: Даңқ мемориалы мен Мемлекеттік цирк</figcaption></figure>
+      </div>
+      <p class="lab-note">Фото: жоба авторы, Д.А. Қонаев музейі, Алматы.</p>
     </div>
   </div>
 </section>
@@ -1125,7 +1134,7 @@ document.addEventListener('click',e=>{ const b=e.target.closest('.tl-ph,.pf img,
   $$('[data-ag]').forEach(b=>b.onclick=()=>{ $$('[data-ag]').forEach(x=>x.setAttribute('aria-pressed',x===b)); const g=b.dataset.ag; box.querySelectorAll('figure').forEach(f=>f.hidden=!(g==='all'||f.dataset.g===g)); });
 })();
 
-(function(){ const u=document.getElementById('credList'); if(!u) return; u.innerHTML=Object.values(PH).map(p=>'<li>'+p.c+' — '+credit(p)+'</li>').join('')+'<li>Басты беттегі фото: Michael Grau, CC BY-SA 3.0</li><li>Карта: © OpenStreetMap contributors, ODbL</li>'; })();
+(function(){ const u=document.getElementById('credList'); if(!u) return; u.innerHTML=Object.values(PH).map(p=>'<li>'+p.c+' — '+credit(p)+'</li>').join('')+'<li>Басты беттегі фото: Michael Grau, CC BY-SA 3.0</li><li>Карта: © OpenStreetMap contributors, ODbL</li><li>«Музейге сапар» фотолары: жоба авторы</li>'; })();
 /* ---------------- NOTEBOOK ---------------- */
 (function(){
   const t=$('#nbText'), s=$('#nbTopic'), st=$('#nbStatus'); const KEY='qonaev-notebook';
