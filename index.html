@@ -1445,34 +1445,13 @@ function superPt(a,b,t,p){ const c=Math.cos(t),s=Math.sin(t); return [a*Math.sig
 
 /* «Қазақстан» қонақүйі: тікбұрышты мұнара, ортасында ромб-балконды белдеу, жоғарыда кеңейген белдеу және үшкір «тәждер» қатары */
 function buildHotel(){
-  const g=new THREE.Group(), core=new THREE.Group(); g.add(core); g.userData.core=core;
-  const W=50,D=24,H=82,FL=26,fh=H/FL,BW=36;
-  const tower=facadeBox(W,H,D,'stoneThen','stoneNow',3.4,fh); tower.position.z=-D/2; core.add(tower);
-  const bay=facadeBox(BW,H-1,2.6,'balcThen','balcNow',2.75,fh); bay.position.set(0,.5,1.3); core.add(bay);
-  const SP={then:std('#efe7d4'),now:std('#cbc5b8')};
-  const sh=new THREE.Shape(), n=12, pw=BW/n; sh.moveTo(-BW/2,0); for(let i=0;i<n;i++){ sh.lineTo(-BW/2+pw*(i+.5),2.2); sh.lineTo(-BW/2+pw*(i+1),0); } sh.lineTo(-BW/2,0);
-  const sg=new THREE.ExtrudeGeometry(sh,{depth:.4,bevelEnabled:false}); sg.rotateX(Math.PI/2);
-  const slabs=new THREE.InstancedMesh(sg,SP.now,FL-1); slabs.userData.mat=SP; const d=new THREE.Object3D();
-  for(let f=1;f<FL;f++){ d.position.set(0,f*fh,2.6); d.updateMatrix(); slabs.setMatrixAt(f-1,d.matrix); } slabs.castShadow=true; slabs.receiveShadow=true; core.add(slabs);
-  const fg=new THREE.BoxGeometry(.35,H-1,1.4); fg.translate(0,(H-1)/2+.5,0);
-  const fins=new THREE.InstancedMesh(fg,SP.now,n+1); fins.userData.mat=SP;
-  for(let i=0;i<=n;i++){ d.position.set(-BW/2+pw*i,0,3.3); d.updateMatrix(); fins.setMatrixAt(i,d.matrix); } fins.castShadow=true; core.add(fins);
-  const GPband={then:std('#e9e1cc'),now:std('#d6cfbf')};
-  const band=facadeBox(W+4,6.5,D+4,'podThen','podNow',3.2,3.25); band.position.set(0,H,-D/2); core.add(band);
-  const zs=new THREE.Shape(), zn=15, zw=(W+4)/zn; zs.moveTo(-(W+4)/2,0); for(let i=0;i<zn;i++){ zs.lineTo(-(W+4)/2+zw*(i+.5),2.6); zs.lineTo(-(W+4)/2+zw*(i+1),0); } zs.lineTo(-(W+4)/2,0);
-  const zg=new THREE.ExtrudeGeometry(zs,{depth:2.6,bevelEnabled:false}); zg.rotateX(Math.PI/2);
-  [[H+6.5,2],[H+3.2,2]].forEach(a=>{ const z1=mesh(zg,GPband); z1.position.set(0,a[0],a[1]); core.add(z1); const z2=mesh(zg,GPband); z2.rotation.y=Math.PI; z2.position.set(0,a[0],-D-2); core.add(z2); });
-  const shaft=mesh(new THREE.BoxGeometry(20,8,10).translate(0,4,0),{then:std('#e6decb'),now:std('#b3ada1')}); shaft.position.set(0,H+6.5,-D/2); core.add(shaft);
-  const goldT=std('#d8c48e',{metalness:.55,roughness:.35}), goldN=std('#e2c26c',{metalness:.7,roughness:.3,emissive:new THREE.Color('#ffc65a'),emissiveIntensity:0}); goldN.userData.nightE=.9; nightMats.push(goldN);
-  const GP={then:goldT,now:goldN};
-  function spikes(a,b,y,cnt,h,w){ const geo=new THREE.ConeGeometry(w,h,4,1); geo.translate(0,h/2,0); geo.scale(1,1,.22);
-    const m=new THREE.InstancedMesh(geo,GP.now,cnt); m.userData.mat=GP;
-    for(let i=0;i<cnt;i++){ const p=superPt(a,b,i/cnt*Math.PI*2,.35); d.position.set(p[0],y,-D/2+p[1]); d.rotation.set(0,Math.atan2(p[0],p[1]),0); d.updateMatrix(); m.setMatrixAt(i,d.matrix); }
-    m.castShadow=true; core.add(m); }
-  spikes(W/2+1.2,D/2+1.2,H+6.5,50,10,1.9);
-  spikes(W/2-5,D/2-4,H+6.5,34,13,1.7);
-  const pod=facadeBox(84,9,24,'podThen','podNow',3.2,4.5); pod.position.set(0,0,18); g.add(pod);
-  const can=mesh(new THREE.BoxGeometry(22,.8,9),{then:std('#e9e1cc'),now:std('#9f9a8f')}); can.position.set(0,5.4,34.5); g.add(can);
+  // tower: the model rebuilt from today's photos (buildHotelReal); "then" = 1977 fresh white shell-limestone, "now" = today's weathered cream
+  const g=new THREE.Group(), core=buildHotelReal(); g.add(core); g.userData.core=core;
+  const thenOf=new Map(), toThen=m=>{ if(!thenOf.has(m)){ const t=m.clone();
+      if(m.metalness>=.2){ t.color.set('#d8c48e'); t.emissiveIntensity=0; } else if(m.map) t.color.set('#fbf7ec'); else t.color.lerp(new THREE.Color('#f4efe2'),.45);
+      thenOf.set(m,t); } return thenOf.get(m); };
+  core.traverse(o=>{ if(!o.isMesh) return; const now=o.material, then=Array.isArray(now)?now.map(toThen):toThen(now); o.userData.mat={then,now};
+    (Array.isArray(now)?now:[now]).forEach(m=>{ if((m.metalness>=.2||m.userData.litWin) && !m.userData.nightE){ m.userData.nightE=m.userData.litWin?1:.9; nightMats.push(m); } }); });
   // environment
   groundDisc(g,5000,'#bdb397','#3a4049'); road(g,1400,54,16);
   const plaza=mesh(new THREE.PlaneGeometry(100,14).rotateX(-Math.PI/2),{then:std('#ddd5c1'),now:std('#6b6f75')}); plaza.position.set(0,.06,39); plaza.castShadow=false; g.add(plaza);
@@ -1615,6 +1594,9 @@ function buildHotelReal(){
   // pylon stone: one small window per 4.5 m bay per floor
   const pylT=()=>canvasTex(128,96,(c)=>{ c.fillStyle='#dacfb6'; c.fillRect(0,0,128,96); for(let i=0;i<300;i++){ c.fillStyle='rgba(120,100,70,'+(Math.random()*.05)+')'; c.fillRect(Math.random()*128,Math.random()*96,3,2); }
     c.fillStyle='#2f3a44'; c.fillRect(50,28,28,34); c.fillStyle='rgba(255,230,180,.15)'; c.fillRect(50,28,14,34); c.strokeStyle='#bfb397'; c.lineWidth=2; c.strokeRect(50,28,28,34); c.fillStyle='rgba(0,0,0,.06)'; c.fillRect(0,94,128,2); });
+  // night: random lit windows, 4×4 cells per tile; off by default (lab's «Түнгі қала» switches it on)
+  const litT=(cw,ch,wx,wy,ww,wh,seed)=>{ const r=rng(seed); return canvasTex(cw*4,ch*4,(c)=>{ c.fillStyle='#000'; c.fillRect(0,0,cw*4,ch*4); for(let i=0;i<16;i++){ if(r()<.45) continue; const x=(i%4)*cw, y=(i>>2)*ch; c.fillStyle='rgba(255,'+(200+r()*40|0)+','+(120+r()*60|0)+',1)'; c.fillRect(x+wx,y+wy,ww,wh); } }); };
+  const nightWin=(m,t)=>{ m.emissiveMap=t; m.emissive=new THREE.Color(0xffffff); m.emissiveIntensity=0; m.userData.litWin=1; return m; };
   // plan outline (shape y = -world z), offset o outward
   function plan(o){ const s=new THREE.Shape(), Ro=R+o, n=40, a=Math.asin(Wc/2/Ro); s.moveTo(-XP-o,DB+o); s.lineTo(-XP-o,-o);
     for(let i=0;i<=n;i++){ const t=-a+2*a*i/n; s.lineTo(Ro*Math.sin(t),-(zc+Ro*Math.cos(t))); } s.lineTo(XP+o,-o); s.lineTo(XP+o,DB+o); s.lineTo(-XP-o,DB+o); return s; }
@@ -1630,9 +1612,11 @@ function buildHotelReal(){
   function inst(geo,mat,list,place){ const m=new THREE.InstancedMesh(geo,mat,list.length); list.forEach((p,i)=>{ d.scale.set(1,1,1); place(d,p,i); d.updateMatrix(); m.setMatrixAt(i,d.matrix); }); m.castShadow=true; m.receiveShadow=true; g.add(m); return m; }
   // body + facades
   slab(-.3,0,Hb,stone);
-  const front=new THREE.Mesh(new THREE.CylinderGeometry(R+.05,R+.05,Hb,48,1,true,-A,2*A),std('#ffffff',{map:rep(logT(),COLS,FL),roughness:.6})); front.position.set(0,Hb/2,zc); g.add(front);
-  const back=new THREE.Mesh(new THREE.PlaneGeometry(Wc,Hb),std('#ffffff',{map:rep(logT(),COLS,FL),roughness:.6})); back.rotation.y=Math.PI; back.position.set(0,Hb/2,-DB-.05); g.add(back);
-  [-1,1].forEach(s=>{ const fx=std('#ffffff',{map:rep(pylT(),2,FL)}), sx=std('#ffffff',{map:rep(pylT(),DB/4.5,FL)});
+  const logM=s=>nightWin(std('#ffffff',{map:rep(logT(),COLS,FL),roughness:.6}),rep(litT(128,128,10,10,108,68,s),COLS/4,FL/4));
+  const pylM=(rx,s)=>nightWin(std('#ffffff',{map:rep(pylT(),rx,FL)}),rep(litT(128,96,50,28,28,34,s),rx/4,FL/4));
+  const front=new THREE.Mesh(new THREE.CylinderGeometry(R+.05,R+.05,Hb,48,1,true,-A,2*A),logM(11)); front.position.set(0,Hb/2,zc); g.add(front);
+  const back=new THREE.Mesh(new THREE.PlaneGeometry(Wc,Hb),logM(23)); back.rotation.y=Math.PI; back.position.set(0,Hb/2,-DB-.05); g.add(back);
+  [-1,1].forEach(s=>{ const fx=pylM(2,37+s), sx=pylM(DB/4.5,51+s);
     const p=new THREE.Mesh(new THREE.BoxGeometry(XP-Wc/2,Hb,DB),[sx,sx,stone,stone,fx,fx]); p.position.set(s*(XP+Wc/2)/2,Hb/2,-DB/2); g.add(p); });
   // chevron slab edges and vertical fins across the curved loggia bay
   const chord=2*R*Math.sin(A/COLS), cs=new THREE.Shape(); cs.moveTo(-chord/2,0); cs.lineTo(chord/2,0); cs.lineTo(0,-1.5); cs.lineTo(-chord/2,0);
