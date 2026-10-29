@@ -1601,6 +1601,70 @@ function buildKokTobe(){
 function facadeBoxCyl(r,h,kT,kN){ const circ=2*Math.PI*r; const geo=new THREE.CylinderGeometry(r,r,h,36); const mT=facade(kT,circ/3.2/4,h/3.3/4), mN=facade(kN,circ/3.2/4,h/3.3/4); const capT=std('#cfc8b8'), capN=std('#ddd2bb');
   const m=new THREE.Mesh(geo,[mN,capN,capN]); m.userData.mat={then:[mT,capT,capT],now:[mN,capN,capN]}; geo.translate(0,h/2,0); m.castShadow=true; return m; }
 
+/* «Қазақстан» қонақүйі, қазіргі фотолар бойынша (hotel_cc0, hotel_aerial): екі тас пилон, ортасында сәл дөңес лоджиялы қасбет,
+   шеврон тәрізді плиталар, жоғарыда қараңғы терезе белдеуі, тісті карниз және алтын «тәж» жүздері, төменде дөңгелек жарық фонарлары бар подиум */
+function buildHotelReal(){
+  const g=new THREE.Group();
+  const FL=26, fh=3.1, Hb=FL*fh, Wc=34, sag=4, R=(Wc*Wc/4+sag*sag)/(2*sag), zc=sag-R, A=Math.asin(Wc/2/R), XP=26, DB=20, COLS=9;
+  const stone=std('#d8cdb4',{roughness:.9}), stoneDk=std('#b9ae95',{roughness:.9}), glass=std('#26313b',{roughness:.25,metalness:.35}), gold=std('#d3b674',{metalness:.25,roughness:.45,emissive:new THREE.Color('#4a3510'),emissiveIntensity:.25});
+  const rep=(t,x,y)=>{ t.wrapS=t.wrapT=THREE.RepeatWrapping; t.repeat.set(x,y); return t; };
+  // loggia cell: cream parapet below, deep dark window with gold-tinted reflection above
+  const logT=()=>canvasTex(128,128,(c)=>{ c.fillStyle='#d5c9ae'; c.fillRect(0,0,128,128); const gr=c.createLinearGradient(0,10,0,78); gr.addColorStop(0,'#3a4650'); gr.addColorStop(.55,'#27323c'); gr.addColorStop(1,'#5b5440'); c.fillStyle=gr; c.fillRect(10,10,108,68);
+    c.fillStyle='rgba(255,220,150,.12)'; c.fillRect(10,10,54,68); c.strokeStyle='#cbbd9f'; c.lineWidth=3; c.strokeRect(10,10,108,68); c.beginPath(); c.moveTo(64,10); c.lineTo(64,78); c.stroke();
+    c.fillStyle='rgba(0,0,0,.18)'; c.fillRect(0,0,128,8); c.fillStyle='rgba(0,0,0,.08)'; c.fillRect(0,78,128,6); });
+  // pylon stone: one small window per 4.5 m bay per floor
+  const pylT=()=>canvasTex(128,96,(c)=>{ c.fillStyle='#dacfb6'; c.fillRect(0,0,128,96); for(let i=0;i<300;i++){ c.fillStyle='rgba(120,100,70,'+(Math.random()*.05)+')'; c.fillRect(Math.random()*128,Math.random()*96,3,2); }
+    c.fillStyle='#2f3a44'; c.fillRect(50,28,28,34); c.fillStyle='rgba(255,230,180,.15)'; c.fillRect(50,28,14,34); c.strokeStyle='#bfb397'; c.lineWidth=2; c.strokeRect(50,28,28,34); c.fillStyle='rgba(0,0,0,.06)'; c.fillRect(0,94,128,2); });
+  // plan outline (shape y = -world z), offset o outward
+  function plan(o){ const s=new THREE.Shape(), Ro=R+o, n=40, a=Math.asin(Wc/2/Ro); s.moveTo(-XP-o,DB+o); s.lineTo(-XP-o,-o);
+    for(let i=0;i<=n;i++){ const t=-a+2*a*i/n; s.lineTo(Ro*Math.sin(t),-(zc+Ro*Math.cos(t))); } s.lineTo(XP+o,-o); s.lineTo(XP+o,DB+o); s.lineTo(-XP-o,DB+o); return s; }
+  function slab(o,y0,h,mat){ const geo=new THREE.ExtrudeGeometry(plan(o),{depth:h,bevelEnabled:false,curveSegments:40}); geo.rotateX(-Math.PI/2); geo.translate(0,y0,0); const m=new THREE.Mesh(geo,mat); g.add(m); return m; }
+  // points around the outline at a given offset: {x,z,a} where a = outward facing angle
+  function ring(o,step){ const out=[], Ro=R+o, a=Math.asin(Wc/2/Ro);
+    for(let x=-XP-o+step/2;x<-Wc/2;x+=step) out.push({x,z:o,a:0});
+    const n=Math.max(2,Math.round(Ro*2*a/step)); for(let i=0;i<n;i++){ const t=-a+2*a*(i+.5)/n; out.push({x:Ro*Math.sin(t),z:zc+Ro*Math.cos(t),a:t}); }
+    for(let x=Wc/2+step/2;x<XP+o;x+=step) out.push({x,z:o,a:0});
+    for(let z=-step/2;z>-DB-o;z-=step){ out.push({x:XP+o,z,a:Math.PI/2}); out.push({x:-XP-o,z,a:-Math.PI/2}); }
+    for(let x=-XP-o+step/2;x<XP+o;x+=step) out.push({x,z:-DB-o,a:Math.PI}); return out; }
+  const d=new THREE.Object3D();
+  function inst(geo,mat,list,place){ const m=new THREE.InstancedMesh(geo,mat,list.length); list.forEach((p,i)=>{ d.scale.set(1,1,1); place(d,p,i); d.updateMatrix(); m.setMatrixAt(i,d.matrix); }); m.castShadow=true; m.receiveShadow=true; g.add(m); return m; }
+  // body + facades
+  slab(-.3,0,Hb,stone);
+  const front=new THREE.Mesh(new THREE.CylinderGeometry(R+.05,R+.05,Hb,48,1,true,-A,2*A),std('#ffffff',{map:rep(logT(),COLS,FL),roughness:.6})); front.position.set(0,Hb/2,zc); g.add(front);
+  const back=new THREE.Mesh(new THREE.PlaneGeometry(Wc,Hb),std('#ffffff',{map:rep(logT(),COLS,FL),roughness:.6})); back.rotation.y=Math.PI; back.position.set(0,Hb/2,-DB-.05); g.add(back);
+  [-1,1].forEach(s=>{ const fx=std('#ffffff',{map:rep(pylT(),2,FL)}), sx=std('#ffffff',{map:rep(pylT(),DB/4.5,FL)});
+    const p=new THREE.Mesh(new THREE.BoxGeometry(XP-Wc/2,Hb,DB),[sx,sx,stone,stone,fx,fx]); p.position.set(s*(XP+Wc/2)/2,Hb/2,-DB/2); g.add(p); });
+  // chevron slab edges and vertical fins across the curved loggia bay
+  const chord=2*R*Math.sin(A/COLS), cs=new THREE.Shape(); cs.moveTo(-chord/2,0); cs.lineTo(chord/2,0); cs.lineTo(0,-1.5); cs.lineTo(-chord/2,0);
+  const cg=new THREE.ExtrudeGeometry(cs,{depth:.3,bevelEnabled:false}); cg.rotateX(-Math.PI/2);
+  const cells=[]; for(let f=1;f<=FL;f++) for(let c=0;c<COLS;c++) cells.push([f,-A+2*A*(c+.5)/COLS]);
+  inst(cg,stoneDk,cells,(o,p)=>{ o.position.set(R*Math.sin(p[1]),p[0]*fh-.3,zc+R*Math.cos(p[1])); o.rotation.set(0,p[1],0); });
+  const fins=[]; for(let c=0;c<=COLS;c++) fins.push(-A+2*A*c/COLS);
+  inst(new THREE.BoxGeometry(.28,Hb,1.5),stoneDk,fins,(o,a)=>{ o.position.set((R+.75)*Math.sin(a),Hb/2,zc+(R+.75)*Math.cos(a)); o.rotation.set(0,a,0); });
+  // top: dark window strip, toothed cornice, gold crown
+  slab(1,Hb,4,glass);
+  inst(new THREE.BoxGeometry(.35,4,.4),stone,ring(1.1,2.4),(o,p)=>{ o.position.set(p.x,Hb+2,p.z); o.rotation.set(0,p.a,0); });
+  slab(3,Hb+4,6,stone); slab(3.4,Hb+10,.6,stoneDk);
+  const ts=new THREE.Shape(); ts.moveTo(-1.9,0); ts.lineTo(1.9,0); ts.lineTo(0,-2.4); ts.lineTo(-1.9,0);
+  const tg=new THREE.ExtrudeGeometry(ts,{depth:.8,bevelEnabled:false}); tg.translate(0,0,-.4);
+  inst(tg,stone,ring(2.7,3.8),(o,p)=>{ o.position.set(p.x,Hb+4,p.z); o.rotation.set(0,p.a,0); });
+  inst(new THREE.BoxGeometry(3.2,5.4,.5),stoneDk,ring(3.15,3.8),(o,p)=>{ o.position.set(p.x,Hb+7,p.z); o.rotation.set(0,p.a,0); o.scale.set(.12,1,1); });
+  // crown: a row of wide pointed panels with a centre rib, alternating heights, thin spikes at the corners
+  const blade=h=>{ const s=new THREE.Shape(), w=1.65; s.moveTo(-w,0); s.lineTo(w,0); s.lineTo(w*.92,h); s.lineTo(0,h+3.6); s.lineTo(-w*.92,h); s.lineTo(-w,0); const bg=new THREE.ExtrudeGeometry(s,{depth:.45,bevelEnabled:false}); bg.translate(0,0,-.22); return bg; };
+  const crown=ring(2.4,3.7), tall=crown.filter((_,i)=>i%2===0), low=crown.filter((_,i)=>i%2===1), place=(o,p)=>{ o.position.set(p.x,Hb+10.6,p.z); o.rotation.set(0,p.a,0); };
+  inst(blade(8.5),gold,tall,place); inst(blade(6.5),gold,low,place);
+  inst(new THREE.BoxGeometry(.3,9,.4).translate(0,4.5,.35),std('#b8954a',{metalness:.3,roughness:.5}),crown,place);
+  [[-XP-2.6,2.6],[XP+2.6,2.6],[-XP-2.6,-DB-2.6],[XP+2.6,-DB-2.6]].forEach(p=>{ const m=new THREE.Mesh(new THREE.ConeGeometry(.45,14,4).translate(0,7,0),gold); m.position.set(p[0],Hb+10.6,p[1]); m.castShadow=true; g.add(m); });
+  const mach=new THREE.Mesh(new THREE.BoxGeometry(22,5,10),stone); mach.position.set(0,Hb+13.1,-DB/2); mach.castShadow=true; g.add(mach);
+  // podium with round skylights
+  const ps=new THREE.Shape(), px0=-46,px1=34,pz0=-28,pz1=26,pr=12; ps.moveTo(px0+pr,-pz1); ps.lineTo(px1-pr,-pz1); ps.quadraticCurveTo(px1,-pz1,px1,-pz1+pr); ps.lineTo(px1,-pz0-pr); ps.quadraticCurveTo(px1,-pz0,px1-pr,-pz0); ps.lineTo(px0+pr,-pz0); ps.quadraticCurveTo(px0,-pz0,px0,-pz0-pr); ps.lineTo(px0,-pz1+pr); ps.quadraticCurveTo(px0,-pz1,px0+pr,-pz1);
+  const pod=new THREE.ExtrudeGeometry(ps,{depth:4,bevelEnabled:false}); pod.rotateX(-Math.PI/2); g.add(new THREE.Mesh(pod,std('#4a535a',{roughness:.3,metalness:.25})));
+  const podTop=new THREE.ExtrudeGeometry(ps,{depth:1.2,bevelEnabled:false}); podTop.rotateX(-Math.PI/2); podTop.translate(0,4,0); g.add(new THREE.Mesh(podTop,std('#8d877a',{roughness:.95})));
+  [[-38,16],[-30,20],[-20,18],[-36,4],[24,16]].forEach(p=>{ const m=new THREE.Mesh(new THREE.CylinderGeometry(3,3,1.2,28),std('#c9b27a',{roughness:.5})); m.position.set(p[0],5.8,p[1]); g.add(m); });
+  g.traverse(o=>{ if(o.isMesh){ o.castShadow=true; o.receiveShadow=true; } });
+  return g;
+}
+
 /* ---------------- HERO SCENE ---------------- */
 function initHero(){
   const v=createView($('#heroCanvas'),{bg:0x070d18,fov:40,near:1,far:5000,dpr:1.75,alpha:true}); if(!v) return;
@@ -1610,15 +1674,10 @@ function initHero(){
   // golden-hour light: warm sun from the west, cool sky fill, faint rim from behind
   scene.add(new THREE.HemisphereLight(0xcfe0f2,0x3b3226,.62));
   const sun=new THREE.DirectionalLight(0xffdcb0,1.25); sun.position.set(-150,170,140); sun.target.position.set(0,45,-12); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); sun.shadow.bias=-.0006;
-  Object.assign(sun.shadow.camera,{left:-80,right:80,top:110,bottom:-30,near:10,far:600}); sun.shadow.camera.updateProjectionMatrix(); scene.add(sun,sun.target);
+  Object.assign(sun.shadow.camera,{left:-90,right:90,top:130,bottom:-40,near:10,far:700}); sun.shadow.camera.updateProjectionMatrix(); scene.add(sun,sun.target);
   const rim=new THREE.DirectionalLight(0x9cc4ff,.35); rim.position.set(160,90,-220); scene.add(rim);
-  // solid hotel: the same photo-checked geometry as the 3D lab (tower, rhomb-balcony bay, slabs, crown band, golden spikes, podium)
-  const H=82; const hb=buildHotel(), model=new THREE.Group(); scene.add(model);
-  [hb.root.userData.core,hb.root.children[1],hb.root.children[2]].forEach(o=>model.add(o));
-  // own material copies (so the lab's night switch doesn't touch the hero); gold crown without env map reads black at high metalness
-  const heroGold=std('#e2bd68',{metalness:.3,roughness:.38,emissive:new THREE.Color('#7a5418'),emissiveIntensity:.45});
-  const own=m=>{ if(m.metalness>=.5) return heroGold; const c=m.clone(); if(c.emissiveMap) c.emissiveIntensity=.18; return c; };
-  model.traverse(o=>{ if(o.isMesh){ o.material=Array.isArray(o.material)?o.material.map(own):own(o.material); o.castShadow=true; o.receiveShadow=true; } });
+  // solid hotel modelled from today's photos
+  const H=100; scene.add(buildHotelReal());
   // soft contact shadow under the building instead of a flat ground plane
   const cs=canvasTex(256,256,(g)=>{ const gr=g.createRadialGradient(128,128,0,128,128,128); gr.addColorStop(0,'rgba(0,0,0,.55)'); gr.addColorStop(.55,'rgba(0,0,0,.25)'); gr.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=gr; g.fillRect(0,0,256,256); });
   const shadowDisc=new THREE.Mesh(new THREE.PlaneGeometry(220,160).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({map:cs,transparent:true,depthWrite:false})); shadowDisc.position.set(0,.05,4); scene.add(shadowDisc);
@@ -1627,7 +1686,7 @@ function initHero(){
   v.onResize=()=>{ if(v.w>820){ camera.aspect=v.w*1.5/v.h; camera.setViewOffset(v.w*1.5,v.h,0,0,v.w,v.h); } else { camera.clearViewOffset(); camera.aspect=v.w/v.h; camera.updateProjectionMatrix(); } };
   v.onResize();
   let ang=.55; const clock=$('#heroClock');
-  v.update=(dt,t)=>{ if(!REDUCED) ang+=dt*.05; const rad=255; camera.position.set(Math.sin(ang)*rad+mx*40,95-my*30,Math.cos(ang)*rad-8); camera.lookAt(0,H*.62,-8);
+  v.update=(dt,t)=>{ if(!REDUCED) ang+=dt*.05; const rad=290; camera.position.set(Math.sin(ang)*rad+mx*40,80-my*30,Math.cos(ang)*rad-8); camera.lookAt(0,H*.55,-8);
     if(clock && (t*10|0)%5===0) clock.textContent='Кадр · '+(t*60|0).toString().padStart(6,'0'); };
 }
 
