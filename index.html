@@ -910,21 +910,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="sec-head reveal">
       <div class="sec-index"><span class="eyebrow">12 · <b>Сауалнама</b></span></div>
       <h2>Платформа білімге әсер ете ме?</h2>
-      <p class="lead">Апробация кезінде оқушылар алдымен сайтты көрмей 10 сұрақтық викторинаға жауап берді. Кейін платформамен танысып, дәл сол сұрақтарға қайта жауап берді. Төменде — екі кезеңнің орташа балы.</p>
+      <p class="lead">Қатысушылар сайтты қарағанға дейін және кейін күрделілігі тең 10 сұрақтық тест орындайды. Диаграммалар екі кезеңдегі орташа балды және қатысушылардың қандай жаңа мәлімет алғанын көрсетеді.</p>
     </div>
     <div class="growth">
       <div class="chart-box reveal">
-        <h3>Викторинаның орташа балы, 10 сұрақтан</h3>
-        <p class="muted" id="svNote">Платформаға дейін және кейін · Викторинаны өтсеңіз, өз нәтижеңіз де қосылады</p>
-        <svg id="svChart" viewBox="0 0 800 260" role="img" aria-label="Викторинаның орташа балы: платформаға дейін 4 / 10, кейін 8,5 / 10"></svg>
+        <h3>Сайтты қолданғанға дейін және кейін</h3>
+        <p class="muted">Тесттің орташа балы, 10 сұрақтан · дұрыс жауаптар үлесі · үлгі деректер</p>
+        <svg id="svChart" viewBox="0 0 800 340" role="img" aria-label="Тесттің орташа балы: сайтқа дейін 4 / 10 (40%), сайттан кейін 8,5 / 10 (85%)"></svg>
         <div class="tip" id="svTip" hidden></div>
         <details class="table"><summary>Кесте түрінде көру</summary><table id="svTable"></table></details>
       </div>
       <div class="big-n reveal">
         <span class="eyebrow">Дейін → кейін</span>
         <b>+4,5</b>
-        <span>Орташа балл 4 / 10-нан 8,5 / 10-ға дейін өсті — шамамен 2,1 есе. Интерактивті 3D, фото салыстыру мен уақыт сызығы деректерді есте сақтауға көмектесті.</span>
-        <span class="muted" style="font-size:13px">Дереккөз: жоба авторының сауалнамасы, 2026. Мәндер шамамен.</span>
+        <span>Орташа балл 4-тен 8,5-ке көтерілді. Дұрыс жауаптар үлесі 40%-дан 85%-ға өзгерді. Бұл Қонаевты таныған адамдардың пайызы емес.</span>
+        <span class="muted" style="font-size:13px">Үлгі деректер — нақты зерттеу нәтижесі емес. Орташа балл = балдар қосындысы / қатысушылар саны; екі кезеңде де бірдей қатысушылар салыстырылады.</span>
+      </div>
+    </div>
+    <div class="growth" style="margin-top:28px">
+      <div class="chart-box reveal">
+        <h3>Қонаевты қаншалықты таныдық</h3>
+        <p class="muted">«Сайт арқылы Дінмұхамед Қонаев туралы қандай жаңа мәлімет алдыңыз?» · бір жауап, % · үлгі деректер</p>
+        <svg id="knChart" viewBox="0 0 800 300" role="img" aria-label="Сауалнама: алғаш таныдым 30%, тереңірек таныдым 50%, қосымша мәлімет алдым 15%, жаңа мәлімет алмадым 5%"></svg>
+        <div class="tip" id="knTip" hidden></div>
+        <details class="table"><summary>Кесте түрінде көру</summary><table id="knTable"></table></details>
+      </div>
+      <div class="big-n reveal">
+        <span class="eyebrow">Алғаш таныды</span>
+        <b>30%</b>
+        <span>Қатысушылардың үштен бірі Қонаевты сайт арқылы алғаш таныды, тағы жартысы оның өмірі мен қызметін тереңірек білді. Тек 5%-ы жаңа мәлімет алмады.</span>
+        <span class="muted" style="font-size:13px">Үлгі деректер — нақты зерттеу нәтижесі емес. Үлес = жауапты таңдағандар саны / барлық жауап бергендер × 100.</span>
       </div>
     </div>
   </div>
@@ -1234,27 +1249,54 @@ $$('.reveal').forEach(r=>revObs.observe(r));
 /* ---------------- SURVEY CHART ---------------- */
 (function(){
   const svg=$('#svChart'), tip=$('#svTip'), NS='http://www.w3.org/2000/svg';
-  const rows=[{k:'Платформаға дейін',v:4,c:'#6f8fae'},{k:'Платформадан кейін',v:8.5,c:'#e0b25a'}];
+  const rows=[{k:'Сайтқа дейін',v:4,c:'#6f8fae'},{k:'Сайттан кейін',v:8.5,c:'#e0b25a'}];
   const fmt=v=>String(+v.toFixed(1)).replace('.',',');
-  function draw(){
-    svg.innerHTML=''; const W=800,m={l:190,r:70,t:16,b:34}, bh=30, gap=22, H=m.t+rows.length*(bh+gap)-gap+m.b;
-    svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    const x=v=>m.l+v/10*(W-m.l-m.r);
-    const s=(t,a,txt)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); if(txt!=null) e.textContent=txt; svg.appendChild(e); return e; };
-    for(let v=0;v<=10;v+=2){ s('line',{x1:x(v),x2:x(v),y1:m.t-6,y2:H-m.b,stroke:v?'rgba(147,163,187,.16)':'rgba(147,163,187,.4)'}); s('text',{x:x(v),y:H-m.b+20,'text-anchor':'middle',fill:'#93a3bb','font-size':12,'font-family':'JetBrains Mono, monospace'},v); }
-    rows.forEach((r,i)=>{ const y=m.t+i*(bh+gap), x0=x(0), x1=x(r.v), rr=4;
-      s('text',{x:m.l-14,y:y+bh/2+5,'text-anchor':'end',fill:'#e8edf5','font-size':14,'font-family':'Golos Text, sans-serif'},r.k);
-      const bar=s('path',{d:'M'+x0+','+y+'H'+(x1-rr)+'Q'+x1+','+y+' '+x1+','+(y+rr)+'V'+(y+bh-rr)+'Q'+x1+','+(y+bh)+' '+(x1-rr)+','+(y+bh)+'H'+x0+'Z',fill:r.c});
-      s('text',{x:x1+10,y:y+bh/2+5,fill:'#e8edf5','font-size':15,'font-weight':600,'font-family':'Golos Text, sans-serif'},fmt(r.v)+' / 10');
-      const hit=s('rect',{x:m.l-180,y:y-gap/2,width:W-m.l+180,height:bh+gap,fill:'transparent'});
-      const show=()=>{ rows.forEach((_,j)=>svg.querySelectorAll('path')[j].setAttribute('opacity',j===i?1:.45)); const rc=svg.getBoundingClientRect(), box=svg.parentElement.getBoundingClientRect();
-        tip.hidden=false; tip.innerHTML='<b>'+fmt(r.v)+' / 10</b>'+r.k+(r.mine?'':' · орташа балл'); tip.style.left=(rc.left-box.left+x1/W*rc.width)+'px'; tip.style.top=(rc.top-box.top+y/H*rc.height)+'px'; };
-      hit.addEventListener('pointermove',show); hit.addEventListener('pointerdown',show);
-      hit.addEventListener('pointerleave',()=>{ tip.hidden=true; svg.querySelectorAll('path').forEach(p=>p.setAttribute('opacity',1)); }); });
-    $('#svTable').innerHTML='<tr><th>Кезең</th><th>Балл, 10-нан</th></tr>'+rows.map(r=>'<tr><td>'+r.k+'</td><td>'+fmt(r.v)+'</td></tr>').join('');
-  }
-  window.addEventListener('quizdone',e=>{ const mine={k:'Сіздің нәтижеңіз',v:e.detail,c:'#36c6ea',mine:1}; if(rows[2]) rows[2]=mine; else rows.push(mine); $('#svNote').textContent='Платформаға дейін, кейін және сіздің викторинадағы нәтижеңіз'; draw(); });
-  draw();
+  const W=800,H=340,m={l:56,r:24,t:30,b:44}, cw=150;
+  const y=v=>H-m.b-v/10*(H-m.t-m.b), cx=i=>m.l+(W-m.l-m.r)*(i===0?.28:.72);
+  const s=(t,a,txt)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); if(txt!=null) e.textContent=txt; svg.appendChild(e); return e; };
+  for(let v=0;v<=10;v+=2){ s('line',{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:v?'rgba(147,163,187,.16)':'rgba(147,163,187,.4)'}); s('text',{x:m.l-12,y:y(v)+4,'text-anchor':'end',fill:'#93a3bb','font-size':12,'font-family':'JetBrains Mono, monospace'},v); }
+  const bars=[];
+  rows.forEach((r,i)=>{ const x0=cx(i)-cw/2, x1=cx(i)+cw/2, yt=y(r.v), yb=y(0), rr=6;
+    bars.push(s('path',{d:'M'+x0+','+yb+'V'+(yt+rr)+'Q'+x0+','+yt+' '+(x0+rr)+','+yt+'H'+(x1-rr)+'Q'+x1+','+yt+' '+x1+','+(yt+rr)+'V'+yb+'Z',fill:r.c}));
+    s('text',{x:cx(i),y:yt-12,'text-anchor':'middle',fill:'#e8edf5','font-size':17,'font-weight':600,'font-family':'Golos Text, sans-serif'},fmt(r.v)+' / 10');
+    s('text',{x:cx(i),y:yt+24,'text-anchor':'middle',fill:'#0b1424','font-size':14,'font-weight':600,'font-family':'JetBrains Mono, monospace'},r.v*10+'%');
+    s('text',{x:cx(i),y:H-m.b+24,'text-anchor':'middle',fill:'#c6d0df','font-size':14,'font-family':'Golos Text, sans-serif'},r.k);
+    const hit=s('rect',{x:x0-20,y:m.t-20,width:cw+40,height:yb-m.t+20,fill:'transparent'});
+    const show=()=>{ bars.forEach((b,j)=>b.setAttribute('opacity',j===i?1:.45)); const rc=svg.getBoundingClientRect(), box=svg.parentElement.getBoundingClientRect();
+      tip.hidden=false; tip.innerHTML='<b>'+fmt(r.v)+' / 10</b>'+r.k+' · дұрыс жауап '+r.v*10+'%'; tip.style.left=(rc.left-box.left+cx(i)/W*rc.width)+'px'; tip.style.top=(rc.top-box.top+(yt-30)/H*rc.height)+'px'; };
+    hit.addEventListener('pointermove',show); hit.addEventListener('pointerdown',show);
+    hit.addEventListener('pointerleave',()=>{ tip.hidden=true; bars.forEach(b=>b.setAttribute('opacity',1)); }); });
+  // difference bracket between the two columns
+  const ya=y(rows[0].v), yb2=y(rows[1].v), xm=(cx(0)+cx(1))/2;
+  s('path',{d:'M'+(cx(0)+cw/2+12)+','+ya+'H'+xm+'V'+yb2+'H'+(cx(1)-cw/2-12),fill:'none',stroke:'#f4d68f','stroke-width':1.5,'stroke-dasharray':'4 4'});
+  s('text',{x:xm+10,y:(ya+yb2)/2+5,fill:'#f4d68f','font-size':15,'font-weight':600,'font-family':'Golos Text, sans-serif'},'+4,5');
+  $('#svTable').innerHTML='<tr><th>Кезең</th><th>Орташа балл, 10-нан</th><th>Дұрыс жауап, %</th></tr>'+rows.map(r=>'<tr><td>'+r.k+'</td><td>'+fmt(r.v)+'</td><td>'+r.v*10+'</td></tr>').join('');
+})();
+
+/* ---------------- KNOWLEDGE SURVEY CHART ---------------- */
+(function(){
+  const svg=$('#knChart'), tip=$('#knTip'), NS='http://www.w3.org/2000/svg';
+  const rows=[
+    {k:'Бұрын білмедім, сайт арқылы алғаш таныдым',v:30,c:'#f4d68f'},
+    {k:'Есімін білетінмін, өмірі мен қызметін тереңірек таныдым',v:50,c:'#e0b25a'},
+    {k:'Бұрын жақсы білетінмін, қосымша мәлімет алдым',v:15,c:'#6f8fae'},
+    {k:'Өзім үшін жаңа мәлімет алмадым',v:5,c:'#465a76'}];
+  const W=800,m={l:8,r:60,t:8,b:34}, lh=24, bh=22, gap=18, max=60, H=m.t+rows.length*(lh+bh+gap)-gap+m.b;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  const x=v=>m.l+v/max*(W-m.l-m.r);
+  const s=(t,a,txt)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); if(txt!=null) e.textContent=txt; svg.appendChild(e); return e; };
+  for(let v=0;v<=max;v+=10){ s('line',{x1:x(v),x2:x(v),y1:m.t,y2:H-m.b,stroke:v?'rgba(147,163,187,.16)':'rgba(147,163,187,.4)'}); s('text',{x:x(v),y:H-m.b+20,'text-anchor':'middle',fill:'#93a3bb','font-size':12,'font-family':'JetBrains Mono, monospace'},v+'%'); }
+  const bars=[];
+  rows.forEach((r,i)=>{ const y0=m.t+i*(lh+bh+gap), y=y0+lh, x0=x(0), x1=x(r.v), rr=4;
+    s('text',{x:x0+2,y:y0+15,fill:'#c6d0df','font-size':14,'font-family':'Golos Text, sans-serif'},r.k);
+    bars.push(s('path',{d:'M'+x0+','+y+'H'+(x1-rr)+'Q'+x1+','+y+' '+x1+','+(y+rr)+'V'+(y+bh-rr)+'Q'+x1+','+(y+bh)+' '+(x1-rr)+','+(y+bh)+'H'+x0+'Z',fill:r.c}));
+    s('text',{x:x1+10,y:y+bh/2+5,fill:'#e8edf5','font-size':15,'font-weight':600,'font-family':'Golos Text, sans-serif'},r.v+'%');
+    const hit=s('rect',{x:0,y:y0-gap/2,width:W,height:lh+bh+gap,fill:'transparent'});
+    const show=()=>{ bars.forEach((b,j)=>b.setAttribute('opacity',j===i?1:.45)); const rc=svg.getBoundingClientRect(), box=svg.parentElement.getBoundingClientRect();
+      tip.hidden=false; tip.innerHTML='<b>'+r.v+'%</b>'+r.k; tip.style.left=(rc.left-box.left+Math.max(x1,160)/W*rc.width)+'px'; tip.style.top=(rc.top-box.top+y/H*rc.height)+'px'; };
+    hit.addEventListener('pointermove',show); hit.addEventListener('pointerdown',show);
+    hit.addEventListener('pointerleave',()=>{ tip.hidden=true; bars.forEach(b=>b.setAttribute('opacity',1)); }); });
+  $('#knTable').innerHTML='<tr><th>Жауап</th><th>Үлес, %</th></tr>'+rows.map(r=>'<tr><td>'+r.k+'</td><td>'+r.v+'</td></tr>').join('');
 })();
 
 /* ---------------- PHOTO ARCHIVE + LIGHTBOX ---------------- */
