@@ -291,6 +291,36 @@ section{padding-block:clamp(72px,10vw,128px)}
 .big-n{display:grid;gap:6px}
 .big-n b{font:900 clamp(56px,8vw,96px)/.9 var(--f-display);color:var(--gold-2);letter-spacing:-.03em}
 .big-n span{color:#c6d0df}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:18px;align-items:stretch;margin-bottom:22px}
+@media (max-width:760px){.vs{grid-template-columns:1fr}.vs-mid{justify-self:center}}
+.vs-card{display:grid;gap:6px;align-content:start;padding:22px 24px;border-radius:18px;border:1px solid var(--line-2);background:rgba(15,26,46,.7)}
+.vs-card.q{border-color:rgba(224,178,90,.45)}
+.vs-card.n{border-color:rgba(54,198,234,.45)}
+.vs-card>b{font:700 clamp(26px,3.4vw,38px)/1 var(--f-display)}
+.vs-card.q>b,.vs-card.q i{color:var(--gold-2)}
+.vs-card.n>b,.vs-card.n i{color:var(--sky-2)}
+.vs-card>span:not(.eyebrow){color:#c6d0df;font-size:14.5px}
+.vs-card i{font:900 clamp(40px,5vw,60px)/1 var(--f-display);font-style:normal;margin-top:10px}
+.vs-card small{color:var(--muted);font-size:13px}
+.vs-mid{align-self:center;font:700 14px var(--f-mono);letter-spacing:.2em;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:10px 14px}
+.vs-table{border:1px solid var(--line);border-radius:18px;background:rgba(11,20,36,.7);padding:12px 14px}
+.vs-table .cmp td:nth-child(3){color:#cfeaf5}
+.vs-table .cmp td[colspan]{color:#c6d0df}
+.lk-h{margin:clamp(36px,5vw,56px) 0 10px}
+.lk{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+@media (max-width:420px){.lk{grid-template-columns:1fr}}
+.lk article{display:grid;gap:10px;align-content:start;padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:rgba(15,26,46,.6)}
+.lk h4{margin:0;font:600 16px var(--f-display)}
+.lk-t{justify-self:start;font:600 10.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.lk-t.c{color:var(--ok);border:1px solid rgba(79,214,156,.45)}
+.lk-t.p{color:var(--gold-2);border:1px solid rgba(224,178,90,.45)}
+.lk-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;font-size:13.5px;line-height:1.45;color:#c6d0df}
+.lk-row>span{align-self:center;color:var(--muted);font-size:18px}
+.lk-row small{display:block;font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.lk-row>div:first-child small{color:var(--gold-2)}
+.lk-row>div:last-child small{color:var(--sky)}
+.lk-ph{display:flex;gap:8px}
+.lk-ph img{flex:1;min-width:0;height:96px;object-fit:cover;border-radius:10px;cursor:zoom-in;border:1px solid var(--line)}
 details.table{margin-top:10px;font-size:13px;color:var(--muted)}
 details.table summary{cursor:pointer;padding:6px}
 details.table table{border-collapse:collapse;margin:6px;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
@@ -482,7 +512,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="nav-row">
     <a class="brand" href="#top" aria-label="Басына оралу"><span class="brand-mark">ДҚ</span><span>Қонаев · Алматы</span></a>
     <nav aria-label="Бөлімдер">
-      <a href="#tulga">Тұлға</a><a href="#enbek">Еңбегі</a><a href="#shezhire">Шежіре</a><a href="#karta">3D карта</a><a href="#lab">Кеше / Бүгін</a><a href="#foto">Фотомұрағат</a><a href="#osim">Өсім</a><a href="#aqiqat">Аңыз / Ақиқат</a><a href="#muzei">Музей</a><a href="#oqu">Викторина</a><a href="#adis">Әдіснама</a>
+      <a href="#tulga">Тұлға</a><a href="#enbek">Еңбегі</a><a href="#shezhire">Шежіре</a><a href="#karta">3D карта</a><a href="#lab">Кеше / Бүгін</a><a href="#foto">Фотомұрағат</a><a href="#osim">Өсім</a><a href="#salystyru">Екі дәуір</a><a href="#aqiqat">Аңыз / Ақиқат</a><a href="#muzei">Музей</a><a href="#oqu">Викторина</a><a href="#saualnama">Сауалнама</a><a href="#adis">Әдіснама</a>
     </nav>
   </div>
   <div class="progress"><i id="prog"></i></div>
@@ -665,6 +695,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <button class="tab" role="tab" data-b="medeu" aria-selected="false">Медеу<small>1972 · мұз айдыны</small></button>
       <button class="tab" role="tab" data-b="memorial" aria-selected="false">Даңқ мемориалы<small>1975 · Панфилов саябағы</small></button>
       <button class="tab" role="tab" data-b="koktobe" aria-selected="false">Көктөбе телемұнарасы<small>1983 · ≈372 м</small></button>
+      <button class="tab" role="tab" data-b="green" aria-selected="false">Алматының жасыл желегі<small>«бақ-қала» · арықтар</small></button>
+      <button class="tab" role="tab" data-b="aport" aria-selected="false">Апорт алмасы<small>бақтар → тұрғын үйлер</small></button>
     </div>
     <div class="modes" role="group" aria-label="Көрініс"><button class="tbtn" id="modePhoto" aria-pressed="true">Нақты фото</button><button class="tbtn" id="mode3d" aria-pressed="false">3D модель</button><span class="mode-note" id="modeNote"></span></div>
     <div class="lab">
@@ -693,7 +725,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="sec-head reveal">
       <div class="sec-index"><span class="eyebrow">06 · <b>Фотомұрағат</b></span></div>
       <h2>Нақты фотолар: тұлға, қала, кеше мен бүгін</h2>
-      <p class="lead">Барлық суреттер Wikimedia Commons-тан алынды және еркін лицензиямен таралады. Әр суреттің авторы, лицензиясы мен түпнұсқа беті көрсетілген. Суретті басып, үлкейтіп көріңіз; «3D-мен беттестіру» батырмасы фотоны 3D модельмен қабаттастырады.</p>
+      <p class="lead">Суреттердің көбі Wikimedia Commons-тан алынды және еркін лицензиямен таралады; кейбір мұрағат фотолары (Апорт, жасыл желек, қонақүйдің ескі суреті) ашық дереккөздерден алынған, авторы белгісіз. Әр суреттің дерегі көрсетілген. Суретті басып, үлкейтіп көріңіз; «3D-мен беттестіру» батырмасы фотоны 3D модельмен қабаттастырады.</p>
     </div>
     <div class="arch-tabs" role="group" aria-label="Сүзгі"><button class="tbtn" data-ag="all" aria-pressed="true">Барлығы</button><button class="tbtn" data-ag="p" aria-pressed="false">Қонаев</button><button class="tbtn" data-ag="t" aria-pressed="false">Кеше</button><button class="tbtn" data-ag="n" aria-pressed="false">Бүгін</button></div>
     <div class="arch" id="arch"></div>
@@ -725,11 +757,54 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
+<!-- TWO ERAS -->
+<section id="salystyru" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">08 · <b>Екі дәуір</b></span></div>
+      <h2>Қонаев пен Назарбаев кезіндегі Алматы</h2>
+      <p class="lead">Екі басшы да Алматы тарихында ұзақ із қалдырды, бірақ мүлде басқа жағдайда жұмыс істеді: біреуі — КСРО құрамындағы республикада, екіншісі — тәуелсіз мемлекетте. Салыстыру баға беру емес, кезеңдердің айырмашылығын көру үшін жасалды.</p>
+    </div>
+    <div class="vs reveal">
+      <div class="vs-card q"><span class="eyebrow">Д.А. Қонаев</span><b>1960–1986</b><span>Қазақ КСР Компартиясы ОК бірінші хатшысы (1962–1964 жылдардағы үзіліспен)</span><i>×2,4</i><small>қала халқы, 1959 → 1989</small></div>
+      <div class="vs-mid">VS</div>
+      <div class="vs-card n"><span class="eyebrow">Н.Ә. Назарбаев</span><b>1989–2019</b><span>1989–1991 — ОК бірінші хатшысы, 1990/1991–2019 — Қазақстан Президенті</span><i>×1,9</i><small>қала халқы, 1989 → 2021 (2014 жылы шекара кеңейді)</small></div>
+    </div>
+    <div class="vs-table reveal" style="overflow-x:auto">
+      <table class="cmp">
+        <thead><tr><th></th><th>Қонаев кезеңі</th><th>Назарбаев кезеңі</th></tr></thead>
+        <tbody>
+          <tr><td>Мемлекет</td><td>КСРО құрамындағы одақтас республика; ірі шешімдер Мәскеумен келісілді</td><td>1991 жылғы 16 желтоқсаннан — тәуелсіз Қазақстан Республикасы</td></tr>
+          <tr><td>Алматының мәртебесі</td><td>Республика астанасы</td><td>1997 жылға дейін астана, кейін — республикалық маңызы бар қала, «оңтүстік астана»</td></tr>
+          <tr><td>Мамандығы</td><td>Тау-кен инженері, металлург, академик</td><td>Металлург (Қарағанды металлургия комбинаты), экономист</td></tr>
+          <tr><td>Ірі нысандар</td><td>Медеу бөгеті (1966–1967), Медеу мұз айдыны мен цирк (1972), Республика сарайы (1970), «Қазақстан» қонақүйі (1977), «Арасан» моншасы (1982), Көктөбе телемұнарасы (1983)</td><td>Тәуелсіздік монументі (1996), Esentai Tower (2008), Алматы метросы (2011), Азия ойындары (2011) мен Универсиада (2017) нысандары</td></tr>
+          <tr><td>Халқы</td><td>456 мың (1959) → 1 073 мың (1989)</td><td>1 131 мың (1999) → ≈2,03 млн (2021)</td></tr>
+          <tr><td>Қала құрылысы</td><td>Бас жоспар бойынша мемлекеттік құрылыс, сейсмикаға төзімді ғимараттар, арықтар мен ағашты көшелер</td><td>Нарықтық, жеке құрылыс; іскерлік орталықтар, биік тұрғын үй кешендері, бақтар орнына жаңа аудандар</td></tr>
+          <tr><td>Байланысы</td><td colspan="2">Назарбаев 1984–1989 жылдары Қазақ КСР Министрлер Кеңесінің төрағасы болды — яғни Қонаев басшылығы кезінде республика үкіметін басқарды.</td></tr>
+          <tr><td>Кезеңнің соңы</td><td>1986 жылғы 16 желтоқсанда босатылды; келесі күні Желтоқсан оқиғалары басталды</td><td>2019 жылғы 19 наурызда Президент өкілеттігін тоқтатты</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="lk-h reveal">Бір нысан — екі дәуір</h3>
+    <p class="muted reveal" style="max-width:70ch;margin-bottom:18px"><b class="lk-t c">Жалғастырды</b> — Қонаев кезінде салынған нысан тәуелсіздік жылдарында жаңа қызметке ие болды немесе жаңғыртылды. <b class="lk-t p">Тұспа-тұс</b> — әр дәуірдің бір рөлді атқарған символдық нысандары.</p>
+    <div class="lk reveal">
+      <article><span class="lk-t c">Жалғастырды</span><h4>Республика алаңы мен әкімдік ғимараты</h4><div class="lk-row"><div><small>Қонаев</small>1980 — алаң мен Қазақстан КП Орталық Комитетінің жаңа ғимараты салынды</div><span>→</span><div><small>Назарбаев</small>Тәуелсіздіктің алғашқы жылдары — Президент резиденциясы; 1996 — алаңда Тәуелсіздік монументі; қазір — Алматы қаласының әкімдігі</div></div><div class="lk-ph"><img src="img/green_square_now.jpg" alt="Республика алаңы мен әкімдік" data-ph="green_square_now" loading="lazy"></div></article>
+      <article><span class="lk-t c">Жалғастырды</span><h4>Үкімет үйі → КБТУ</h4><div class="lk-row"><div><small>Қонаев</small>1957 — салынып бітті; 1980 жылға дейін Компартия ОК осында орналасты, Қонаевтың кабинеті әлі сақталған</div><span>→</span><div><small>Назарбаев</small>1991 жылғы 16 желтоқсан — мұнда Тәуелсіздік туралы Конституциялық заңға қол қойылды; 2001 жылдан — КБТУ</div></div><div class="lk-ph"><img src="img/kbtu_1969.jpg" alt="Үкімет үйі" data-ph="kbtu_1969" loading="lazy"><img src="img/kbtu_mb.jpg" alt="КБТУ" data-ph="kbtu_mb" loading="lazy"></div></article>
+      <article><span class="lk-t c">Жалғастырды</span><h4>Медеу</h4><div class="lk-row"><div><small>Қонаев</small>1966–1967 — селге қарсы бөгет; 1972 — биік таулы мұз айдыны</div><span>→</span><div><small>Назарбаев</small>2011 жылғы Азия ойындары қарсаңында мұз айдыны жаңғыртылып, жарыстар өтті</div></div><div class="lk-ph"><img src="img/medeu_1982.jpg" alt="Медеу 1982" data-ph="medeu_1982" loading="lazy"><img src="img/medeu_2022.jpg" alt="Медеу 2022" data-ph="medeu_2022" loading="lazy"></div></article>
+      <article><span class="lk-t c">Жалғастырды</span><h4>Алматы метросы</h4><div class="lk-row"><div><small>Кеңестік кезең</small>Жобасы 1980-жылдары жасалып, құрылысы 1988 жылы басталды (Қонаевтан кейін)</div><span>→</span><div><small>Назарбаев</small>1990-жылдары құрылыс баяулады; бірінші желі 2011 жылы ашылды</div></div></article>
+      <article><span class="lk-t c">Жалғастырды</span><h4>Көктөбе</h4><div class="lk-row"><div><small>Қонаев</small>1967 — аспалы жол; 1983 — ≈372 м телемұнара</div><span>→</span><div><small>Назарбаев</small>2000-жылдары төбеде демалыс саябағы ашылып, аспалы жол жаңартылды</div></div><div class="lk-ph"><img src="img/tower_cc0.jpg" alt="Көктөбе" data-ph="tower_cc0" loading="lazy"></div></article>
+      <article><span class="lk-t p">Тұспа-тұс</span><h4>Қаланың ең биік ғимараты</h4><div class="lk-row"><div><small>Қонаев</small>1977 — «Қазақстан» қонақүйі, 26 қабат, ≈102 м</div><span>⇄</span><div><small>Назарбаев</small>2008 — Esentai Tower рекордты алды; қонақүй қаланың символы ретінде қалды</div></div><div class="lk-ph"><img src="img/hotel_snow.jpg" alt="«Қазақстан» қонақүйі" data-ph="hotel_snow" loading="lazy"><img src="img/hotel_aerial.jpg" alt="«Қазақстан» қонақүйі бүгін" data-ph="hotel_aerial" loading="lazy"></div></article>
+      <article><span class="lk-t p">Тұспа-тұс</span><h4>Басты сарай мен халықаралық сахна</h4><div class="lk-row"><div><small>Қонаев</small>1970 — Ленин сарайы; 1978 — ДДСҰ-ның Алма-Ата конференциясы</div><span>⇄</span><div><small>Назарбаев</small>Сарай «Республика сарайы» болып аталды; 2017 — Универсиада, «Алматы Арена»</div></div><div class="lk-ph"><img src="img/palace_1978.jpg" alt="Ленин сарайы 1978" data-ph="palace_1978" loading="lazy"><img src="img/palace_2022.jpg" alt="Республика сарайы" data-ph="palace_2022" loading="lazy"></div></article>
+      <article><span class="lk-t p">Тұспа-тұс</span><h4>Тау бөктері</h4><div class="lk-row"><div><small>Қонаев</small>Апорт бақтары, саяжайлар, жасыл белдеу</div><span>⇄</span><div><small>Назарбаев</small>Сол белдеуде көпқабатты тұрғын үй кешендері мен жаңа көшелер</div></div><div class="lk-ph"><img src="img/aport_harvest.jpg" alt="Апорт" data-ph="aport_harvest" loading="lazy"><img src="img/green_aerial_now.jpg" alt="Тау бөктеріндегі жаңа үйлер" data-ph="green_aerial_now" loading="lazy"></div></article>
+    </div>
+  </div>
+</section>
+
 <!-- MYTH vs FACT -->
 <section id="aqiqat" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-index"><span class="eyebrow">08 · <b>Аңыз бен ақиқат</b></span></div>
+      <div class="sec-index"><span class="eyebrow">09 · <b>Аңыз бен ақиқат</b></span></div>
       <h2>Тарихи деректерді сүзгіден өткізу</h2>
       <p class="lead">Нысанның белгілі бір басшының кезеңінде салынуы мен оның тікелей сол тұлғаның бастамасымен жүзеге асуы бірдей ұғым емес. Әр тұжырымды ашып, дәлелдерін қараңыз.</p>
     </div>
@@ -746,7 +821,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section id="muzei" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-index"><span class="eyebrow">09 · <b>Қазіргі Қонаев музейі</b></span></div>
+      <div class="sec-index"><span class="eyebrow">10 · <b>Қазіргі Қонаев музейі</b></span></div>
       <h2>Д.А. Қонаев мұражайы бүгін</h2>
       <p class="lead">Музей екі кешеннен тұрады: Көктем-3 шағын ауданындағы экспозиция және Қонаев 24 жыл тұрған мемориалдық пәтер. 2022 жылы, 110 жылдық мерейтойға орай, экспозиция қайта жасалып, көп бөлігі интерактивті форматқа көшті.</p>
     </div>
@@ -809,7 +884,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section id="oqu" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-index"><span class="eyebrow">10 · <b>Интерактивті оқыту</b></span></div>
+      <div class="sec-index"><span class="eyebrow">11 · <b>Интерактивті оқыту</b></span></div>
       <h2>Викторина және зерттеуші дәптері</h2>
       <p class="lead">Сайттағы деректерді қаншалықты есте сақтадыңыз? Содан кейін өз байқауларыңызды дәптерге жазыңыз: жазбалар осы браузерде сақталады.</p>
     </div>
@@ -829,11 +904,37 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
+<!-- SURVEY -->
+<section id="saualnama" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index"><span class="eyebrow">12 · <b>Сауалнама</b></span></div>
+      <h2>Платформа білімге әсер ете ме?</h2>
+      <p class="lead">Апробация кезінде оқушылар алдымен сайтты көрмей 10 сұрақтық викторинаға жауап берді. Кейін платформамен танысып, дәл сол сұрақтарға қайта жауап берді. Төменде — екі кезеңнің орташа балы.</p>
+    </div>
+    <div class="growth">
+      <div class="chart-box reveal">
+        <h3>Викторинаның орташа балы, 10 сұрақтан</h3>
+        <p class="muted" id="svNote">Платформаға дейін және кейін · Викторинаны өтсеңіз, өз нәтижеңіз де қосылады</p>
+        <svg id="svChart" viewBox="0 0 800 260" role="img" aria-label="Викторинаның орташа балы: платформаға дейін 4 / 10, кейін 8,5 / 10"></svg>
+        <div class="tip" id="svTip" hidden></div>
+        <details class="table"><summary>Кесте түрінде көру</summary><table id="svTable"></table></details>
+      </div>
+      <div class="big-n reveal">
+        <span class="eyebrow">Дейін → кейін</span>
+        <b>+4,5</b>
+        <span>Орташа балл 4 / 10-нан 8,5 / 10-ға дейін өсті — шамамен 2,1 есе. Интерактивті 3D, фото салыстыру мен уақыт сызығы деректерді есте сақтауға көмектесті.</span>
+        <span class="muted" style="font-size:13px">Дереккөз: жоба авторының сауалнамасы, 2026. Мәндер шамамен.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- METHOD -->
 <section id="adis" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-index"><span class="eyebrow">11 · <b>Әдіснама</b></span></div>
+      <div class="sec-index"><span class="eyebrow">13 · <b>Әдіснама</b></span></div>
       <h2>Жоба қалай жасалды</h2>
       <p class="lead">Мақсат — Д. Қонаевтың Алматының дамуындағы рөлін тарихи деректер негізінде зерттеп, нәтижесін оқушыларға түсінікті интерактивті цифрлық шежіреге айналдыру.</p>
     </div>
@@ -861,7 +962,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <li>1973 жылғы сел және Медеу бөгеті — <a target="_blank" rel="noopener" href="https://informburo.kz/stati/sel-1973-go-kak-almaty-spasli-ot-razruseniya">informburo.kz</a>, <a target="_blank" rel="noopener" href="https://prg.kz/m/amp/document/30198870/">prg.kz</a></li>
         <li>Алматы халқы, санақтар — <a target="_blank" rel="noopener" href="https://bigenc.ru/c/alma-ata-3b58de">bigenc.ru</a></li>
         <li>3D карта — <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/copyright">© OpenStreetMap қатысушылары</a> (ODbL)</li>
-        <li>Барлық фотолар — <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/">Wikimedia Commons</a> (авторлары мен лицензиялары «Фотомұрағат» бөлімінде)</li>
+        <li>Фотолардың көбі — <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/">Wikimedia Commons</a>; Апорт, жасыл желек және қонақүйдің мұрағат фотолары — ашық дереккөздер, авторы белгісіз (толығы «Фотомұрағат» бөлімінде)</li>
       </ul>
     </div>
   </div>
@@ -922,9 +1023,17 @@ const PH={
  medeu_2022:{src:'img/medeu_2022.jpg',w:1280,h:960,y:'2022',c:'Медеу мұз айдынының қасбеті',a:'Key2xanadu',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:'https://commons.wikimedia.org/wiki/File:Medeu_-_rink_at_sunset_-_2022-06-21.jpg',g:'n'},
  memorial_2017:{src:'img/memorial_2017.jpg',w:1280,h:960,y:'2017',c:'Даңқ мемориалы, Панфиловшылар саябағы',a:'Radosław Botev',l:'CC BY 3.0 pl',lu:'https://creativecommons.org/licenses/by/3.0/pl/deed.en',p:'https://commons.wikimedia.org/wiki/File:WWII_Monument_Almaty.jpg',g:'n'},
  memorial_2019:{src:'img/memorial_2019.jpg',w:1280,h:960,y:'2019',c:'Даңқ мемориалының орталық бөлігі',a:'Мазур Владимир',l:'CC BY-SA 4.0',lu:'https://creativecommons.org/licenses/by-sa/4.0',p:'https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B0%D1%80%D0%BA_28_%D0%BF%D0%B0%D0%BD%D1%84%D0%B8%D0%BB%D0%BE%D0%B2%D1%86%D0%B5%D0%B2._%D0%9C%D0%B5%D0%BC%D0%BE%D1%80%D0%B8%D0%B0%D0%BB_%D0%A1%D0%BB%D0%B0%D0%B2%D1%8B_2019_34.jpg',g:'n'},
- cathedral_now:{src:'img/cathedral_now.jpg',w:960,h:1280,y:'2019',c:'Вознесенский (Зенков) соборы бүгін',a:'Rudolph.A.furtado',l:'CC0',lu:'http://creativecommons.org/publicdomain/zero/1.0/deed.en',p:'https://commons.wikimedia.org/wiki/File:Ascension_Cathedral_in_Almaty_in_Kazakhstan.JPG',g:'n'}
+ cathedral_now:{src:'img/cathedral_now.jpg',w:960,h:1280,y:'2019',c:'Вознесенский (Зенков) соборы бүгін',a:'Rudolph.A.furtado',l:'CC0',lu:'http://creativecommons.org/publicdomain/zero/1.0/deed.en',p:'https://commons.wikimedia.org/wiki/File:Ascension_Cathedral_in_Almaty_in_Kazakhstan.JPG',g:'n'},
+ hotel_snow:{src:'img/hotel_snow.jpg',op:'45% 40%',w:1280,h:1125,y:'1970–80-жж.',c:'«Қазақстан» қонақүйі қыста, ашылғаннан кейінгі алғашқы жылдар',a:'Мұрағат фотосы',l:'Автор белгісіз',g:'t'},
+ hotel_aerial:{src:'img/hotel_aerial.jpg',op:'62% 50%',w:1280,h:785,y:'2020-жж.',c:'«Қазақстан» қонақүйі мен Іле Алатауы, жоғарыдан көрініс',a:'Ашық дереккөз',l:'Автор белгісіз',g:'n'},
+ green_street_70s:{src:'img/green_street_70s.jpg',w:1280,h:745,y:'1970–80-жж.',c:'Алма-Ата: екі жағы қалың ағашты көше — «бақ-қала» келбеті',a:'Мұрағат фотосы',l:'Автор белгісіз',g:'t'},
+ green_square_80s:{src:'img/green_square_80s.jpg',w:1280,h:868,y:'1980-жж.',c:'Алма-Ата орталығы: гүлзарлар мен шыршалар (ашықхат)',a:'КСРО ашықхаты',l:'Автор белгісіз',g:'t'},
+ green_aerial_now:{src:'img/green_aerial_now.jpg',w:1280,h:953,y:'2020-жж.',c:'Тау бөктеріндегі жаңа тұрғын үй кешендері — бұрынғы бақтар орнында',a:'Ашық дереккөз',l:'Автор белгісіз',g:'n'},
+ green_square_now:{src:'img/green_square_now.jpg',w:1280,h:857,y:'2020-жж.',c:'Республика алаңы мен әкімдік ғимараты, күзгі саябақ',a:'Ашық дереккөз',l:'Автор белгісіз',g:'n'},
+ aport_harvest:{src:'img/aport_harvest.jpg',w:1043,h:1280,y:'1950–60-жж.',c:'Апорт алмасының өнімін сұрыптау, Алматы маңындағы бақ',a:'Мұрағат фотосы',l:'Автор белгісіз',g:'t'},
+ aport_picker:{src:'img/aport_picker.jpg',w:1280,h:1163,y:'1970-жж.',c:'Апорт жинау: бір алманың салмағы 500 г-ға дейін жеткен',a:'Мұрағат фотосы',l:'Автор белгісіз',g:'t'}
 };
-function credit(p){ return p.a+' · '+(p.lu?'<a href="'+p.lu+'" target="_blank" rel="noopener">'+p.l+'</a>':p.l)+' · <a href="'+p.p+'" target="_blank" rel="noopener">Wikimedia Commons ↗</a>'; }
+function credit(p){ return p.a+' · '+(p.lu?'<a href="'+p.lu+'" target="_blank" rel="noopener">'+p.l+'</a>':p.l)+(p.p?' · <a href="'+p.p+'" target="_blank" rel="noopener">Wikimedia Commons ↗</a>':''); }
 
 
 /* ---------------- DATA ---------------- */
@@ -1110,7 +1219,7 @@ $$('.reveal').forEach(r=>revObs.observe(r));
   function render(){
     if(i>=Q.length){ const r=score>=8?'Тарихшы-зерттеуші':score>=5?'Білімді алматылық':'Жаңа зерттеуші';
       box.innerHTML='<div class="q-top"><span>НӘТИЖЕ</span><span class="q-score">'+score+' / '+Q.length+'</span></div><div class="q-end"><b>'+score*100+'</b><div class="q-q">Ұпай. Атағыңыз: «'+r+'»</div><p class="muted">Қате жауаптардың түсіндірмесін «Аңыз бен ақиқат» және «Уақыт сызығы» бөлімдерінен табасыз.</p><div><button class="btn gold" id="qRe">Қайта бастау</button></div></div>';
-      $('#qRe').onclick=()=>{ i=0; score=0; render(); }; return; }
+      $('#qRe').onclick=()=>{ i=0; score=0; render(); }; window.dispatchEvent(new CustomEvent('quizdone',{detail:score})); return; }
     const q=Q[i];
     box.innerHTML='<div class="q-top"><span>СҰРАҚ '+(i+1)+' / '+Q.length+'</span><span class="q-score">Ұпай: '+score*100+'</span></div><div class="q-prog"><i style="width:'+(i/Q.length*100)+'%"></i></div><div class="q-q">'+q[0]+'</div><div class="q-opts">'+q[1].map((o,k)=>'<button class="q-opt" data-k="'+k+'">'+String.fromCharCode(65+k)+'. '+o+'</button>').join('')+'</div><div id="qExp"></div>';
     box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{ const k=+b.dataset.k; const ok=k===q[2]; if(ok) score++;
@@ -1122,12 +1231,38 @@ $$('.reveal').forEach(r=>revObs.observe(r));
   render();
 })();
 
+/* ---------------- SURVEY CHART ---------------- */
+(function(){
+  const svg=$('#svChart'), tip=$('#svTip'), NS='http://www.w3.org/2000/svg';
+  const rows=[{k:'Платформаға дейін',v:4,c:'#6f8fae'},{k:'Платформадан кейін',v:8.5,c:'#e0b25a'}];
+  const fmt=v=>String(+v.toFixed(1)).replace('.',',');
+  function draw(){
+    svg.innerHTML=''; const W=800,m={l:190,r:70,t:16,b:34}, bh=30, gap=22, H=m.t+rows.length*(bh+gap)-gap+m.b;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    const x=v=>m.l+v/10*(W-m.l-m.r);
+    const s=(t,a,txt)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); if(txt!=null) e.textContent=txt; svg.appendChild(e); return e; };
+    for(let v=0;v<=10;v+=2){ s('line',{x1:x(v),x2:x(v),y1:m.t-6,y2:H-m.b,stroke:v?'rgba(147,163,187,.16)':'rgba(147,163,187,.4)'}); s('text',{x:x(v),y:H-m.b+20,'text-anchor':'middle',fill:'#93a3bb','font-size':12,'font-family':'JetBrains Mono, monospace'},v); }
+    rows.forEach((r,i)=>{ const y=m.t+i*(bh+gap), x0=x(0), x1=x(r.v), rr=4;
+      s('text',{x:m.l-14,y:y+bh/2+5,'text-anchor':'end',fill:'#e8edf5','font-size':14,'font-family':'Golos Text, sans-serif'},r.k);
+      const bar=s('path',{d:'M'+x0+','+y+'H'+(x1-rr)+'Q'+x1+','+y+' '+x1+','+(y+rr)+'V'+(y+bh-rr)+'Q'+x1+','+(y+bh)+' '+(x1-rr)+','+(y+bh)+'H'+x0+'Z',fill:r.c});
+      s('text',{x:x1+10,y:y+bh/2+5,fill:'#e8edf5','font-size':15,'font-weight':600,'font-family':'Golos Text, sans-serif'},fmt(r.v)+' / 10');
+      const hit=s('rect',{x:m.l-180,y:y-gap/2,width:W-m.l+180,height:bh+gap,fill:'transparent'});
+      const show=()=>{ rows.forEach((_,j)=>svg.querySelectorAll('path')[j].setAttribute('opacity',j===i?1:.45)); const rc=svg.getBoundingClientRect(), box=svg.parentElement.getBoundingClientRect();
+        tip.hidden=false; tip.innerHTML='<b>'+fmt(r.v)+' / 10</b>'+r.k+(r.mine?'':' · орташа балл'); tip.style.left=(rc.left-box.left+x1/W*rc.width)+'px'; tip.style.top=(rc.top-box.top+y/H*rc.height)+'px'; };
+      hit.addEventListener('pointermove',show); hit.addEventListener('pointerdown',show);
+      hit.addEventListener('pointerleave',()=>{ tip.hidden=true; svg.querySelectorAll('path').forEach(p=>p.setAttribute('opacity',1)); }); });
+    $('#svTable').innerHTML='<tr><th>Кезең</th><th>Балл, 10-нан</th></tr>'+rows.map(r=>'<tr><td>'+r.k+'</td><td>'+fmt(r.v)+'</td></tr>').join('');
+  }
+  window.addEventListener('quizdone',e=>{ const mine={k:'Сіздің нәтижеңіз',v:e.detail,c:'#36c6ea',mine:1}; if(rows[2]) rows[2]=mine; else rows.push(mine); $('#svNote').textContent='Платформаға дейін, кейін және сіздің викторинадағы нәтижеңіз'; draw(); });
+  draw();
+})();
+
 /* ---------------- PHOTO ARCHIVE + LIGHTBOX ---------------- */
 const lb=$('#lb');
 function openLightbox(k){ const p=PH[k]; $('#lbImg').src=p.src; $('#lbImg').alt=p.c; $('#lbCap').innerHTML='<b>'+p.y+'</b> '+p.c+'<small>'+credit(p)+'</small>'; lb.hidden=false; $('#lbX').focus(); }
 $('#lbX').onclick=()=>lb.hidden=true; lb.addEventListener('click',e=>{ if(e.target===lb) lb.hidden=true; }); addEventListener('keydown',e=>{ if(e.key==='Escape') lb.hidden=true; });
-document.addEventListener('click',e=>{ const b=e.target.closest('.tl-ph,.pf img,.arch img,.mc-img'); if(b&&b.dataset.ph) openLightbox(b.dataset.ph); const v=e.target.closest('img[data-vis]'); if(v){ $('#lbImg').src=v.src; $('#lbImg').alt=v.alt; $('#lbCap').innerHTML=v.closest('figure').querySelector('figcaption').textContent+'<small>Фото: жоба авторы, Д.А. Қонаев музейі</small>'; lb.hidden=false; $('#lbX').focus(); } });
-(function(){ const box=$('#arch'); const order=['kunaev_inst','kunaev_1937','kunaev_1952','kunaev_1981','kbtu_1969','medeu_dam','medeu_70s','memorial_70s','cathedral_70s','medeu_stamp','palace_1978','gorky_1980','medeu_1982','panfilov_1982','kbtu_stamp','palace_stamp','kbtu_1999','hotel_cc0','hotel_tyl','kbtu_mb','kbtu_2026','palace_2022','medeu_2010','medeu_2022','memorial_2017','memorial_2019','cathedral_now','tower_cc0','tower_grau'];
+document.addEventListener('click',e=>{ const b=e.target.closest('.tl-ph,.pf img,.arch img,.mc-img,.lk-ph img'); if(b&&b.dataset.ph) openLightbox(b.dataset.ph); const v=e.target.closest('img[data-vis]'); if(v){ $('#lbImg').src=v.src; $('#lbImg').alt=v.alt; $('#lbCap').innerHTML=v.closest('figure').querySelector('figcaption').textContent+'<small>Фото: жоба авторы, Д.А. Қонаев музейі</small>'; lb.hidden=false; $('#lbX').focus(); } });
+(function(){ const box=$('#arch'); const order=['kunaev_inst','kunaev_1937','kunaev_1952','kunaev_1981','kbtu_1969','aport_harvest','aport_picker','medeu_dam','medeu_70s','memorial_70s','cathedral_70s','green_street_70s','medeu_stamp','hotel_snow','palace_1978','gorky_1980','green_square_80s','medeu_1982','panfilov_1982','kbtu_stamp','palace_stamp','kbtu_1999','hotel_aerial','hotel_cc0','hotel_tyl','kbtu_mb','kbtu_2026','palace_2022','medeu_2010','medeu_2022','memorial_2017','memorial_2019','cathedral_now','tower_cc0','tower_grau','green_square_now','green_aerial_now'];
   const go3d={hotel_cc0:1,kbtu_1969:1,kbtu_1999:1,kbtu_mb:1,palace_2022:1,tower_cc0:1};
   box.innerHTML=order.map(k=>{ const p=PH[k]; return '<figure data-g="'+p.g+'"><img src="'+p.src+'" alt="'+p.c.replace(/"/g,'')+'" loading="lazy" data-ph="'+k+'" width="'+p.w+'" height="'+p.h+'"><figcaption><b>'+p.y+'</b>'+p.c+'<small>'+credit(p)+'</small>'+(go3d[k]?'<button class="btn ghost sm go3d" data-go="'+k+'">3D-мен беттестіру ⇄</button>':'')+'</figcaption></figure>'; }).join('');
   box.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{ if(window.__labPhoto) window.__labPhoto(b.dataset.go); });
@@ -1177,11 +1312,22 @@ const LABINFO={
     ['1973','15 шілдедегі алапат селді ұстап қалды','—']]},
   memorial:{t:'Даңқ мемориалы',s:'28 панфиловшылар атындағы саябақ · 1975 (музейде — 1967) · Мәңгілік алау',rows:[
     ['Ашылуы','1975 — Жеңістің 30 жылдығына (Wikipedia); музей стендінде — 1967','Қаланың басты мемориалдық орындарының бірі'],
-    ['Құрамы','Үш бөлікті композиция, Мәңгілік алау','Сол күйінде сақталған']]}
+    ['Құрамы','Үш бөлікті композиция, Мәңгілік алау','Сол күйінде сақталған']]},
+  green:{t:'Алматының жасыл желегі',s:'Арықтар, ағашты көшелер, саябақтар · «бақ-қала» дәстүрі',rows:[
+    ['Көшелер','Екі жағында қатар ағаш пен арық — көлеңкелі «жасыл шатыр»','Көп көше кеңейтілді; ағаштардың бір бөлігі кесіліп, жаңалары отырғызылуда'],
+    ['Суару','Арық жүйесі: ағаштар таудан ағатын сумен суарылды','Арықтардың бір бөлігі жабылды немесе қараусыз қалды'],
+    ['Саябақтар','Горький, Панфиловшылар саябақтары, Ботаникалық бақ, гүлзарлар','Тарихи саябақтар сақталды, жаңа скверлер ашылды'],
+    ['Тау бөктері','Алма бақтары мен саяжайлар','Көпқабатты тұрғын үй кешендері'],
+    ['Ауа','Ағаштар желі аз қазаншұңқырдағы ауаны тазартуға көмектесті','Түтін-тұман (смог) — қаланың өзекті мәселесі']]},
+  aport:{t:'Апорт — Алматының алмасы',s:'Ірі, хош иісті қысқы сорт · Іле Алатауының бөктері',rows:[
+    ['Шығу тегі','XIX ғ. екінші жартысында Верныйға әкелініп, жергілікті жабайы Сиверс алмасына телінген','Қаланың символы: «Алматы» атауы «алма» сөзімен байланыстырылады'],
+    ['Ерекшелігі','Ірі жеміс — бір алма 500 г-ға дейін, ұзақ сақталады','Нағыз Апорт сирек; базардағы «апорттың» көбі — басқа сорттар'],
+    ['Өсетін жері','Тау бөктері, теңіз деңгейінен ≈900–1200 м биіктік','Бұл белдеудің көп бөлігінде қазір тұрғын үйлер мен саяжайлар тұр'],
+    ['Атағы','Кеңестік кезеңде алыс аймақтарға жөнелтіліп, көрмелерде марапатталды','Сортты сақтау және қалпына келтіру бастамалары, жеке бақтар']]}
 };
-const LABPH={hotel:['hotel_cc0','hotel_tyl'],kbtu:['kbtu_1969','kbtu_1999','kbtu_mb','kbtu_2026'],palace:['palace_1978','palace_stamp','palace_2022'],koktobe:['tower_cc0','tower_grau'],medeu:['medeu_1982','medeu_70s','medeu_dam','medeu_2010','medeu_2022','medeu_stamp'],memorial:['memorial_70s','memorial_2017','memorial_2019']};
-const PAIRS={hotel:['hotel_tyl','hotel_cc0'],kbtu:['kbtu_1969','kbtu_mb'],palace:['palace_1978','palace_2022'],medeu:['medeu_1982','medeu_2010'],memorial:['memorial_70s','memorial_2017'],koktobe:['tower_grau','tower_cc0']};
-const NO_THEN={hotel:'Қонақүйдің 1977–1991 жылдардағы еркін лицензиялы фотосы табылмады, сондықтан екі бүгінгі ракурс көрсетілген.',koktobe:'Мұнараның кеңестік кезеңдегі еркін лицензиялы фотосы табылмады.'};
+const LABPH={hotel:['hotel_snow','hotel_aerial','hotel_cc0','hotel_tyl'],green:['green_street_70s','green_square_80s','green_square_now','green_aerial_now'],aport:['aport_harvest','aport_picker','green_aerial_now'],kbtu:['kbtu_1969','kbtu_1999','kbtu_mb','kbtu_2026'],palace:['palace_1978','palace_stamp','palace_2022'],koktobe:['tower_cc0','tower_grau'],medeu:['medeu_1982','medeu_70s','medeu_dam','medeu_2010','medeu_2022','medeu_stamp'],memorial:['memorial_70s','memorial_2017','memorial_2019']};
+const PAIRS={hotel:['hotel_snow','hotel_aerial'],green:['green_street_70s','green_square_now'],aport:['aport_harvest','green_aerial_now'],kbtu:['kbtu_1969','kbtu_mb'],palace:['palace_1978','palace_2022'],medeu:['medeu_1982','medeu_2010'],memorial:['memorial_70s','memorial_2017'],koktobe:['tower_grau','tower_cc0']};
+const NO_THEN={koktobe:'Мұнараның кеңестік кезеңдегі еркін лицензиялы фотосы табылмады.'};
 const MATCH={
   hotel_cc0:{b:'hotel',era:'now',pos:[30,1.6,100],t:[6,50,-8],fov:64},
   kbtu_1969:{b:'kbtu',era:'then',pos:[-55,1.6,40],t:[10,14,14],fov:55},
@@ -1658,7 +1804,7 @@ function initLab(){
   function info(key){ $$('#labTabs .tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.b===key?'true':'false'));
     const I=LABINFO[key];
     $('#labInfo').innerHTML='<div><span class="eyebrow">'+(mode==='photo'?'Нақты фото':'3D модель')+'</span><h3 style="margin-top:6px">'+I.t+'</h3><p class="sub" style="margin-top:6px">'+I.s+'</p></div>'
-      +'<div><span class="eyebrow">Нақты фотолар · Wikimedia Commons</span><div class="ph-strip">'+LABPH[key].map(k=>{ const p=PH[k]; return '<button class="ph-th'+(MATCH[k]?' m':'')+'" data-ph="'+k+'"><img src="'+p.src+'" alt="'+p.c.replace(/"/g,'')+'" loading="lazy"><span>'+p.y+(MATCH[k]?' · 3D ⇄':'')+'</span></button>'; }).join('')+'</div><p class="lab-note" style="margin-top:8px">⇄ белгісі бар фотоны басыңыз: 3D модель сол фотоның ракурсымен беттеседі.</p></div>'
+      +'<div><span class="eyebrow">Нақты фотолар</span><div class="ph-strip">'+LABPH[key].map(k=>{ const p=PH[k]; return '<button class="ph-th'+(MATCH[k]?' m':'')+'" data-ph="'+k+'"><img src="'+p.src+'" alt="'+p.c.replace(/"/g,'')+'" loading="lazy"><span>'+p.y+(MATCH[k]?' · 3D ⇄':'')+'</span></button>'; }).join('')+'</div><p class="lab-note" style="margin-top:8px">⇄ белгісі бар фотоны басыңыз: 3D модель сол фотоның ракурсымен беттеседі.</p></div>'
       +'<div style="overflow-x:auto"><table class="cmp"><thead><tr><th></th><th>Кеше</th><th>Бүгін</th></tr></thead><tbody>'+I.rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>').join('')+'</tbody></table></div>'+(mode==='photo'?(NO_THEN[key]?'<p class="lab-note">'+NO_THEN[key]+'</p>':''):'<p class="lab-note">Модель Wikimedia Commons-тағы фотолар бойынша жеңілдетілген түрде қайта құрылды; пропорциялары шамамен.</p>');
     $$('#labInfo .ph-th').forEach(b=>b.onclick=()=>{ const k=b.dataset.ph; if(MATCH[k]) enterOv(k); else openLightbox(k); }); }
   const frameEl=$('#labFrame');
