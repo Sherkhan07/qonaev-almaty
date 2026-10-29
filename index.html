@@ -522,7 +522,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-photo" role="img" aria-label="Алматы, Көктөбе телемұнарасы және Іле Алатауы"></div>
-  <canvas id="heroCanvas" aria-label="«Қазақстан» қонақүйінің голографиялық 3D моделі"></canvas>
+  <canvas id="heroCanvas" aria-label="«Қазақстан» қонақүйінің 3D моделі"></canvas>
   <div class="hero-veil"></div>
   <div class="hero-hud" aria-hidden="true">
     <div>43.2389° N · 76.8897° E</div>
@@ -1606,30 +1606,28 @@ function initHero(){
   const v=createView($('#heroCanvas'),{bg:0x070d18,fov:40,near:1,far:5000,dpr:1.75,alpha:true}); if(!v) return;
   const {scene,camera}=v;
   scene.background=null; v.renderer.setClearColor(0x000000,0);
-  scene.add(new THREE.HemisphereLight(0x5b8bb5,0x060a12,.9)); const dl=new THREE.DirectionalLight(0x9fd8ff,.6); dl.position.set(-200,300,200); scene.add(dl);
-  // hologram hotel (form after Commons photos)
-  const holo=new THREE.Group(); scene.add(holo);
-  const W=50,D=24,H=82,FL=26,BW=36; const segs=[], gold=[]; const Ln=(a,b)=>segs.push(...a,...b);
-  for(let f=0;f<=FL;f++){ const y=f*H/FL; Ln([-W/2,y,0],[W/2,y,0]); Ln([W/2,y,0],[W/2,y,-D]); Ln([-W/2,y,0],[-W/2,y,-D]); }
-  [[-W/2,0],[W/2,0],[W/2,-D],[-W/2,-D]].forEach(p=>Ln([p[0],0,p[1]],[p[0],H,p[1]]));
-  for(let i=1;i<6;i++){ const x=-W/2+i*W/6; Ln([x,0,-D],[x,H,-D]); }
-  const nz=12,pw=BW/nz; for(let f=1;f<FL;f++){ const y=f*H/FL; for(let i=0;i<nz;i++){ const x0=-BW/2+pw*i; Ln([x0,y,2.6],[x0+pw/2,y,4.8]); Ln([x0+pw/2,y,4.8],[x0+pw,y,2.6]); } }
-  for(let i=0;i<=nz;i++){ const x=-BW/2+pw*i; Ln([x,0,2.6],[x,H,2.6]); }
-  const bw=W/2+2; [H,H+6.5].forEach(y=>{ Ln([-bw,y,2],[bw,y,2]); Ln([bw,y,2],[bw,y,-D-2]); Ln([bw,y,-D-2],[-bw,y,-D-2]); Ln([-bw,y,-D-2],[-bw,y,2]); }); const zn=15,zw=(W+4)/zn; for(let i=0;i<zn;i++){ const x0=-bw+zw*i; [H+3.2,H+6.5].forEach(y=>{ Ln([x0,y,2],[x0+zw/2,y,4.6]); Ln([x0+zw/2,y,4.6],[x0+zw,y,2]); }); }
-  for(let i=0;i<50;i++){ const t=i/50*Math.PI*2, c=Math.cos(t), s2=Math.sin(t); const px=(W/2+1.6)*Math.sign(c)*Math.pow(Math.abs(c),.35), pz=-D/2+(D/2+1.6)*Math.sign(s2)*Math.pow(Math.abs(s2),.35); const tx=-Math.sin(t), tz=Math.cos(t), yb=H+6.5;
-    gold.push(px-tx*1.9,yb,pz-tz*1.9, px,yb+10,pz, px,yb+10,pz, px+tx*1.9,yb,pz+tz*1.9); }
-  const sg=new THREE.BufferGeometry(); sg.setAttribute('position',new THREE.Float32BufferAttribute(segs,3));
-  const holoMat=new THREE.LineBasicMaterial({color:0x5fd8f5,transparent:true,opacity:.75}); holo.add(new THREE.LineSegments(sg,holoMat));
-  const gg2=new THREE.BufferGeometry(); gg2.setAttribute('position',new THREE.Float32BufferAttribute(gold,3)); holo.add(new THREE.LineSegments(gg2,new THREE.LineBasicMaterial({color:0xf4d68f})));
-  const fill=new THREE.Mesh(new THREE.BoxGeometry(W,H,D).translate(0,H/2,-D/2),new THREE.MeshBasicMaterial({color:0x36c6ea,transparent:true,opacity:.06,depthWrite:false})); holo.add(fill);
-  const ring=new THREE.Mesh(new THREE.RingGeometry(58,62,96),new THREE.MeshBasicMaterial({color:0xe0b25a,transparent:true,opacity:.5,side:THREE.DoubleSide})); ring.rotation.x=-Math.PI/2; ring.position.set(0,.5,-8); holo.add(ring);
-  const scan=new THREE.Mesh(new THREE.RingGeometry(40,46,96),new THREE.MeshBasicMaterial({color:0x36c6ea,transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false})); scan.rotation.x=-Math.PI/2; scan.position.z=-8; holo.add(scan);
+  const renderer=v.renderer; renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  // golden-hour light: warm sun from the west, cool sky fill, faint rim from behind
+  scene.add(new THREE.HemisphereLight(0xcfe0f2,0x3b3226,.62));
+  const sun=new THREE.DirectionalLight(0xffdcb0,1.25); sun.position.set(-150,170,140); sun.target.position.set(0,45,-12); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); sun.shadow.bias=-.0006;
+  Object.assign(sun.shadow.camera,{left:-80,right:80,top:110,bottom:-30,near:10,far:600}); sun.shadow.camera.updateProjectionMatrix(); scene.add(sun,sun.target);
+  const rim=new THREE.DirectionalLight(0x9cc4ff,.35); rim.position.set(160,90,-220); scene.add(rim);
+  // solid hotel: the same photo-checked geometry as the 3D lab (tower, rhomb-balcony bay, slabs, crown band, golden spikes, podium)
+  const H=82; const hb=buildHotel(), model=new THREE.Group(); scene.add(model);
+  [hb.root.userData.core,hb.root.children[1],hb.root.children[2]].forEach(o=>model.add(o));
+  // own material copies (so the lab's night switch doesn't touch the hero); gold crown without env map reads black at high metalness
+  const heroGold=std('#e2bd68',{metalness:.3,roughness:.38,emissive:new THREE.Color('#7a5418'),emissiveIntensity:.45});
+  const own=m=>{ if(m.metalness>=.5) return heroGold; const c=m.clone(); if(c.emissiveMap) c.emissiveIntensity=.18; return c; };
+  model.traverse(o=>{ if(o.isMesh){ o.material=Array.isArray(o.material)?o.material.map(own):own(o.material); o.castShadow=true; o.receiveShadow=true; } });
+  // soft contact shadow under the building instead of a flat ground plane
+  const cs=canvasTex(256,256,(g)=>{ const gr=g.createRadialGradient(128,128,0,128,128,128); gr.addColorStop(0,'rgba(0,0,0,.55)'); gr.addColorStop(.55,'rgba(0,0,0,.25)'); gr.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=gr; g.fillRect(0,0,256,256); });
+  const shadowDisc=new THREE.Mesh(new THREE.PlaneGeometry(220,160).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({map:cs,transparent:true,depthWrite:false})); shadowDisc.position.set(0,.05,4); scene.add(shadowDisc);
+  const catcher=new THREE.Mesh(new THREE.PlaneGeometry(400,400).rotateX(-Math.PI/2),new THREE.ShadowMaterial({opacity:.35})); catcher.receiveShadow=true; catcher.position.set(0,.06,0); scene.add(catcher);
   let mx=0,my=0; addEventListener('pointermove',e=>{ mx=e.clientX/innerWidth-.5; my=e.clientY/innerHeight-.5; },{passive:true});
   v.onResize=()=>{ if(v.w>820){ camera.aspect=v.w*1.5/v.h; camera.setViewOffset(v.w*1.5,v.h,0,0,v.w,v.h); } else { camera.clearViewOffset(); camera.aspect=v.w/v.h; camera.updateProjectionMatrix(); } };
   v.onResize();
-  let ang=.55, sy=0; const clock=$('#heroClock');
-  v.update=(dt,t)=>{ if(!REDUCED) ang+=dt*.05; const rad=255; camera.position.set(Math.sin(ang)*rad+mx*40,120-my*30,Math.cos(ang)*rad-8); camera.lookAt(0,62,-8);
-    sy=(sy+dt*14)%(H+20); scan.position.y=sy; scan.material.opacity=.4*(1-sy/(H+20)); holoMat.opacity=.6+.15*Math.sin(t*2.2);
+  let ang=.55; const clock=$('#heroClock');
+  v.update=(dt,t)=>{ if(!REDUCED) ang+=dt*.05; const rad=255; camera.position.set(Math.sin(ang)*rad+mx*40,95-my*30,Math.cos(ang)*rad-8); camera.lookAt(0,H*.62,-8);
     if(clock && (t*10|0)%5===0) clock.textContent='Кадр · '+(t*60|0).toString().padStart(6,'0'); };
 }
 
